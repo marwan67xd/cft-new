@@ -2,19 +2,19 @@
 const products = [
   {
     title: 'Premium Tuna',
-    description: 'Sashimi-grade tuna sourced from sustainable fisheries. Perfect for retail and food service.',
+    description: 'High-quality canned tuna produced under strict food industry standards. Ideal for retail and distribution markets.',
     image: 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=600&q=80',
     href: '#',
   },
   {
     title: 'Quality Sardines',
-    description: 'Nutrient-rich sardines, ideal for canned and fresh markets. Consistent quality year-round.',
+    description: 'Nutritious sardines processed to consistent quality levels for consumer and commercial use.',
     image: 'https://images.unsplash.com/photo-1559847844-5315695dadae?w=600&q=80',
     href: '#',
   },
   {
     title: 'Mackerel Fillets',
-    description: 'Fresh and frozen mackerel fillets meeting international standards. Versatile and reliable.',
+    description: 'Canned mackerel fillets prepared according to international production norms, offering reliable and versatile supply.',
     image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80',
     href: '#',
   },

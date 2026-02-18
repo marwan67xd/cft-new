@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import logoImage from '~/assets/logo/logo-2-10-10-63.png'
+
 const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Company Profile', href: '/about' },
@@ -32,8 +34,18 @@ onUnmounted(() => {
     ]"
   >
     <nav class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-      <NuxtLink to="/" class="flex items-center gap-2 shrink-0" aria-label="Home">
-        <span class="text-xl font-bold text-ocean-950 tracking-tight">SEAFOOD<span class="text-aqua-500">CO</span></span>
+      <NuxtLink 
+        to="/" 
+        class="flex items-center shrink-0 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2 rounded-lg" 
+        aria-label="Home"
+      >
+        <img 
+          :src="logoImage" 
+          alt="Capital Food Logo" 
+          class="w-auto object-contain transition-all duration-300"
+          :class="isScrolled ? 'h-10 sm:h-11' : 'h-12 sm:h-14'"
+          loading="eager"
+        />
       </NuxtLink>
 
       <!-- Desktop nav -->

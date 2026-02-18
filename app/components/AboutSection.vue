@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import seafoodImage from '~/assets/profile/snack-25-11-63-tuna-olive-oil.jpg'
+
 const sectionRef = ref<HTMLElement | null>(null)
 const leftRef = ref<HTMLElement | null>(null)
 const rightRef = ref<HTMLElement | null>(null)
@@ -16,8 +18,8 @@ onMounted(() => {
 })
 
 const highlights = [
-  { title: 'Sustainable practices', desc: 'Responsible sourcing and eco-friendly operations.' },
-  { title: 'Traceable sourcing', desc: 'Full supply chain transparency from ocean to table.' },
+  { title: 'Sustainable Sourcing', desc: 'We aim for responsible sourcing and adherence to ethical practices throughout our operations.' },
+  { title: 'Traceability', desc: 'We maintain transparency in our supply processes from production to delivery.' },
 ]
 </script>
 
@@ -33,8 +35,8 @@ const highlights = [
         <div ref="leftRef" class="relative">
           <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-ocean-100 shadow-card">
             <img
-              src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=800&q=80"
-              alt="Seafood processing facility"
+              :src="seafoodImage"
+              alt="Premium seafood products - Tuna with olive oil"
               class="w-full h-full object-cover"
               width="800"
               height="600"
@@ -44,7 +46,7 @@ const highlights = [
           <div
             class="absolute -bottom-4 left-6 right-6 sm:left-8 sm:right-auto px-5 py-3 rounded-xl bg-white shadow-card border border-gray-100"
           >
-            <span class="text-ocean-600 font-semibold">25+ Years Excellence</span>
+            <span class="text-ocean-600 font-semibold">12+ Years Excellence</span>
           </div>
         </div>
 
@@ -53,11 +55,24 @@ const highlights = [
             About Us
           </p>
           <h2 id="about-heading" class="text-3xl sm:text-4xl font-bold text-ocean-950 tracking-tight mb-6">
-            Excellence in Seafood Supply
+            About Us — Premium Seafood Products
           </h2>
           <p class="text-gray-600 leading-relaxed mb-8">
-            For over two decades we have been committed to delivering premium seafood to tables across the globe. Our dedication to quality, international standards, and reliable sourcing has made us a trusted partner for retailers and distributors worldwide.
+            Founded in 2014, we are a dedicated producer and supplier of high-quality seafood products, including tuna, sardines, and mackerel. Our focus on consistent quality, industry standards, and reliable sourcing supports our partnerships with retailers and food distributors.
           </p>
+          <div class="mb-8 p-4 rounded-xl bg-white border border-gray-100 shadow-sm">
+            <h3 class="font-semibold text-ocean-900 mb-3">Our Commitment to Quality</h3>
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start gap-2">
+                <span class="text-aqua-600 mt-1">•</span>
+                <span>Quality-driven production and packaging practices.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-aqua-600 mt-1">•</span>
+                <span>Adherence to food safety and industry standards.</span>
+              </li>
+            </ul>
+          </div>
           <ul class="space-y-4">
             <li
               v-for="h in highlights"

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import homeImage from '~/assets/home/ChatGPT Image Feb 18, 2026, 03_51_24 PM.png'
+
 const features = [
   'Premium Quality',
   'Global Standards',
@@ -70,8 +72,8 @@ onMounted(() => {
         <div ref="imageRef" class="relative">
           <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-ocean-900 shadow-2xl">
             <img
-              src="https://images.unsplash.com/photo-1567894340315-735d7c361db0?w=800&q=80"
-              alt="Cargo ship for global seafood export"
+              :src="homeImage"
+              alt="Premium seafood products"
               class="w-full h-full object-cover"
               width="800"
               height="600"

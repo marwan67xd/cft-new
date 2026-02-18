@@ -40,9 +40,17 @@ onUnmounted(() => {
           <h2 id="cta-heading" class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
             Looking for a premium seafood supplier? Contact us today.
           </h2>
-          <p class="text-white/90 max-w-xl mx-auto mb-8">
+          <p class="text-white/90 max-w-xl mx-auto mb-6">
             Request a quotation, ask about products, or discuss a partnership. Our team is ready to support your business.
           </p>
+          <div class="mb-8 space-y-2">
+            <p class="text-white font-semibold mb-2">Have any questions? Call us now!</p>
+            <div class="flex flex-wrap justify-center gap-4">
+              <a href="tel:+66925411454" class="text-white hover:text-gray-100 font-medium">+66 925411454</a>
+              <span class="text-white/60">|</span>
+              <a href="tel:+66847217966" class="text-white hover:text-gray-100 font-medium">+66 847217966</a>
+            </div>
+          </div>
           <NuxtLink
             to="#form-heading"
             class="inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-white text-ocean-600 font-semibold hover:bg-gray-50 hover:shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-ocean-500"

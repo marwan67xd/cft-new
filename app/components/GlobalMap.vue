@@ -31,10 +31,10 @@ onMounted(() => {
   >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <h2 id="global-heading" class="text-3xl sm:text-4xl font-bold text-ocean-950 text-center mb-4">
-        Exporting to 40+ Countries
+        Active in International Markets
       </h2>
       <p class="text-gray-600 text-center max-w-2xl mx-auto mb-14">
-        A trusted partner for distributors and retailers across the globe.
+        Supplying canned tuna, sardines, and mackerel to distribution partners across regional and international markets.
       </p>
 
       <div ref="cardRef" class="relative max-w-4xl mx-auto">

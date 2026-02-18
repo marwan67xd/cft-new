@@ -32,14 +32,17 @@ onUnmounted(() => {
   >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto text-center">
-        <h2 id="intro-heading" class="sr-only">
-          Sardines and mackerel quality and sourcing
+        <h2 id="intro-heading" class="text-3xl sm:text-4xl font-bold text-navy tracking-tight mb-6">
+          SARDINES / MACKEREL
         </h2>
         <p
           ref="textRef"
-          class="text-lg sm:text-xl text-gray-600 leading-relaxed"
+          class="text-lg sm:text-xl text-gray-600 leading-relaxed mb-6"
         >
-          Our sardines and mackerel are sourced with care and processed to the highest standards. We emphasize freshness, careful processing, and full compliance with global food safety and export requirements.
+          Sardines / Mackerel are known as well as in the processing of canned fish.
+        </p>
+        <p class="text-base sm:text-lg text-gray-600 leading-relaxed">
+          Popular product: SARDINES / MACKEREL IN TOMATO SAUCE, SARDINES / MACKEREL IN OIL WITH CHILI. Sardines / Mackerel are known as well as in the processing of canned fish in various sauces such as tomato sauce, oil, or brine. Or dishes such as grilled or smoked. Which sardines nutrition than milk or 3 times with fish of 100 grams of various nutrients like Omega 3 to 200 mg, which is sufficient for the needs of the human body each week. It also contains phosphorus, copper, magnesium alloy, iron, manganese, lycopene and vitamin B
         </p>
       </div>
     </div>
