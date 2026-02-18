@@ -1,47 +1,70 @@
 <script setup lang="ts">
 const links = [
   {
-    title: 'Tuna Products',
-    href: '/tuna',
-    image: 'https://images.unsplash.com/photo-1559847844-5315695dadae?w=800&q=80',
-    alt: 'Tuna Products',
+    title: "Tuna Products",
+    href: "/tuna",
+    image:
+      "https://images.unsplash.com/photo-1559847844-5315695dadae?w=800&q=80",
+    alt: "Tuna Products",
   },
   {
-    title: 'Company Profile',
-    href: '/about',
-    image: 'https://images.unsplash.com/photo-1565680018434-b513d5e261b9?w=800&q=80',
-    alt: 'Company Profile',
+    title: "Company Profile",
+    href: "/Company Profile",
+    image:
+      "https://images.unsplash.com/photo-1565680018434-b513d5e261b9?w=800&q=80",
+    alt: "Company Profile",
   },
-]
+];
 
-const sectionRef = ref<HTMLElement | null>(null)
-const headingRef = ref<HTMLElement | null>(null)
-const cardsRef = ref<HTMLElement | null>(null)
+const sectionRef = ref<HTMLElement | null>(null);
+const headingRef = ref<HTMLElement | null>(null);
+const cardsRef = ref<HTMLElement | null>(null);
 
-let gsapCtx: { revert: () => void } | null = null
+let gsapCtx: { revert: () => void } | null = null;
 
 onMounted(() => {
   if (import.meta.client && sectionRef.value) {
-    import('gsap').then(({ default: gsap }) => {
-      import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
-        gsap.registerPlugin(ScrollTrigger)
+    import("gsap").then(({ default: gsap }) => {
+      import("gsap/ScrollTrigger").then(({ default: ScrollTrigger }) => {
+        gsap.registerPlugin(ScrollTrigger);
         gsapCtx = gsap.context(() => {
           if (headingRef.value) {
-            gsap.fromTo(headingRef.value, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 85%' } })
+            gsap.fromTo(
+              headingRef.value,
+              { opacity: 0, y: 20 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                scrollTrigger: { trigger: sectionRef.value, start: "top 85%" },
+              },
+            );
           }
           if (cardsRef.value) {
-            const cards = cardsRef.value.querySelectorAll('[data-related-card]')
-            gsap.fromTo(cards, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.15, scrollTrigger: { trigger: sectionRef.value, start: 'top 80%' } })
+            const cards = cardsRef.value.querySelectorAll(
+              "[data-related-card]",
+            );
+            gsap.fromTo(
+              cards,
+              { opacity: 0, y: 24 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                stagger: 0.15,
+                scrollTrigger: { trigger: sectionRef.value, start: "top 80%" },
+              },
+            );
           }
-        }, sectionRef)
-      })
-    })
+        }, sectionRef);
+      });
+    });
   }
-})
+});
 
 onUnmounted(() => {
-  gsapCtx?.revert()
-})
+  gsapCtx?.revert();
+});
 </script>
 
 <template>
@@ -51,13 +74,20 @@ onUnmounted(() => {
     aria-labelledby="related-heading"
   >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 id="related-heading" ref="headingRef" class="text-center text-3xl sm:text-4xl font-bold text-navy tracking-tight mb-4">
+      <h2
+        id="related-heading"
+        ref="headingRef"
+        class="text-center text-3xl sm:text-4xl font-bold text-navy tracking-tight mb-4"
+      >
         Related Products
       </h2>
       <p class="text-center text-gray-600 max-w-xl mx-auto mb-12 lg:mb-16">
         Explore more of our premium seafood and company profile.
       </p>
-      <div ref="cardsRef" class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
+      <div
+        ref="cardsRef"
+        class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto"
+      >
         <NuxtLink
           v-for="link in links"
           :key="link.title"
@@ -73,9 +103,13 @@ onUnmounted(() => {
             height="450"
             loading="lazy"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy/40 to-transparent" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy/40 to-transparent"
+          />
           <div class="absolute inset-0 flex items-end p-8">
-            <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            <h3
+              class="text-2xl sm:text-3xl font-bold text-white tracking-tight"
+            >
               {{ link.title }}
             </h3>
           </div>

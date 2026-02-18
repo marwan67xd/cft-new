@@ -1,47 +1,51 @@
 <script setup lang="ts">
-import logoImage from '~/assets/logo/logo-2-10-10-63.png'
+import logoImage from "~/assets/logo/logo-2-10-10-63.png";
 
 const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Company Profile', href: '/about' },
-  { label: 'Tuna', href: '/tuna' },
-  { label: 'Sardines / Mackerel', href: '/sardines-mackerel' },
-  { label: 'Exhibition', href: '/exhibition' },
-  { label: 'Contact us', href: '/contact' },
-]
+  { label: "Home", href: "/" },
+  { label: "Company Profile", href: "/Company Profile" },
+  { label: "Tuna", href: "/tuna" },
+  { label: "Sardines / Mackerel", href: "/sardines-mackerel" },
+  { label: "Exhibition", href: "/exhibition" },
+  { label: "Contact us", href: "/contact" },
+];
 
-const isScrolled = ref(false)
-const isMobileMenuOpen = ref(false)
+const isScrolled = ref(false);
+const isMobileMenuOpen = ref(false);
 
 const updateScroll = () => {
-  isScrolled.value = window.scrollY > 20
-}
+  isScrolled.value = window.scrollY > 20;
+};
 
 onMounted(() => {
-  window.addEventListener('scroll', updateScroll, { passive: true })
-})
+  window.addEventListener("scroll", updateScroll, { passive: true });
+});
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', updateScroll)
-})
+  window.removeEventListener("scroll", updateScroll);
+});
 </script>
 
 <template>
   <header
     class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
     :class="[
-      isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-nav py-3' : 'bg-transparent py-5',
+      isScrolled
+        ? 'bg-white/95 backdrop-blur-sm shadow-nav py-3'
+        : 'bg-transparent py-5',
     ]"
   >
-    <nav class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-      <NuxtLink 
-        to="/" 
-        class="flex items-center shrink-0 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2 rounded-lg" 
+    <nav
+      class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between"
+    >
+      <NuxtLink
+        to="/"
+        class="flex items-center shrink-0 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2 rounded-lg"
         aria-label="Home"
       >
-        <img 
-          :src="logoImage" 
-          alt="Capital Food Logo" 
+        <img
+          :src="logoImage"
+          alt="Capital Food Logo"
           class="w-auto object-contain transition-all duration-300"
           :class="isScrolled ? 'h-10 sm:h-11' : 'h-12 sm:h-14'"
           loading="eager"
@@ -54,7 +58,11 @@ onUnmounted(() => {
           <NuxtLink
             :to="link.href"
             class="text-gray-600 hover:text-ocean-700 font-medium transition-colors"
-            :class="link.href === '/contact' ? 'inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-ocean-600 text-white hover:bg-ocean-700 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2' : ''"
+            :class="
+              link.href === '/contact'
+                ? 'inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-ocean-600 text-white hover:bg-ocean-700 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2'
+                : ''
+            "
           >
             {{ link.label }}
           </NuxtLink>
@@ -69,9 +77,26 @@ onUnmounted(() => {
         aria-label="Toggle menu"
         @click="isMobileMenuOpen = !isMobileMenuOpen"
       >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path v-if="!isMobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          <path v-else stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            v-if="!isMobileMenuOpen"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+          <path
+            v-else
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
         </svg>
       </button>
     </nav>
