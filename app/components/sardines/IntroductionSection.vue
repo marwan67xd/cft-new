@@ -1,6 +1,10 @@
 <script setup lang="ts">
+import image1 from '~/assets/Sardines-Mackerel/70c749a7-9cbc-41f4-8d24-6065601b90a0.png'
+import image2 from '~/assets/Sardines-Mackerel/ChatGPT Image Feb 18, 2026, 05_02_14 PM.png'
+
 const sectionRef = ref<HTMLElement | null>(null)
 const textRef = ref<HTMLElement | null>(null)
+const imagesRef = ref<HTMLElement | null>(null)
 
 let gsapCtx: { revert: () => void } | null = null
 
@@ -12,6 +16,9 @@ onMounted(() => {
         gsapCtx = gsap.context(() => {
           if (textRef.value) {
             gsap.fromTo(textRef.value, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 88%' } })
+          }
+          if (imagesRef.value) {
+            gsap.fromTo(imagesRef.value, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, delay: 0.2, scrollTrigger: { trigger: sectionRef.value, start: 'top 88%' } })
           }
         }, sectionRef)
       })
@@ -35,15 +42,36 @@ onUnmounted(() => {
         <h2 id="intro-heading" class="text-3xl sm:text-4xl font-bold text-navy tracking-tight mb-6">
           SARDINES / MACKEREL
         </h2>
-        <p
-          ref="textRef"
-          class="text-lg sm:text-xl text-gray-600 leading-relaxed mb-6"
-        >
-          Sardines / Mackerel are known as well as in the processing of canned fish.
-        </p>
-        <p class="text-base sm:text-lg text-gray-600 leading-relaxed">
-          Popular product: SARDINES / MACKEREL IN TOMATO SAUCE, SARDINES / MACKEREL IN OIL WITH CHILI. Sardines / Mackerel are known as well as in the processing of canned fish in various sauces such as tomato sauce, oil, or brine. Or dishes such as grilled or smoked. Which sardines nutrition than milk or 3 times with fish of 100 grams of various nutrients like Omega 3 to 200 mg, which is sufficient for the needs of the human body each week. It also contains phosphorus, copper, magnesium alloy, iron, manganese, lycopene and vitamin B
-        </p>
+        <div ref="textRef" class="space-y-4 mb-8">
+          <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
+            Sardines / Mackerel are known as well as in the processing of canned fish.
+          </p>
+          <p class="text-base sm:text-lg text-gray-600 leading-relaxed">
+            Popular product: SARDINES / MACKEREL IN TOMATO SAUCE, SARDINES / MACKEREL IN OIL WITH CHILI. Sardines / Mackerel are known as well as in the processing of canned fish in various sauces such as tomato sauce, oil, or brine. Or dishes such as grilled or smoked. Which sardines nutrition than milk or 3 times with fish of 100 grams of various nutrients like Omega 3 to 200 mg, which is sufficient for the needs of the human body each week. It also contains phosphorus, copper, magnesium alloy, iron, manganese, lycopene and vitamin B
+          </p>
+        </div>
+        <div ref="imagesRef" class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mt-8">
+          <div class="rounded-2xl overflow-hidden shadow-card">
+            <img
+              :src="image1"
+              alt="Sardines and Mackerel"
+              class="w-full h-auto object-cover aspect-[4/3]"
+              width="800"
+              height="600"
+              loading="lazy"
+            />
+          </div>
+          <div class="rounded-2xl overflow-hidden shadow-card">
+            <img
+              :src="image2"
+              alt="Sardines and Mackerel products"
+              class="w-full h-auto object-cover aspect-[4/3]"
+              width="800"
+              height="600"
+              loading="lazy"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </section>
