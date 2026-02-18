@@ -4,10 +4,10 @@ const lineRef = ref<HTMLElement | null>(null)
 const itemsRef = ref<HTMLElement | null>(null)
 
 const milestones = [
-  { year: '1994', title: 'Founding' },
-  { year: '2005', title: 'Regional Expansion' },
-  { year: '2012', title: 'Export Milestone' },
-  { year: '2024', title: 'Global Leader' },
+  { year: '2014', title: 'Company Founded' },
+  { year: '2016', title: 'Production Expansion' },
+  { year: '2019', title: 'Market Growth' },
+  { year: '2024', title: 'Continued Development' },
 ]
 
 onMounted(() => {

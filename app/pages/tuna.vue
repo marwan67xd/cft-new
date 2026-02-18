@@ -16,6 +16,8 @@ useHead({
     <Navbar />
     <main>
       <TunaTunaHero />
+      <TunaIntroductionSection />
+      <TunaSpecificationsSection />
       <TunaQualitySection />
       <TunaTunaGrid />
       <TunaPackagingTrust />

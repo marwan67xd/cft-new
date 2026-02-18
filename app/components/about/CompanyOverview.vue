@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import profileImage from '~/assets/profile/ChatGPT Image Feb 18, 2026, 03_59_45 PM.png'
+
 const sectionRef = ref<HTMLElement | null>(null)
 const leftRef = ref<HTMLElement | null>(null)
 const rightRef = ref<HTMLElement | null>(null)
@@ -59,7 +61,7 @@ onMounted(() => {
         <div ref="rightRef" class="relative">
           <div class="rounded-2xl overflow-hidden shadow-card-hover bg-ocean-100 aspect-[4/3]">
             <img
-              src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=800&q=80"
+              :src="profileImage"
               alt="Seafood processing facility"
               class="w-full h-full object-cover"
               width="800"
