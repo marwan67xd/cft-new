@@ -1,0 +1,32 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply text-gray-700 antialiased;
+  }
+}
+
+/* Ocean wave gradient for hero */
+.hero-ocean-bg {
+  background: linear-gradient(135deg, #0f2a39 0%, #1e4a5f 40%, #225067 70%, #1e4a5f 100%);
+  background-size: 400% 400%;
+}
+
+/* About page hero parallax background */
+.about-hero-bg {
+  background: linear-gradient(135deg, #0a1c2e 0%, #0f2744 30%, #152d47 60%, #0f2a39 100%);
+  background-size: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

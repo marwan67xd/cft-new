@@ -1,0 +1,108 @@
+<script setup lang="ts">
+const regions = [
+  { name: 'North America', count: '12+ events' },
+  { name: 'Europe & UK', count: '18+ events' },
+  { name: 'Middle East', count: '8+ events' },
+  { name: 'East Asia', count: '6+ events' },
+  { name: 'Southeast Asia', count: '5+ events' },
+]
+
+const sectionRef = ref<HTMLElement | null>(null)
+const headingRef = ref<HTMLElement | null>(null)
+const mapRef = ref<HTMLElement | null>(null)
+const listRef = ref<HTMLElement | null>(null)
+
+let gsapCtx: { revert: () => void } | null = null
+
+onMounted(() => {
+  if (import.meta.client && sectionRef.value) {
+    import('gsap').then(({ default: gsap }) => {
+      import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
+        gsap.registerPlugin(ScrollTrigger)
+        gsapCtx = gsap.context(() => {
+          if (headingRef.value) {
+            gsap.fromTo(headingRef.value, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 85%' } })
+          }
+          if (mapRef.value) {
+            gsap.fromTo(mapRef.value, { opacity: 0, scale: 0.98 }, { opacity: 1, scale: 1, duration: 0.7, scrollTrigger: { trigger: sectionRef.value, start: 'top 82%' } })
+          }
+          if (listRef.value) {
+            const items = listRef.value.querySelectorAll('[data-region]')
+            gsap.fromTo(items, { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.5, stagger: 0.1, scrollTrigger: { trigger: sectionRef.value, start: 'top 78%' } })
+          }
+        }, sectionRef)
+      })
+    })
+  }
+})
+
+onUnmounted(() => {
+  gsapCtx?.revert()
+})
+</script>
+
+<template>
+  <section
+    ref="sectionRef"
+    class="py-16 sm:py-20 lg:py-24 bg-white"
+    aria-labelledby="presence-heading"
+  >
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <h2
+        id="presence-heading"
+        ref="headingRef"
+        class="text-3xl sm:text-4xl font-bold text-navy tracking-tight text-center mb-12 lg:mb-16"
+      >
+        Company Presence
+      </h2>
+      <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+        Capital Food participates in trade shows and events across key international markets.
+      </p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div
+          ref="mapRef"
+          class="relative rounded-2xl overflow-hidden bg-ocean-50 border border-ocean-100 p-8 sm:p-10 lg:p-12 min-h-[320px] flex items-center justify-center"
+          aria-hidden="true"
+        >
+          <div class="absolute inset-0 flex items-center justify-center opacity-10">
+            <svg
+              class="w-full h-full max-w-md max-h-64 text-ocean-600"
+              viewBox="0 0 200 100"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              aria-hidden="true"
+            >
+              <path d="M100 10 L180 50 L100 90 L20 50 Z" />
+              <path d="M100 30 L150 50 L100 70 L50 50 Z" />
+              <circle cx="100" cy="50" r="8" fill="currentColor" />
+              <circle cx="50" cy="30" r="4" fill="currentColor" />
+              <circle cx="150" cy="30" r="4" fill="currentColor" />
+              <circle cx="50" cy="70" r="4" fill="currentColor" />
+              <circle cx="150" cy="70" r="4" fill="currentColor" />
+            </svg>
+          </div>
+          <p class="relative text-ocean-800 font-semibold text-center text-lg">
+            Global event participation across 5 regions
+          </p>
+        </div>
+
+        <ul ref="listRef" class="space-y-4">
+          <li
+            v-for="region in regions"
+            :key="region.name"
+            data-region
+            class="flex items-center justify-between gap-4 p-4 sm:p-5 rounded-xl bg-gray-50 border border-gray-100 hover:border-ocean-200 hover:shadow-card transition-all duration-300 group"
+          >
+            <span class="flex items-center gap-3">
+              <span class="w-3 h-3 rounded-full bg-aqua-500 shrink-0 group-hover:scale-125 transition-transform" aria-hidden="true" />
+              <span class="font-semibold text-navy">{{ region.name }}</span>
+            </span>
+            <span class="text-sm font-medium text-ocean-600">{{ region.count }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</template>
