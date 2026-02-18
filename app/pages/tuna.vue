@@ -18,7 +18,6 @@ useHead({
       <TunaTunaHero />
       <TunaIntroductionSection />
       <TunaSpecificationsSection />
-      <TunaQualitySection />
       <TunaTunaGrid />
       <TunaPackagingTrust />
       <TunaNutritionSection />

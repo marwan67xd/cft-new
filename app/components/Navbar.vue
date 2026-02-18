@@ -5,7 +5,7 @@ const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Company Profile', href: '/about' },
   { label: 'Tuna', href: '/tuna' },
-  { label: 'Sardines / Mackerel', href: '/sardines' },
+  { label: 'Sardines / Mackerel', href: '/sardines-mackerel' },
   { label: 'Exhibition', href: '/exhibition' },
   { label: 'Contact us', href: '/contact' },
 ]
