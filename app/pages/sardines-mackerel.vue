@@ -16,9 +16,8 @@ useHead({
     <main>
       <SardinesSardinesHero />
       <SardinesIntroductionSection />
-      <SardinesProductVariants />
-      <SardinesSpecificationsSection />
       <SardinesPackagingOptions />
+      <SardinesSpecificationsSection />
       <SardinesQualityFoodSafety />
       <SardinesNutritionBenefits />
       <SardinesExportDistribution />
