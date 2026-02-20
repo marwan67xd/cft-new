@@ -23,7 +23,6 @@ useHead({
       <TunaNutritionSection />
       <TunaExportLogistics />
       <TunaTunaCTA />
-      <TunaRelatedCategories />
       <Footer />
     </main>
   </div>

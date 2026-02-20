@@ -1,21 +1,25 @@
 <script setup lang="ts">
+import tunaImage from '~/assets/home/de362f430d18264bb198efbe58f91583_757x757.png'
+import sardinesImage from '~/assets/home/Sardines-on-toast-6.jpg'
+import mackerelImage from '~/assets/home/fishmonger-near-me-hot-smoked-mackerel-fillets-1.jpg'
+
 const products = [
   {
     title: 'Premium Tuna',
     desc: 'High-quality canned tuna produced under strict food industry standards. Ideal for retail and distribution markets.',
-    image: '/canned-tuna-product.jpg',
+    image: tunaImage,
     href: '/tuna',
   },
   {
     title: 'Quality Sardines',
     desc: 'Nutritious sardines processed to consistent quality levels for consumer and commercial use.',
-    image: '/sardines-sea-only.jpg',
+    image: sardinesImage,
     href: '/sardines',
   },
   {
     title: 'Mackerel Fillets',
     desc: 'Canned mackerel fillets prepared according to international production norms, offering reliable and versatile supply.',
-    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80',
+    image: mackerelImage,
     href: '/mackerel',
   },
 ]

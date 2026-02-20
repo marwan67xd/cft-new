@@ -3,7 +3,7 @@ import logoImage from "~/assets/logo/logo-2-10-10-63.png";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "Company Profile", href: "/Company Profile" },
+  { label: "Company Profile", href: "/company-profile" },
   { label: "Tuna", href: "/tuna" },
   { label: "Sardines / Mackerel", href: "/sardines-mackerel" },
   { label: "Exhibition", href: "/exhibition" },

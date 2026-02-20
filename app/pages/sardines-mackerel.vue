@@ -22,7 +22,6 @@ useHead({
       <SardinesNutritionBenefits />
       <SardinesExportDistribution />
       <SardinesSardinesCTA />
-      <SardinesRelatedProducts />
       <Footer />
     </main>
   </div>

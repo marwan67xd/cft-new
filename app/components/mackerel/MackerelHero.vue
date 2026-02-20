@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import mackerelHeroImage from '~/assets/home/fishmonger-near-me-hot-smoked-mackerel-fillets-1.jpg'
+
 const heroRef = ref<HTMLElement | null>(null)
 const bgRef = ref<HTMLElement | null>(null)
 const breadcrumbRef = ref<HTMLElement | null>(null)
@@ -57,7 +59,7 @@ onUnmounted(() => {
       aria-hidden="true"
     >
       <img
-        src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1920&q=80"
+        :src="mackerelHeroImage"
         alt=""
         class="absolute inset-0 w-full h-full object-cover opacity-50"
         width="1920"
