@@ -1,22 +1,24 @@
 <script setup lang="ts">
-const items = [
+const { t } = useI18n()
+
+const items = computed(() => [
   {
-    label: 'Hygienic processing practices',
-    badge: 'HACCP',
+    label: t('sardinesMackerel.quality.hygienicProcessing.label'),
+    badge: t('sardinesMackerel.quality.hygienicProcessing.badge'),
   },
   {
-    label: 'International compliance standards',
-    badge: 'Global',
+    label: t('sardinesMackerel.quality.internationalCompliance.label'),
+    badge: t('sardinesMackerel.quality.internationalCompliance.badge'),
   },
   {
-    label: 'Quality inspection procedures',
-    badge: 'ISO',
+    label: t('sardinesMackerel.quality.qualityInspection.label'),
+    badge: t('sardinesMackerel.quality.qualityInspection.badge'),
   },
   {
-    label: 'Export-ready packaging',
-    badge: 'FDA',
+    label: t('sardinesMackerel.quality.exportReady.label'),
+    badge: t('sardinesMackerel.quality.exportReady.badge'),
   },
-]
+])
 
 const sectionRef = ref<HTMLElement | null>(null)
 const headingRef = ref<HTMLElement | null>(null)
@@ -60,7 +62,7 @@ onUnmounted(() => {
         ref="headingRef"
         class="text-2xl sm:text-3xl font-bold text-navy tracking-tight mb-10 text-center"
       >
-        Quality & Food Safety
+        {{ $t('sardinesMackerel.quality.title') }}
       </h2>
       <div
         ref="cardsRef"

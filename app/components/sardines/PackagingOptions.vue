@@ -1,10 +1,12 @@
 <script setup lang="ts">
-const items = [
-  { label: 'Multiple can sizes', description: 'From retail to food service formats' },
-  { label: 'Bulk packaging options', description: 'Industrial and wholesale' },
-  { label: 'Private label production', description: 'Your brand, our quality' },
-  { label: 'Custom branding availability', description: 'Flexible packaging and labels' },
-]
+const { t } = useI18n()
+
+const items = computed(() => [
+  { label: t('sardinesMackerel.packaging.multipleCanSizes.label'), description: t('sardinesMackerel.packaging.multipleCanSizes.description') },
+  { label: t('sardinesMackerel.packaging.bulkPackaging.label'), description: t('sardinesMackerel.packaging.bulkPackaging.description') },
+  { label: t('sardinesMackerel.packaging.privateLabel.label'), description: t('sardinesMackerel.packaging.privateLabel.description') },
+  { label: t('sardinesMackerel.packaging.customBranding.label'), description: t('sardinesMackerel.packaging.customBranding.description') },
+])
 
 const sectionRef = ref<HTMLElement | null>(null)
 const cardsRef = ref<HTMLElement | null>(null)
@@ -40,7 +42,7 @@ onUnmounted(() => {
   >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <h2 id="packaging-heading" class="text-2xl sm:text-3xl font-bold text-navy tracking-tight mb-10 text-center">
-        Packaging Options
+        {{ $t('sardinesMackerel.packaging.title') }}
       </h2>
       <div ref="cardsRef" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-5xl mx-auto">
         <div

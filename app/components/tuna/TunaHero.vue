@@ -1,4 +1,7 @@
 <script setup lang="ts">
+const { t } = useI18n()
+const localePath = useLocalePath()
+
 const heroRef = ref<HTMLElement | null>(null)
 const bgRef = ref<HTMLElement | null>(null)
 const breadcrumbRef = ref<HTMLElement | null>(null)
@@ -75,23 +78,23 @@ onUnmounted(() => {
       <nav ref="breadcrumbRef" class="mb-6" aria-label="Breadcrumb">
         <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-300">
           <li>
-            <NuxtLink to="/" class="hover:text-white transition-colors">Home</NuxtLink>
+            <NuxtLink :to="localePath('/')" class="hover:text-white transition-colors">{{ $t('tuna.hero.breadcrumbHome') }}</NuxtLink>
           </li>
           <li class="text-gray-500" aria-hidden="true">→</li>
-          <li class="text-white font-medium" aria-current="page">Tuna</li>
+          <li class="text-white font-medium" aria-current="page">{{ $t('tuna.hero.breadcrumbTuna') }}</li>
         </ol>
       </nav>
       <h1
         ref="titleRef"
         class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight max-w-3xl"
       >
-        Premium Tuna Products
+        {{ $t('tuna.hero.title') }}
       </h1>
       <p
         ref="subtitleRef"
         class="mt-6 text-lg sm:text-xl text-gray-200 max-w-2xl leading-relaxed"
       >
-        High-quality tuna prepared to meet international food standards and export requirements.
+        {{ $t('tuna.hero.subtitle') }}
       </p>
     </div>
   </section>

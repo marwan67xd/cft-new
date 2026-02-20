@@ -1,10 +1,12 @@
 <script setup lang="ts">
-const bullets = [
-  "40+ Countries",
-  "Tracked Shipments",
-  "Full Export Docs",
-  "Cold Chain Assurance",
-];
+const { t } = useI18n()
+
+const bullets = computed(() => [
+  t('tuna.export.countries'),
+  t('tuna.export.trackedShipments'),
+  t('tuna.export.fullExportDocs'),
+  t('tuna.export.coldChain'),
+]);
 
 const sectionRef = ref<HTMLElement | null>(null);
 const leftRef = ref<HTMLElement | null>(null);
@@ -68,12 +70,10 @@ onUnmounted(() => {
             id="export-heading"
             class="text-3xl sm:text-4xl font-bold text-navy tracking-tight"
           >
-            Export & Global Logistics
+            {{ $t('tuna.export.title') }}
           </h2>
           <p class="mt-6 text-gray-600 leading-relaxed">
-            We handle export documentation, cold-chain shipping, and customs
-            clearance so your tuna reaches 40+ countries in optimal condition.
-            Tracked shipments and full export documentation included.
+            {{ $t('tuna.export.description') }}
           </p>
           <ul class="mt-8 space-y-4">
             <li

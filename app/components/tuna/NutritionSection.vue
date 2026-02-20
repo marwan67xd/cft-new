@@ -1,10 +1,12 @@
 <script setup lang="ts">
-const items = [
-  { label: "High Protein", icon: "protein" },
-  { label: "Rich in Omega-3", icon: "omega" },
-  { label: "Global Cuisine Versatility", icon: "cuisine" },
-  { label: "Pure & Healthy", icon: "pure" },
-];
+const { t } = useI18n()
+
+const items = computed(() => [
+  { label: t('tuna.nutrition.highProtein'), icon: "protein" },
+  { label: t('tuna.nutrition.richOmega3'), icon: "omega" },
+  { label: t('tuna.nutrition.globalCuisine'), icon: "cuisine" },
+  { label: t('tuna.nutrition.pureHealthy'), icon: "pure" },
+]);
 
 const sectionRef = ref<HTMLElement | null>(null);
 const headingRef = ref<HTMLElement | null>(null);
@@ -69,7 +71,7 @@ onUnmounted(() => {
         ref="headingRef"
         class="text-center text-3xl sm:text-4xl font-bold tracking-tight mb-12 lg:mb-16"
       >
-        Nutritional Excellence
+        {{ $t('tuna.nutrition.title') }}
       </h2>
       <div
         ref="iconsRef"

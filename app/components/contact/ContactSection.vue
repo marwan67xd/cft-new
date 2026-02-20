@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const { t } = useI18n()
+
 const form = reactive({
   firstName: '',
   email: '',
@@ -18,30 +20,14 @@ const touched = reactive({
 const submitted = ref(false)
 const isSubmitting = ref(false)
 
-const products = [
-  'Sardines in Tomato Sauce',
-  'Sardines in Sunflower Oil',
-  'Sardines in Olive Oil',
-  'Sardines in Brine',
-  'Mackerel in Tomato Sauce',
-  'Mackerel in Oil',
-  'Mackerel Fillets',
-  'Mackerel in Brine',
-  'Tuna in Sunflower Oil',
-  'Tuna in Olive Oil',
-  'Tuna in Brine',
-  'Tuna Chunks',
-  'Tuna Flakes',
-  'Custom Formulation',
-  'Other',
-]
+const products = computed(() => t('contact.section.products') as string[])
 
 const errors = computed(() => ({
-  firstName: touched.firstName && !form.firstName.trim() ? 'First Name is required' : '',
-  email: touched.email && !form.email.trim() ? 'Email is required' : (touched.email && form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email) ? 'Enter a valid email' : ''),
-  product: touched.product && !form.product.trim() ? 'Please select a product' : '',
-  subject: touched.subject && !form.subject.trim() ? 'Subject is required' : '',
-  message: touched.message && !form.message.trim() ? 'Message is required' : '',
+  firstName: touched.firstName && !form.firstName.trim() ? t('contact.section.errors.firstNameRequired') : '',
+  email: touched.email && !form.email.trim() ? t('contact.section.errors.emailRequired') : (touched.email && form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email) ? t('contact.section.errors.emailInvalid') : ''),
+  product: touched.product && !form.product.trim() ? t('contact.section.errors.productRequired') : '',
+  subject: touched.subject && !form.subject.trim() ? t('contact.section.errors.subjectRequired') : '',
+  message: touched.message && !form.message.trim() ? t('contact.section.errors.messageRequired') : '',
 }))
 
 const isValid = computed(() =>
@@ -72,62 +58,62 @@ async function onSubmit() {
   Object.keys(touched).forEach((k) => { touched[k as keyof typeof touched] = false })
 }
 
-const details = [
+const details = computed(() => [
   { 
-    label: 'Head Office', 
+    label: t('contact.section.details.headOffice'), 
     value: '888 MEC Tower 14th Floor, Debaratana Road\nBangna Tai, Bangna\nBangkok 10260, Thailand', 
     href: null, 
     icon: 'address' 
   },
   { 
-    label: 'Office Branch 1', 
+    label: t('contact.section.details.officeBranch1'), 
     value: 'The Pretium Bangna 91/7 Bangna – Trad Road\nBangkaew, Bang phli\nSamutprakan 10540, Thailand', 
     href: null, 
     icon: 'address' 
   },
   { 
-    label: 'Phone', 
+    label: t('contact.section.details.phone'), 
     value: '+66 925411454\n+66 847217966\n+66 2 1708334', 
     href: 'tel:+66925411454', 
     icon: 'phone' 
   },
   { 
-    label: 'Email', 
+    label: t('contact.section.details.email'), 
     value: 'adelbkk@cfi-capitalfood.com\nkathy@cfi-capitalfood.com', 
     href: 'mailto:adelbkk@cfi-capitalfood.com', 
     icon: 'email' 
   },
   { 
-    label: 'Website', 
+    label: t('contact.section.details.website'), 
     value: 'www.cfi-capitalfood.com', 
     href: 'https://www.cfi-capitalfood.com', 
     icon: 'website' 
   },
   { 
-    label: 'LINE ID', 
+    label: t('contact.section.details.lineId'), 
     value: 'suwannee997', 
     href: null, 
     icon: 'line' 
   },
   { 
-    label: 'WhatsApp', 
+    label: t('contact.section.details.whatsapp'), 
     value: '+66 847217966', 
     href: 'https://wa.me/66847217966', 
     icon: 'whatsapp' 
   },
   { 
-    label: 'Working Hours', 
+    label: t('contact.section.details.workingHours'), 
     value: 'Monday to Friday\n8:30 am – 5:30 pm', 
     href: null, 
     icon: 'clock' 
   },
-]
+])
 
-const socialLinks = [
-  { label: 'Website', href: 'https://www.cfi-capitalfood.com', icon: 'website' },
+const socialLinks = computed(() => [
+  { label: t('contact.section.details.website'), href: 'https://www.cfi-capitalfood.com', icon: 'website' },
   { label: 'LINE', href: null, icon: 'line' },
-  { label: 'WhatsApp', href: 'https://wa.me/66847217966', icon: 'whatsapp' },
-]
+  { label: t('contact.section.details.whatsapp'), href: 'https://wa.me/66847217966', icon: 'whatsapp' },
+])
 
 const sectionRef = ref<HTMLElement | null>(null)
 const formRef = ref<HTMLElement | null>(null)
@@ -167,13 +153,13 @@ onUnmounted(() => {
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <header class="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
         <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-ocean-600 bg-ocean-100 mb-4">
-          Get in Touch
+          {{ $t('contact.section.badge') }}
         </span>
         <h2 id="contact-section-heading" class="text-3xl sm:text-4xl font-bold text-navy tracking-tight">
-          Contact Capital Food
+          {{ $t('contact.section.title') }}
         </h2>
         <p class="mt-4 text-gray-600 leading-relaxed">
-          Use the form or our contact details below. We respond to all inquiries promptly.
+          {{ $t('contact.section.subtitle') }}
         </p>
       </header>
 
@@ -183,11 +169,11 @@ onUnmounted(() => {
           <div class="rounded-2xl bg-white border border-gray-100 shadow-card p-6 sm:p-8 lg:p-10">
             <Transition mode="out-in" enter-active-class="transition duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100" leave-active-class="transition duration-200" leave-from-class="opacity-100" leave-to-class="opacity-0">
               <div v-if="!submitted" key="form">
-                <h3 id="form-heading" class="text-xl font-bold text-navy mb-6">Contact With Us</h3>
-                <p class="text-sm text-gray-600 mb-6">If you have any question or if you are interested in any of our services, our teams of professionals are ready to assist you through these convenient channels.</p>
+                <h3 id="form-heading" class="text-xl font-bold text-navy mb-6">{{ $t('contact.section.formTitle') }}</h3>
+                <p class="text-sm text-gray-600 mb-6">{{ $t('contact.section.formDescription') }}</p>
                 <form class="space-y-5" @submit.prevent="onSubmit">
                   <div>
-                    <label for="contact-firstName" class="block text-sm font-medium text-navy mb-1.5">First Name <span class="text-red-500">*</span></label>
+                    <label for="contact-firstName" class="block text-sm font-medium text-navy mb-1.5">{{ $t('contact.section.firstName') }} <span class="text-red-500">{{ $t('contact.section.required') }}</span></label>
                     <input
                       id="contact-firstName"
                       v-model="form.firstName"
@@ -196,13 +182,13 @@ onUnmounted(() => {
                       autocomplete="given-name"
                       class="w-full px-4 py-3 rounded-xl border bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors"
                       :class="errors.firstName ? 'border-red-400' : 'border-gray-200'"
-                      placeholder="Your first name"
+                      :placeholder="$t('contact.section.firstNamePlaceholder')"
                       @blur="blur('firstName')"
                     />
                     <p v-if="errors.firstName" class="mt-1 text-sm text-red-500">{{ errors.firstName }}</p>
                   </div>
                   <div>
-                    <label for="contact-email" class="block text-sm font-medium text-navy mb-1.5">Email Address <span class="text-red-500">*</span></label>
+                    <label for="contact-email" class="block text-sm font-medium text-navy mb-1.5">{{ $t('contact.section.email') }} <span class="text-red-500">{{ $t('contact.section.required') }}</span></label>
                     <input
                       id="contact-email"
                       v-model="form.email"
@@ -211,13 +197,13 @@ onUnmounted(() => {
                       autocomplete="email"
                       class="w-full px-4 py-3 rounded-xl border bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors"
                       :class="errors.email ? 'border-red-400' : 'border-gray-200'"
-                      placeholder="you@company.com"
+                      :placeholder="$t('contact.section.emailPlaceholder')"
                       @blur="blur('email')"
                     />
                     <p v-if="errors.email" class="mt-1 text-sm text-red-500">{{ errors.email }}</p>
                   </div>
                   <div>
-                    <label for="contact-product" class="block text-sm font-medium text-navy mb-1.5">Please select a product <span class="text-red-500">*</span></label>
+                    <label for="contact-product" class="block text-sm font-medium text-navy mb-1.5">{{ $t('contact.section.product') }} <span class="text-red-500">{{ $t('contact.section.required') }}</span></label>
                     <select
                       id="contact-product"
                       v-model="form.product"
@@ -226,13 +212,13 @@ onUnmounted(() => {
                       :class="errors.product ? 'border-red-400' : 'border-gray-200'"
                       @blur="blur('product')"
                     >
-                      <option value="">Select a product</option>
-                      <option v-for="product in products" :key="product" :value="product">{{ product }}</option>
+                      <option value="">{{ $t('contact.section.productPlaceholder') }}</option>
+                      <option v-for="product in products.value" :key="product" :value="product">{{ product }}</option>
                     </select>
                     <p v-if="errors.product" class="mt-1 text-sm text-red-500">{{ errors.product }}</p>
                   </div>
                   <div>
-                    <label for="contact-subject" class="block text-sm font-medium text-navy mb-1.5">Subject <span class="text-red-500">*</span></label>
+                    <label for="contact-subject" class="block text-sm font-medium text-navy mb-1.5">{{ $t('contact.section.subject') }} <span class="text-red-500">{{ $t('contact.section.required') }}</span></label>
                     <input
                       id="contact-subject"
                       v-model="form.subject"
@@ -240,13 +226,13 @@ onUnmounted(() => {
                       name="subject"
                       class="w-full px-4 py-3 rounded-xl border bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors"
                       :class="errors.subject ? 'border-red-400' : 'border-gray-200'"
-                      placeholder="Subject of your inquiry"
+                      :placeholder="$t('contact.section.subjectPlaceholder')"
                       @blur="blur('subject')"
                     />
                     <p v-if="errors.subject" class="mt-1 text-sm text-red-500">{{ errors.subject }}</p>
                   </div>
                   <div>
-                    <label for="contact-message" class="block text-sm font-medium text-navy mb-1.5">Message <span class="text-red-500">*</span></label>
+                    <label for="contact-message" class="block text-sm font-medium text-navy mb-1.5">{{ $t('contact.section.message') }} <span class="text-red-500">{{ $t('contact.section.required') }}</span></label>
                     <textarea
                       id="contact-message"
                       v-model="form.message"
@@ -254,14 +240,14 @@ onUnmounted(() => {
                       rows="4"
                       class="w-full px-4 py-3 rounded-xl border bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors resize-y min-h-[100px]"
                       :class="errors.message ? 'border-red-400' : 'border-gray-200'"
-                      placeholder="Your message"
+                      :placeholder="$t('contact.section.messagePlaceholder')"
                       @blur="blur('message')"
                     />
                     <p v-if="errors.message" class="mt-1 text-sm text-red-500">{{ errors.message }}</p>
                   </div>
                   <div class="pt-2">
                     <p class="text-sm text-gray-600 mb-4">
-                      <span class="font-semibold">Have any questions? Call us now!</span><br>
+                      <span class="font-semibold">{{ $t('contact.section.haveQuestions') }}</span><br>
                       <a href="tel:+66925411454" class="text-ocean-600 hover:text-ocean-700">+66 925411454</a>, 
                       <a href="tel:+66847217966" class="text-ocean-600 hover:text-ocean-700">+66 847217966</a>
                     </p>
@@ -271,8 +257,8 @@ onUnmounted(() => {
                     :disabled="isSubmitting"
                     class="w-full inline-flex items-center justify-center px-8 py-4 rounded-xl bg-ocean-600 text-white font-semibold hover:bg-ocean-700 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2 disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-300 hover:shadow-lg hover:shadow-ocean-900/20"
                   >
-                    <span v-if="isSubmitting">Sending…</span>
-                    <span v-else>Submit</span>
+                    <span v-if="isSubmitting">{{ $t('contact.section.sending') }}</span>
+                    <span v-else>{{ $t('contact.section.submit') }}</span>
                   </button>
                 </form>
               </div>
@@ -280,9 +266,9 @@ onUnmounted(() => {
                 <div class="w-12 h-12 rounded-full bg-aqua-500/20 flex items-center justify-center text-aqua-600 mx-auto mb-3">
                   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
                 </div>
-                <h3 class="text-lg font-bold text-navy">Message sent successfully</h3>
+                <h3 class="text-lg font-bold text-navy">{{ $t('contact.section.successTitle') }}</h3>
                 <p class="mt-1 text-sm text-gray-600">We’ll get back to you as soon as possible.</p>
-                <button type="button" class="mt-4 text-sm font-medium text-ocean-600 hover:text-ocean-700" @click="submitted = false">Send another message</button>
+                <button type="button" class="mt-4 text-sm font-medium text-ocean-600 hover:text-ocean-700" @click="submitted = false">{{ $t('contact.section.sendAnother') }}</button>
               </div>
             </Transition>
           </div>
@@ -291,7 +277,7 @@ onUnmounted(() => {
         <!-- Company details column -->
         <div ref="detailsRef" class="order-1 lg:order-2">
           <div class="rounded-2xl bg-white border border-gray-100 shadow-card p-6 sm:p-8 lg:p-10">
-            <h3 class="text-xl font-bold text-navy mb-6">Head Office Call Us Now!</h3>
+            <h3 class="text-xl font-bold text-navy mb-6">{{ $t('contact.section.detailsTitle') }}</h3>
             <div class="mb-6 space-y-2">
               <a href="tel:+66925411454" class="block text-lg font-semibold text-ocean-600 hover:text-ocean-700">(+66) 925411454</a>
               <a href="tel:+66847217966" class="block text-lg font-semibold text-ocean-600 hover:text-ocean-700">(+66) 084 721 7966</a>
@@ -303,7 +289,7 @@ onUnmounted(() => {
               <a href="mailto:kathy@cfi-capitalfood.com" class="block text-sm text-gray-600 hover:text-ocean-600 break-all">kathy@cfi-capitalfood.com</a>
             </div>
             <ul class="space-y-6">
-              <li v-for="item in details" :key="item.label" class="flex gap-4">
+              <li v-for="item in details.value" :key="item.label" class="flex gap-4">
                 <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-ocean-100 flex items-center justify-center text-ocean-600">
                   <svg v-if="item.icon === 'address'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -338,10 +324,10 @@ onUnmounted(() => {
               </li>
             </ul>
             <div class="mt-8 pt-6 border-t border-gray-100">
-              <p class="text-sm font-semibold text-navy mb-3">Contact With Us</p>
+              <p class="text-sm font-semibold text-navy mb-3">{{ $t('contact.section.contactWithUs') }}</p>
               <div class="flex gap-3">
                 <a
-                  v-for="link in socialLinks"
+                  v-for="link in socialLinks.value"
                   :key="link.label"
                   :href="link.href || '#'"
                   :aria-label="link.label"

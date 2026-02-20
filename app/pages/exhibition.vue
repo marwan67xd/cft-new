@@ -5,12 +5,14 @@ import HighlightsSlider from '~/components/exhibition/HighlightsSlider.vue'
 import CompanyPresence from '~/components/exhibition/CompanyPresence.vue'
 import ExhibitionCTA from '~/components/exhibition/ExhibitionCTA.vue'
 
+const { t } = useI18n()
+
 useHead({
-  title: 'Our Exhibitions & Events | Capital Food | International Seafood',
+  title: () => t('exhibition.meta.title'),
   meta: [
     {
       name: 'description',
-      content: 'Capital Food at international seafood trade shows and global events. Meet us at Seafood Expo, Gulfood, Anuga, and more. Join us or get in touch to collaborate.',
+      content: () => t('exhibition.meta.description'),
     },
   ],
 })

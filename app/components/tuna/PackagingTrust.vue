@@ -1,17 +1,19 @@
 <script setup lang="ts">
-const packagingItems = [
-  { label: "Retail Packs", icon: "retail" },
-  { label: "Bulk Industrial", icon: "bulk" },
-  { label: "Private Label", icon: "label" },
-  { label: "Institutional Packs", icon: "institutional" },
-];
+const { t } = useI18n()
 
-const trustItems = [
-  { label: "ISO Certified", icon: "iso" },
-  { label: "HACCP", icon: "haccp" },
-  { label: "EU Standards", icon: "eu" },
-  { label: "FDA Registered", icon: "fda" },
-];
+const packagingItems = computed(() => [
+  { label: t('tuna.packaging.retailPacks'), icon: "retail" },
+  { label: t('tuna.packaging.bulkIndustrial'), icon: "bulk" },
+  { label: t('tuna.packaging.privateLabel'), icon: "label" },
+  { label: t('tuna.packaging.institutionalPacks'), icon: "institutional" },
+]);
+
+const trustItems = computed(() => [
+  { label: t('tuna.packaging.isoCertified'), icon: "iso" },
+  { label: t('tuna.packaging.haccp'), icon: "haccp" },
+  { label: t('tuna.packaging.euStandards'), icon: "eu" },
+  { label: t('tuna.packaging.fdaRegistered'), icon: "fda" },
+]);
 
 const sectionRef = ref<HTMLElement | null>(null);
 const cardsRef = ref<HTMLElement | null>(null);
@@ -63,7 +65,7 @@ onUnmounted(() => {
             id="packaging-heading"
             class="text-2xl sm:text-3xl font-bold text-navy tracking-tight mb-8"
           >
-            Packaging Solutions
+            {{ $t('tuna.packaging.packagingTitle') }}
           </h2>
           <div ref="cardsRef" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div
@@ -100,7 +102,7 @@ onUnmounted(() => {
           <h2
             class="text-2xl sm:text-3xl font-bold text-navy tracking-tight mb-8"
           >
-            Trust & Safety
+            {{ $t('tuna.packaging.trustTitle') }}
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div

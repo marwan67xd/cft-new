@@ -1,4 +1,7 @@
 <script setup lang="ts">
+const { t } = useI18n()
+const localePath = useLocalePath()
+
 interface ExhibitionEvent {
   id: string
   name: string
@@ -10,66 +13,19 @@ interface ExhibitionEvent {
   upcoming?: boolean
 }
 
-const events: ExhibitionEvent[] = [
-  {
-    id: '1',
-    name: 'Seafood Expo Global',
-    location: 'Barcelona, Spain',
-    date: 'April 2025',
-    description: 'The world’s largest seafood trade event. Meet our team at the Capital Food booth for premium tuna, sardines, and mackerel.',
+const events = computed<ExhibitionEvent[]>(() => {
+  const eventsData = t('exhibition.events.events') as any[]
+  return eventsData.map((event, index) => ({
+    id: String(index + 1),
+    name: event.name,
+    location: event.location,
+    date: event.date,
+    year: event.date.includes('2024') ? '2024' : undefined,
+    description: event.description,
     image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80',
-    upcoming: true,
-  },
-  {
-    id: '2',
-    name: 'Gulfood',
-    location: 'Dubai, UAE',
-    date: 'February 2025',
-    description: 'Leading food & beverage exhibition in the Middle East. Connect with us for export opportunities and private label solutions.',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80',
-    upcoming: true,
-  },
-  {
-    id: '3',
-    name: 'Anuga',
-    location: 'Cologne, Germany',
-    date: 'October 2024',
-    year: '2024',
-    description: 'Premier trade fair for food and beverages. We showcased our full range of export-grade seafood products.',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80',
-    upcoming: false,
-  },
-  {
-    id: '4',
-    name: 'SIAL Paris',
-    location: 'Paris, France',
-    date: 'October 2024',
-    year: '2024',
-    description: 'International food products exhibition. Capital Food presented sustainable sourcing and quality certifications.',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80',
-    upcoming: false,
-  },
-  {
-    id: '5',
-    name: 'Boston Seafood Show',
-    location: 'Boston, USA',
-    date: 'March 2024',
-    year: '2024',
-    description: 'North America’s largest seafood event. We met distributors and retailers from across the Americas.',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80',
-    upcoming: false,
-  },
-  {
-    id: '6',
-    name: 'Seafood Expo Asia',
-    location: 'Singapore',
-    date: 'September 2024',
-    year: '2024',
-    description: 'Key Asian seafood trade show. Strengthening partnerships across Asia-Pacific and Oceania.',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80',
-    upcoming: false,
-  },
-]
+    upcoming: event.date.includes('2025'),
+  }))
+})
 
 const sectionRef = ref<HTMLElement | null>(null)
 const headingRef = ref<HTMLElement | null>(null)
@@ -109,15 +65,15 @@ onUnmounted(() => {
   >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <h2 id="events-heading" ref="headingRef" class="text-3xl sm:text-4xl font-bold text-navy tracking-tight text-center mb-4">
-        Upcoming & Past Events
+        {{ $t('exhibition.events.title') }}
       </h2>
       <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12 lg:mb-16">
-        Meet Capital Food at the world’s leading seafood and food trade exhibitions.
+        {{ $t('exhibition.events.subtitle') }}
       </p>
 
       <div ref="cardsRef" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
         <article
-          v-for="event in events"
+          v-for="event in events.value"
           :key="event.id"
           data-event-card
           class="group rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 flex flex-col"
@@ -135,7 +91,7 @@ onUnmounted(() => {
               v-if="event.upcoming"
               class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-aqua-500 text-white"
             >
-              Upcoming
+              {{ $t('exhibition.events.upcoming') }}
             </span>
           </div>
           <div class="p-6 flex flex-col flex-1">
@@ -144,10 +100,10 @@ onUnmounted(() => {
             <p class="mt-1 text-sm text-gray-500">{{ event.date }}</p>
             <p class="mt-3 text-sm text-gray-600 leading-relaxed flex-1">{{ event.description }}</p>
             <NuxtLink
-              :to="'/contact'"
+              :to="localePath('/contact')"
               class="mt-4 inline-flex items-center justify-center gap-1 px-4 py-2.5 rounded-xl border-2 border-ocean-600 text-ocean-600 font-medium hover:bg-ocean-600 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2"
             >
-              Learn More
+              {{ $t('exhibition.events.learnMore') }}
               <span aria-hidden="true">→</span>
             </NuxtLink>
           </div>

@@ -152,5 +152,395 @@
       "contactButton": "Contact Us Today",
       "downloadButton": "Download Profile (PDF)"
     }
+  },
+  "tuna": {
+    "meta": {
+      "title": "Premium Tuna Products | High-Quality Export-Grade Tuna",
+      "description": "Premium tuna products prepared to meet international food standards. HACCP & ISO certified, sustainable sourcing, cold-chain integrity. Request a quotation."
+    },
+    "hero": {
+      "breadcrumbHome": "Home",
+      "breadcrumbTuna": "Tuna",
+      "title": "Premium Tuna Products",
+      "subtitle": "High-quality tuna prepared to meet international food standards and export requirements."
+    },
+    "introduction": {
+      "title": "TUNA",
+      "paragraph1": "We serve CANNED TUNA the tasty meal from the sea. Tuna is one of the popular commercial fishes. It is the oily fish, contained a high amount of Vitamin D and good source of Omega-3 fatty acids suitable for infants, children, men and woman.",
+      "paragraph2": "We are exporter for canned tuna (light meat tuna /Bonito Tuna, Skipjack Tuna and white meat Tuna / Yellow fin and Tonggol tuna) in variety of recipes such as vegetable Oil, Brine, Brine and Oil etc.",
+      "paragraph3": "It's absolutely that our Canned Tuna is also enrich of Protein, low in Fat and Calories. It is the excellent source of essential Omega-3 Fatty Acids which help to lower blood pressure and cholesterol as the products are produced under strictly control to ensure the freshness and meet the world standards of sanitation and hygienic…"
+    },
+    "specifications": {
+      "title": "Canned Tuna",
+      "tunaSpecies": "Tuna Species",
+      "oilBrine": "Oil/Brine",
+      "packIn": "Pack In",
+      "whiteMeat": "White Meat",
+      "lightMeat": "Light Meat",
+      "packingSize": "Packing Size",
+      "netWeight": "N.W.",
+      "drainedWeight": "D.W",
+      "loadingQty": "Loading qty. (Cartons)"
+    },
+    "collection": {
+      "title": "Our Tuna Collection",
+      "subtitle": "A variety of formats and pack sizes to meet global culinary needs and retail, food service, and industrial requirements.",
+      "sunflowerOil": {
+        "title": "Tuna in Sunflower Oil",
+        "description": "Premium skipjack tuna in refined sunflower oil. Mild taste, ideal for salads and sandwiches.",
+        "packaging": "48x170g, 24x185g, 12x425g"
+      },
+      "oliveOil": {
+        "title": "Tuna in Olive Oil",
+        "description": "Select tuna in extra virgin olive oil. Rich flavor for gourmet and Mediterranean recipes.",
+        "packaging": "48x170g, 24x185g, 12x425g"
+      },
+      "brine": {
+        "title": "Tuna in Brine",
+        "description": "Light tuna in natural brine. Low fat, high protein—perfect for health-conscious consumers.",
+        "packaging": "48x170g, 24x185g, 12x425g"
+      },
+      "chunks": {
+        "title": "Tuna Chunks",
+        "description": "Solid tuna chunks in oil or brine. Versatile for casseroles, pasta, and ready meals.",
+        "packaging": "24x185g, 12x425g, 6x1kg"
+      },
+      "flakes": {
+        "title": "Tuna Flakes",
+        "description": "Flaked tuna for spreads, fillings, and food service. Consistent quality, easy to use.",
+        "packaging": "24x185g, 12x425g, bulk"
+      },
+      "custom": {
+        "title": "Custom Formulation",
+        "description": "Private label and custom recipes to match your market and brand.",
+        "packaging": "Flexible formats",
+        "button": "Private Label Inquiry",
+        "details": "Details"
+      }
+    },
+    "packaging": {
+      "packagingTitle": "Packaging Solutions",
+      "retailPacks": "Retail Packs",
+      "bulkIndustrial": "Bulk Industrial",
+      "privateLabel": "Private Label",
+      "institutionalPacks": "Institutional Packs",
+      "trustTitle": "Trust & Safety",
+      "isoCertified": "ISO Certified",
+      "haccp": "HACCP",
+      "euStandards": "EU Standards",
+      "fdaRegistered": "FDA Registered"
+    },
+    "nutrition": {
+      "title": "Nutritional Excellence",
+      "highProtein": "High Protein",
+      "richOmega3": "Rich in Omega-3",
+      "globalCuisine": "Global Cuisine Versatility",
+      "pureHealthy": "Pure & Healthy"
+    },
+    "export": {
+      "title": "Export & Global Logistics",
+      "description": "We handle export documentation, cold-chain shipping, and customs clearance so your tuna reaches 40+ countries in optimal condition. Tracked shipments and full export documentation included.",
+      "countries": "40+ Countries",
+      "trackedShipments": "Tracked Shipments",
+      "fullExportDocs": "Full Export Docs",
+      "coldChain": "Cold Chain Assurance"
+    },
+    "cta": {
+      "title": "Interested in our Tuna products?",
+      "subtitle": "Request a quotation or speak with our sales team for bulk orders and private label.",
+      "requestQuotation": "Request Quotation",
+      "contactSales": "Contact Sales"
+    }
+  },
+  "sardinesMackerel": {
+    "meta": {
+      "title": "Premium Sardines & Mackerel | Capital Food | International Seafood",
+      "description": "Nutritious, high-quality sardines and mackerel prepared to meet international food safety and export standards. Multiple formats, private label, and global distribution."
+    },
+    "hero": {
+      "breadcrumbHome": "Home",
+      "breadcrumbSardines": "Sardines & Mackerel",
+      "title": "Premium Sardines & Mackerel",
+      "subtitle": "Nutritious, high-quality seafood prepared to meet international food safety and export standards."
+    },
+    "introduction": {
+      "title": "SARDINES / MACKEREL",
+      "paragraph1": "Sardines / Mackerel are known as well as in the processing of canned fish.",
+      "paragraph2": "Popular product: SARDINES / MACKEREL IN TOMATO SAUCE, SARDINES / MACKEREL IN OIL WITH CHILI. Sardines / Mackerel are known as well as in the processing of canned fish in various sauces such as tomato sauce, oil, or brine. Or dishes such as grilled or smoked. Which sardines nutrition than milk or 3 times with fish of 100 grams of various nutrients like Omega 3 to 200 mg, which is sufficient for the needs of the human body each week. It also contains phosphorus, copper, magnesium alloy, iron, manganese, lycopene and vitamin B"
+    },
+    "packaging": {
+      "title": "Packaging Options",
+      "multipleCanSizes": {
+        "label": "Multiple can sizes",
+        "description": "From retail to food service formats"
+      },
+      "bulkPackaging": {
+        "label": "Bulk packaging options",
+        "description": "Industrial and wholesale"
+      },
+      "privateLabel": {
+        "label": "Private label production",
+        "description": "Your brand, our quality"
+      },
+      "customBranding": {
+        "label": "Custom branding availability",
+        "description": "Flexible packaging and labels"
+      }
+    },
+    "specifications": {
+      "title": "Popular product: SARDINES / MACKEREL IN TOMATO SAUCE SARDINES / MACKEREL IN OIL WITH CHILI",
+      "fishSpecies": "Fish Species",
+      "kindOfSauce": "Kind of Sauce",
+      "sardines": "SARDINES",
+      "mackerel": "Mackerel",
+      "inTomatoSauce": "In Tomato Sauce",
+      "inBrine": "In Brine",
+      "inOil": "In Oil",
+      "name": "Name",
+      "cannedSize": "Canned Size Size",
+      "packingSize": "Packing Size",
+      "netWeight": "N.W.",
+      "loadingQty": "Loading qty. (Cartons)"
+    },
+    "quality": {
+      "title": "Quality & Food Safety",
+      "hygienicProcessing": {
+        "label": "Hygienic processing practices",
+        "badge": "HACCP"
+      },
+      "internationalCompliance": {
+        "label": "International compliance standards",
+        "badge": "Global"
+      },
+      "qualityInspection": {
+        "label": "Quality inspection procedures",
+        "badge": "ISO"
+      },
+      "exportReady": {
+        "label": "Export-ready packaging",
+        "badge": "FDA"
+      }
+    },
+    "nutrition": {
+      "title": "Nutrition & Health Benefits",
+      "richOmega3": "Rich in Omega-3",
+      "highProtein": "High protein source",
+      "heartHealthy": "Heart-healthy nutrients",
+      "essentialVitamins": "Essential vitamins & minerals"
+    },
+    "export": {
+      "title": "Export & Global Distribution",
+      "description": "Reliable logistics, secure packaging, and efficient global delivery to ensure product freshness. We ship sardines and mackerel to importers and distributors worldwide with full documentation and cold-chain assurance.",
+      "northAmerica": "North America",
+      "europeUK": "Europe & UK",
+      "eastAsia": "East Asia",
+      "middleEast": "Middle East"
+    },
+    "cta": {
+      "title": "Looking for high-quality sardines or mackerel?",
+      "subtitle": "Request a quotation or speak with our sales team for bulk orders and private label.",
+      "requestQuotation": "Request Quotation",
+      "contactSales": "Contact Sales"
+    }
+  },
+  "exhibition": {
+    "meta": {
+      "title": "Our Exhibitions & Events | Capital Food | International Seafood",
+      "description": "Capital Food at international seafood trade shows and global events. Meet us at Seafood Expo, Gulfood, Anuga, and more. Join us or get in touch to collaborate."
+    },
+    "hero": {
+      "breadcrumbHome": "Home",
+      "breadcrumbExhibitions": "Exhibitions",
+      "title": "Our Exhibitions & Events",
+      "subtitle": "Highlighting Capital Food's participation in international seafood trade shows and global events."
+    },
+    "events": {
+      "title": "Upcoming & Past Events",
+      "subtitle": "Meet Capital Food at the world's leading seafood and food trade exhibitions.",
+      "upcoming": "Upcoming",
+      "learnMore": "Learn More",
+      "events": [
+        {
+          "name": "Seafood Expo Global",
+          "location": "Barcelona, Spain",
+          "date": "April 2025",
+          "description": "The world's largest seafood trade event. Meet our team at the Capital Food booth for premium tuna, sardines, and mackerel."
+        },
+        {
+          "name": "Gulfood",
+          "location": "Dubai, UAE",
+          "date": "February 2025",
+          "description": "Leading food & beverage exhibition in the Middle East. Connect with us for export opportunities and private label solutions."
+        },
+        {
+          "name": "Anuga",
+          "location": "Cologne, Germany",
+          "date": "October 2024",
+          "description": "Premier trade fair for food and beverages. We showcased our full range of export-grade seafood products."
+        },
+        {
+          "name": "SIAL Paris",
+          "location": "Paris, France",
+          "date": "October 2024",
+          "description": "International food products exhibition. Capital Food presented sustainable sourcing and quality certifications."
+        },
+        {
+          "name": "Boston Seafood Show",
+          "location": "Boston, USA",
+          "date": "March 2024",
+          "description": "North America's largest seafood event. We met distributors and retailers from across the Americas."
+        },
+        {
+          "name": "Seafood Expo Asia",
+          "location": "Singapore",
+          "date": "September 2024",
+          "description": "Key Asian seafood trade show. Strengthening partnerships across Asia-Pacific and Oceania."
+        }
+      ]
+    },
+    "highlights": {
+      "title": "Exhibition Highlights",
+      "previousSlide": "Previous slide",
+      "nextSlide": "Next slide",
+      "goToSlide": "Go to slide",
+      "highlights": [
+        {
+          "title": "Seafood Expo Global",
+          "location": "Barcelona",
+          "year": "2024",
+          "achievement": "Largest booth presence to date; 500+ qualified leads."
+        },
+        {
+          "title": "Gulfood",
+          "location": "Dubai",
+          "year": "2024",
+          "achievement": "Featured in regional media; new distribution agreements signed."
+        },
+        {
+          "title": "Anuga",
+          "location": "Cologne",
+          "year": "2024",
+          "achievement": "Premium tuna and sardines range highlighted; EU buyers engaged."
+        }
+      ]
+    },
+    "presence": {
+      "title": "Company Presence",
+      "subtitle": "Capital Food participates in trade shows and events across key international markets.",
+      "globalParticipation": "Global event participation across 5 regions",
+      "regions": [
+        {
+          "name": "North America",
+          "count": "12+ events"
+        },
+        {
+          "name": "Europe & UK",
+          "count": "18+ events"
+        },
+        {
+          "name": "Middle East",
+          "count": "8+ events"
+        },
+        {
+          "name": "East Asia",
+          "count": "6+ events"
+        },
+        {
+          "name": "Southeast Asia",
+          "count": "5+ events"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Join us at upcoming exhibitions or get in touch to collaborate.",
+      "subtitle": "Connect with our team for meetings, samples, and partnership opportunities.",
+      "contactUs": "Contact Us",
+      "viewUpcomingEvents": "View Upcoming Events"
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact Us | Get in Touch | Capital Food",
+      "description": "Reach Capital Food for inquiries, quotations, or partnership opportunities. Contact our head office by form, email, or phone. Premium seafood supplier."
+    },
+    "hero": {
+      "breadcrumbHome": "Home",
+      "breadcrumbContact": "Contact Us",
+      "title": "Get in Touch with Us",
+      "subtitle": "Reach out for inquiries, quotations, or partnership opportunities. Our team is ready to support your business."
+    },
+    "section": {
+      "badge": "Get in Touch",
+      "title": "Contact Capital Food",
+      "subtitle": "Use the form or our contact details below. We respond to all inquiries promptly.",
+      "formTitle": "Contact With Us",
+      "formDescription": "If you have any question or if you are interested in any of our services, our teams of professionals are ready to assist you through these convenient channels.",
+      "firstName": "First Name",
+      "firstNamePlaceholder": "Your first name",
+      "email": "Email Address",
+      "emailPlaceholder": "you@company.com",
+      "product": "Please select a product",
+      "productPlaceholder": "Select a product",
+      "subject": "Subject",
+      "subjectPlaceholder": "Subject of your inquiry",
+      "message": "Message",
+      "messagePlaceholder": "Your message",
+      "required": "*",
+      "haveQuestions": "Have any questions? Call us now!",
+      "sending": "Sending…",
+      "submit": "Submit",
+      "successTitle": "Message sent successfully",
+      "successMessage": "We'll get back to you as soon as possible.",
+      "sendAnother": "Send another message",
+      "errors": {
+        "firstNameRequired": "First Name is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Enter a valid email",
+        "productRequired": "Please select a product",
+        "subjectRequired": "Subject is required",
+        "messageRequired": "Message is required"
+      },
+      "products": [
+        "Sardines in Tomato Sauce",
+        "Sardines in Sunflower Oil",
+        "Sardines in Olive Oil",
+        "Sardines in Brine",
+        "Mackerel in Tomato Sauce",
+        "Mackerel in Oil",
+        "Mackerel Fillets",
+        "Mackerel in Brine",
+        "Tuna in Sunflower Oil",
+        "Tuna in Olive Oil",
+        "Tuna in Brine",
+        "Tuna Chunks",
+        "Tuna Flakes",
+        "Custom Formulation",
+        "Other"
+      ],
+      "detailsTitle": "Head Office Call Us Now!",
+      "contactWithUs": "Contact With Us",
+      "details": {
+        "headOffice": "Head Office",
+        "officeBranch1": "Office Branch 1",
+        "phone": "Phone",
+        "email": "Email",
+        "website": "Website",
+        "lineId": "LINE ID",
+        "whatsapp": "WhatsApp",
+        "workingHours": "Working Hours"
+      }
+    },
+    "map": {
+      "badge": "Location",
+      "title": "Our Headquarters",
+      "subtitle": "Find us on the map or get directions. We welcome visits by appointment.",
+      "openInGoogleMaps": "Open in Google Maps"
+    },
+    "cta": {
+      "title": "Looking for a premium seafood supplier? Contact us today.",
+      "subtitle": "Request a quotation, ask about products, or discuss a partnership. Our team is ready to support your business.",
+      "haveQuestions": "Have any questions? Call us now!",
+      "sendInquiry": "Send Inquiry"
+    }
   }
 }

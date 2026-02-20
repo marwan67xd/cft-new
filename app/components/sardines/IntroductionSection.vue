@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import image1 from '~/assets/Sardines-Mackerel/70c749a7-9cbc-41f4-8d24-6065601b90a0.png'
 import image2 from '~/assets/Sardines-Mackerel/ChatGPT Image Feb 18, 2026, 05_02_14 PM.png'
+const { t } = useI18n()
 
 const sectionRef = ref<HTMLElement | null>(null)
 const textRef = ref<HTMLElement | null>(null)
@@ -40,14 +41,14 @@ onUnmounted(() => {
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto text-center">
         <h2 id="intro-heading" class="text-3xl sm:text-4xl font-bold text-navy tracking-tight mb-6">
-          SARDINES / MACKEREL
+          {{ $t('sardinesMackerel.introduction.title') }}
         </h2>
         <div ref="textRef" class="space-y-4 mb-8">
           <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
-            Sardines / Mackerel are known as well as in the processing of canned fish.
+            {{ $t('sardinesMackerel.introduction.paragraph1') }}
           </p>
           <p class="text-base sm:text-lg text-gray-600 leading-relaxed">
-            Popular product: SARDINES / MACKEREL IN TOMATO SAUCE, SARDINES / MACKEREL IN OIL WITH CHILI. Sardines / Mackerel are known as well as in the processing of canned fish in various sauces such as tomato sauce, oil, or brine. Or dishes such as grilled or smoked. Which sardines nutrition than milk or 3 times with fish of 100 grams of various nutrients like Omega 3 to 200 mg, which is sufficient for the needs of the human body each week. It also contains phosphorus, copper, magnesium alloy, iron, manganese, lycopene and vitamin B
+            {{ $t('sardinesMackerel.introduction.paragraph2') }}
           </p>
         </div>
         <div ref="imagesRef" class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mt-8">

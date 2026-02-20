@@ -1,10 +1,12 @@
 <script setup lang="ts">
-const regions = [
-  'North America',
-  'Europe & UK',
-  'East Asia',
-  'Middle East',
-]
+const { t } = useI18n()
+
+const regions = computed(() => [
+  t('sardinesMackerel.export.northAmerica'),
+  t('sardinesMackerel.export.europeUK'),
+  t('sardinesMackerel.export.eastAsia'),
+  t('sardinesMackerel.export.middleEast'),
+])
 
 const sectionRef = ref<HTMLElement | null>(null)
 const leftRef = ref<HTMLElement | null>(null)
@@ -45,10 +47,10 @@ onUnmounted(() => {
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div ref="leftRef">
           <h2 id="export-heading" class="text-3xl sm:text-4xl font-bold text-navy tracking-tight">
-            Export & Global Distribution
+            {{ $t('sardinesMackerel.export.title') }}
           </h2>
           <p class="mt-6 text-gray-600 leading-relaxed">
-            Reliable logistics, secure packaging, and efficient global delivery to ensure product freshness. We ship sardines and mackerel to importers and distributors worldwide with full documentation and cold-chain assurance.
+            {{ $t('sardinesMackerel.export.description') }}
           </p>
         </div>
         <div

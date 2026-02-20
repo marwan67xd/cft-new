@@ -1,10 +1,12 @@
 <script setup lang="ts">
+const { t } = useI18n()
+
 useHead({
-  title: 'Premium Sardines & Mackerel | Capital Food | International Seafood',
+  title: () => t('sardinesMackerel.meta.title'),
   meta: [
     {
       name: 'description',
-      content: 'Nutritious, high-quality sardines and mackerel prepared to meet international food safety and export standards. Multiple formats, private label, and global distribution.',
+      content: () => t('sardinesMackerel.meta.description'),
     },
   ],
 })

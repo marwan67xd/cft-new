@@ -1,11 +1,9 @@
 <script setup lang="ts">
-const regions = [
-  { name: 'North America', count: '12+ events' },
-  { name: 'Europe & UK', count: '18+ events' },
-  { name: 'Middle East', count: '8+ events' },
-  { name: 'East Asia', count: '6+ events' },
-  { name: 'Southeast Asia', count: '5+ events' },
-]
+const { t } = useI18n()
+
+const regions = computed(() => {
+  return t('exhibition.presence.regions') as Array<{ name: string; count: string }>
+})
 
 const sectionRef = ref<HTMLElement | null>(null)
 const headingRef = ref<HTMLElement | null>(null)
@@ -53,10 +51,10 @@ onUnmounted(() => {
         ref="headingRef"
         class="text-3xl sm:text-4xl font-bold text-navy tracking-tight text-center mb-12 lg:mb-16"
       >
-        Company Presence
+        {{ $t('exhibition.presence.title') }}
       </h2>
       <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">
-        Capital Food participates in trade shows and events across key international markets.
+        {{ $t('exhibition.presence.subtitle') }}
       </p>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -84,13 +82,13 @@ onUnmounted(() => {
             </svg>
           </div>
           <p class="relative text-ocean-800 font-semibold text-center text-lg">
-            Global event participation across 5 regions
+            {{ $t('exhibition.presence.globalParticipation') }}
           </p>
         </div>
 
         <ul ref="listRef" class="space-y-4">
           <li
-            v-for="region in regions"
+            v-for="region in regions.value"
             :key="region.name"
             data-region
             class="flex items-center justify-between gap-4 p-4 sm:p-5 rounded-xl bg-gray-50 border border-gray-100 hover:border-ocean-200 hover:shadow-card transition-all duration-300 group"

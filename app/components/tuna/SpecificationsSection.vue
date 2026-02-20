@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const { t } = useI18n()
+
 interface TunaSpecies {
   species: string
   meatType: string
@@ -16,25 +18,25 @@ interface PackingSize {
 const tunaSpecies: TunaSpecies[] = [
   {
     species: 'Tongol Tuna',
-    meatType: 'White Meat',
+    meatType: t('tuna.specifications.whiteMeat'),
     oils: ['Olive Oil', 'Sunflower oil', 'Soya bean oil', 'Brine'],
     packTypes: ['Solid', 'Chunk', 'Flakes', 'Shedded'],
   },
   {
     species: 'Yellowfin Tuna',
-    meatType: 'White Meat',
+    meatType: t('tuna.specifications.whiteMeat'),
     oils: ['Olive Oil', 'Sunflower oil', 'Soya bean oil', 'Brine'],
     packTypes: ['Solid', 'Chunk', 'Flakes', 'Shedded'],
   },
   {
     species: 'Skipjack Tuna',
-    meatType: 'Light Meat',
+    meatType: t('tuna.specifications.lightMeat'),
     oils: ['Olive Oil', 'Sunflower oil', 'Soya bean oil', 'Brine'],
     packTypes: ['Solid', 'Chunk', 'Flakes', 'Shedded'],
   },
   {
     species: 'Bonito Tuna',
-    meatType: 'White Meat',
+    meatType: t('tuna.specifications.whiteMeat'),
     oils: ['Olive Oil', 'Sunflower oil', 'Soya bean oil', 'Brine'],
     packTypes: ['Solid', 'Chunk', 'Flakes', 'Shedded'],
   },
@@ -95,7 +97,7 @@ onUnmounted(() => {
         ref="headingRef"
         class="text-3xl sm:text-4xl font-bold text-navy tracking-tight mb-12 lg:mb-16 text-center"
       >
-        Canned Tuna
+        {{ $t('tuna.specifications.title') }}
       </h2>
 
       <div ref="tablesRef" class="space-y-12">
@@ -110,19 +112,19 @@ onUnmounted(() => {
                       scope="col"
                       class="px-4 sm:px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider"
                     >
-                      Tuna Species
+                      {{ $t('tuna.specifications.tunaSpecies') }}
                     </th>
                     <th
                       scope="col"
                       class="px-4 sm:px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider"
                     >
-                      Oil/Brine
+                      {{ $t('tuna.specifications.oilBrine') }}
                     </th>
                     <th
                       scope="col"
                       class="px-4 sm:px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider"
                     >
-                      Pack In
+                      {{ $t('tuna.specifications.packIn') }}
                     </th>
                   </tr>
                 </thead>
@@ -164,25 +166,25 @@ onUnmounted(() => {
                       scope="col"
                       class="px-4 sm:px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider"
                     >
-                      Packing Size
+                      {{ $t('tuna.specifications.packingSize') }}
                     </th>
                     <th
                       scope="col"
                       class="px-4 sm:px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider"
                     >
-                      N.W.
+                      {{ $t('tuna.specifications.netWeight') }}
                     </th>
                     <th
                       scope="col"
                       class="px-4 sm:px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider"
                     >
-                      D.W
+                      {{ $t('tuna.specifications.drainedWeight') }}
                     </th>
                     <th
                       scope="col"
                       class="px-4 sm:px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider"
                     >
-                      Loading qty. (Cartons)
+                      {{ $t('tuna.specifications.loadingQty') }}
                     </th>
                   </tr>
                 </thead>

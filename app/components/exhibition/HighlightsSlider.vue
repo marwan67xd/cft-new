@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const { t } = useI18n()
+
 interface Highlight {
   id: string
   title: string
@@ -8,32 +10,17 @@ interface Highlight {
   image: string
 }
 
-const highlights: Highlight[] = [
-  {
-    id: '1',
-    title: 'Seafood Expo Global',
-    location: 'Barcelona',
-    year: '2024',
-    achievement: 'Largest booth presence to date; 500+ qualified leads.',
+const highlights = computed<Highlight[]>(() => {
+  const highlightsData = t('exhibition.highlights.highlights') as any[]
+  return highlightsData.map((highlight, index) => ({
+    id: String(index + 1),
+    title: highlight.title,
+    location: highlight.location,
+    year: highlight.year,
+    achievement: highlight.achievement,
     image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80',
-  },
-  {
-    id: '2',
-    title: 'Gulfood',
-    location: 'Dubai',
-    year: '2024',
-    achievement: 'Featured in regional media; new distribution agreements signed.',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80',
-  },
-  {
-    id: '3',
-    title: 'Anuga',
-    location: 'Cologne',
-    year: '2024',
-    achievement: 'Premium tuna and sardines range highlighted; EU buyers engaged.',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80',
-  },
-]
+  }))
+})
 
 const currentIndex = ref(0)
 const sectionRef = ref<HTMLElement | null>(null)
@@ -43,7 +30,7 @@ let gsapCtx: { revert: () => void } | null = null
 let intervalId: ReturnType<typeof setInterval> | null = null
 
 const goTo = (index: number) => {
-  currentIndex.value = ((index % highlights.length) + highlights.length) % highlights.length
+  currentIndex.value = ((index % highlights.value.length) + highlights.value.length) % highlights.value.length
 }
 
 const next = () => {
@@ -65,7 +52,10 @@ onMounted(() => {
       })
     })
   }
-  intervalId = setInterval(next, 6000)
+  watch(highlights, () => {
+    if (intervalId) clearInterval(intervalId)
+    intervalId = setInterval(next, 6000)
+  }, { immediate: true })
 })
 
 onUnmounted(() => {
@@ -82,7 +72,7 @@ onUnmounted(() => {
   >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <h2 id="highlights-heading" class="text-3xl sm:text-4xl font-bold text-navy tracking-tight text-center mb-12 lg:mb-16">
-        Exhibition Highlights
+        {{ $t('exhibition.highlights.title') }}
       </h2>
 
       <div class="relative max-w-4xl mx-auto">
@@ -97,13 +87,13 @@ onUnmounted(() => {
             leave-to-class="opacity-0 -translate-x-8"
           >
             <div
-              :key="highlights[currentIndex]?.id"
+              :key="highlights.value[currentIndex]?.id"
               ref="slideRef"
               class="absolute inset-0"
             >
               <img
-                :src="highlights[currentIndex]?.image"
-                :alt="highlights[currentIndex]?.title"
+                :src="highlights.value[currentIndex]?.image"
+                :alt="highlights.value[currentIndex]?.title"
                 class="absolute inset-0 w-full h-full object-cover"
                 width="1200"
                 height="675"
@@ -111,9 +101,9 @@ onUnmounted(() => {
               />
               <div class="absolute inset-0 bg-gradient-to-t from-navy-dark/95 via-navy/60 to-transparent" />
               <div class="absolute inset-0 flex flex-col justify-end p-8 sm:p-10 lg:p-12">
-                <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">{{ highlights[currentIndex]?.title }}</h3>
-                <p class="mt-1 text-ocean-200">{{ highlights[currentIndex]?.location }} · {{ highlights[currentIndex]?.year }}</p>
-                <p class="mt-4 text-gray-200 max-w-xl">{{ highlights[currentIndex]?.achievement }}</p>
+                <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">{{ highlights.value[currentIndex]?.title }}</h3>
+                <p class="mt-1 text-ocean-200">{{ highlights.value[currentIndex]?.location }} · {{ highlights.value[currentIndex]?.year }}</p>
+                <p class="mt-4 text-gray-200 max-w-xl">{{ highlights.value[currentIndex]?.achievement }}</p>
               </div>
             </div>
           </Transition>
@@ -122,7 +112,7 @@ onUnmounted(() => {
         <button
           type="button"
           class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 shadow-lg flex items-center justify-center text-navy hover:bg-white transition-colors focus:outline-none focus:ring-2 focus:ring-ocean-500 z-10"
-          aria-label="Previous slide"
+          :aria-label="$t('exhibition.highlights.previousSlide')"
           @click="prev"
         >
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -132,7 +122,7 @@ onUnmounted(() => {
         <button
           type="button"
           class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 shadow-lg flex items-center justify-center text-navy hover:bg-white transition-colors focus:outline-none focus:ring-2 focus:ring-ocean-500 z-10"
-          aria-label="Next slide"
+          :aria-label="$t('exhibition.highlights.nextSlide')"
           @click="next"
         >
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -142,12 +132,12 @@ onUnmounted(() => {
 
         <div class="flex justify-center gap-2 mt-6">
           <button
-            v-for="(_, i) in highlights"
+            v-for="(_, i) in highlights.value"
             :key="i"
             type="button"
             class="w-2.5 h-2.5 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2"
             :class="i === currentIndex ? 'bg-ocean-600 scale-125' : 'bg-gray-300 hover:bg-gray-400'"
-            :aria-label="`Go to slide ${i + 1}`"
+            :aria-label="`${$t('exhibition.highlights.goToSlide')} ${i + 1}`"
             @click="goTo(i)"
           />
         </div>

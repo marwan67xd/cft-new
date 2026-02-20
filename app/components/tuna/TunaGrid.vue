@@ -1,4 +1,7 @@
 <script setup lang="ts">
+const { t } = useI18n()
+const localePath = useLocalePath()
+
 interface TunaProduct {
   title: string;
   description: string;
@@ -7,56 +10,50 @@ interface TunaProduct {
   custom?: boolean;
 }
 
-const products: TunaProduct[] = [
+const products = computed<TunaProduct[]>(() => [
   {
-    title: "Tuna in Sunflower Oil",
-    description:
-      "Premium skipjack tuna in refined sunflower oil. Mild taste, ideal for salads and sandwiches.",
-    packaging: "48x170g, 24x185g, 12x425g",
+    title: t('tuna.collection.sunflowerOil.title'),
+    description: t('tuna.collection.sunflowerOil.description'),
+    packaging: t('tuna.collection.sunflowerOil.packaging'),
     image:
       "https://images.unsplash.com/photo-1559847844-5315695dadae?w=600&q=80",
   },
   {
-    title: "Tuna in Olive Oil",
-    description:
-      "Select tuna in extra virgin olive oil. Rich flavor for gourmet and Mediterranean recipes.",
-    packaging: "48x170g, 24x185g, 12x425g",
+    title: t('tuna.collection.oliveOil.title'),
+    description: t('tuna.collection.oliveOil.description'),
+    packaging: t('tuna.collection.oliveOil.packaging'),
     image:
       "https://images.unsplash.com/photo-1565680018434-b513d5e261b9?w=600&q=80",
   },
   {
-    title: "Tuna in Brine",
-    description:
-      "Light tuna in natural brine. Low fat, high protein—perfect for health-conscious consumers.",
-    packaging: "48x170g, 24x185g, 12x425g",
+    title: t('tuna.collection.brine.title'),
+    description: t('tuna.collection.brine.description'),
+    packaging: t('tuna.collection.brine.packaging'),
     image:
       "https://images.unsplash.com/photo-1559847844-5315695dadae?w=600&q=80",
   },
   {
-    title: "Tuna Chunks",
-    description:
-      "Solid tuna chunks in oil or brine. Versatile for casseroles, pasta, and ready meals.",
-    packaging: "24x185g, 12x425g, 6x1kg",
+    title: t('tuna.collection.chunks.title'),
+    description: t('tuna.collection.chunks.description'),
+    packaging: t('tuna.collection.chunks.packaging'),
     image:
       "https://images.unsplash.com/photo-1565680018434-b513d5e261b9?w=600&q=80",
   },
   {
-    title: "Tuna Flakes",
-    description:
-      "Flaked tuna for spreads, fillings, and food service. Consistent quality, easy to use.",
-    packaging: "24x185g, 12x425g, bulk",
+    title: t('tuna.collection.flakes.title'),
+    description: t('tuna.collection.flakes.description'),
+    packaging: t('tuna.collection.flakes.packaging'),
     image:
       "https://images.unsplash.com/photo-1559847844-5315695dadae?w=600&q=80",
   },
   {
-    title: "Custom Formulation",
-    description:
-      "Private label and custom recipes to match your market and brand.",
-    packaging: "Flexible formats",
+    title: t('tuna.collection.custom.title'),
+    description: t('tuna.collection.custom.description'),
+    packaging: t('tuna.collection.custom.packaging'),
     image: "",
     custom: true,
   },
-];
+]);
 
 const sectionRef = ref<HTMLElement | null>(null);
 const headingRef = ref<HTMLElement | null>(null);
@@ -134,11 +131,10 @@ onUnmounted(() => {
           ref="headingRef"
           class="text-3xl sm:text-4xl font-bold text-navy tracking-tight"
         >
-          Our Tuna Collection
+          {{ $t('tuna.collection.title') }}
         </h2>
         <p ref="subRef" class="mt-4 text-gray-600 leading-relaxed">
-          A variety of formats and pack sizes to meet global culinary needs and
-          retail, food service, and industrial requirements.
+          {{ $t('tuna.collection.subtitle') }}
         </p>
       </header>
 
@@ -199,16 +195,16 @@ onUnmounted(() => {
             <div class="mt-4">
               <NuxtLink
                 v-if="product.custom"
-                to="/#contact"
+                :to="localePath('/#contact')"
                 class="inline-flex items-center justify-center w-full px-4 py-3 rounded-xl bg-aqua-500 text-white font-semibold hover:bg-aqua-600 transition-colors focus:outline-none focus:ring-2 focus:ring-aqua-400 focus:ring-offset-2 focus:ring-offset-navy"
               >
-                Private Label Inquiry
+                {{ $t('tuna.collection.custom.button') }}
               </NuxtLink>
               <span
                 v-else
                 class="inline-flex items-center gap-1 text-sm font-medium text-ocean-600 group-hover:text-ocean-700 transition-colors"
               >
-                Details
+                {{ $t('tuna.collection.custom.details') }}
                 <span aria-hidden="true">→</span>
               </span>
             </div>

@@ -1,11 +1,12 @@
 <script setup lang="ts">
+const { t } = useI18n()
+
 useHead({
-  title: "Premium Tuna Products | High-Quality Export-Grade Tuna",
+  title: () => t('tuna.meta.title'),
   meta: [
     {
       name: "description",
-      content:
-        "Premium tuna products prepared to meet international food standards. HACCP & ISO certified, sustainable sourcing, cold-chain integrity. Request a quotation.",
+      content: () => t('tuna.meta.description'),
     },
   ],
 });

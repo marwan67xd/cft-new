@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const { t } = useI18n()
+
 interface FishSpecies {
   species: string
   sauces: string[]
@@ -12,16 +14,16 @@ interface PackingSpec {
   loadingQty: string
 }
 
-const fishSpecies: FishSpecies[] = [
+const fishSpecies = computed<FishSpecies[]>(() => [
   {
-    species: 'SARDINES',
-    sauces: ['In Tomato Sauce', 'In Brine', 'In Oil'],
+    species: t('sardinesMackerel.specifications.sardines'),
+    sauces: [t('sardinesMackerel.specifications.inTomatoSauce'), t('sardinesMackerel.specifications.inBrine'), t('sardinesMackerel.specifications.inOil')],
   },
   {
-    species: 'Mackerel',
-    sauces: ['In Tomato Sauce', 'In Brine', 'In Oil'],
+    species: t('sardinesMackerel.specifications.mackerel'),
+    sauces: [t('sardinesMackerel.specifications.inTomatoSauce'), t('sardinesMackerel.specifications.inBrine'), t('sardinesMackerel.specifications.inOil')],
   },
-]
+])
 
 const packingSpecs: PackingSpec[] = [
   { name: 'Jitney Can', canSize: '202 x 308', packingSize: '50 x 155g', netWeight: '155g', loadingQty: '2,000' },
@@ -74,7 +76,7 @@ onUnmounted(() => {
         ref="headingRef"
         class="text-2xl sm:text-3xl font-bold text-navy tracking-tight mb-6 text-center"
       >
-        Popular product: SARDINES / MACKEREL IN TOMATO SAUCE SARDINES / MACKEREL IN OIL WITH CHILI
+        {{ $t('sardinesMackerel.specifications.title') }}
       </h2>
 
       <div ref="tablesRef" class="space-y-12">
@@ -89,13 +91,13 @@ onUnmounted(() => {
                       scope="col"
                       class="px-4 sm:px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider"
                     >
-                      Fish Species
+                      {{ $t('sardinesMackerel.specifications.fishSpecies') }}
                     </th>
                     <th
                       scope="col"
                       class="px-4 sm:px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider"
                     >
-                      Kind of Sauce
+                      {{ $t('sardinesMackerel.specifications.kindOfSauce') }}
                     </th>
                   </tr>
                 </thead>
@@ -131,31 +133,31 @@ onUnmounted(() => {
                       scope="col"
                       class="px-4 sm:px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider"
                     >
-                      Name
+                      {{ $t('sardinesMackerel.specifications.name') }}
                     </th>
                     <th
                       scope="col"
                       class="px-4 sm:px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider"
                     >
-                      Canned Size Size
+                      {{ $t('sardinesMackerel.specifications.cannedSize') }}
                     </th>
                     <th
                       scope="col"
                       class="px-4 sm:px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider"
                     >
-                      Packing Size
+                      {{ $t('sardinesMackerel.specifications.packingSize') }}
                     </th>
                     <th
                       scope="col"
                       class="px-4 sm:px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider"
                     >
-                      N.W.
+                      {{ $t('sardinesMackerel.specifications.netWeight') }}
                     </th>
                     <th
                       scope="col"
                       class="px-4 sm:px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider"
                     >
-                      Loading qty. (Cartons)
+                      {{ $t('sardinesMackerel.specifications.loadingQty') }}
                     </th>
                   </tr>
                 </thead>

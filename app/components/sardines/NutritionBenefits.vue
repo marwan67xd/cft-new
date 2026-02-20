@@ -1,10 +1,12 @@
 <script setup lang="ts">
-const items = [
-  { label: 'Rich in Omega-3', icon: 'omega' },
-  { label: 'High protein source', icon: 'protein' },
-  { label: 'Heart-healthy nutrients', icon: 'heart' },
-  { label: 'Essential vitamins & minerals', icon: 'vitamins' },
-]
+const { t } = useI18n()
+
+const items = computed(() => [
+  { label: t('sardinesMackerel.nutrition.richOmega3'), icon: 'omega' },
+  { label: t('sardinesMackerel.nutrition.highProtein'), icon: 'protein' },
+  { label: t('sardinesMackerel.nutrition.heartHealthy'), icon: 'heart' },
+  { label: t('sardinesMackerel.nutrition.essentialVitamins'), icon: 'vitamins' },
+])
 
 const sectionRef = ref<HTMLElement | null>(null)
 const headingRef = ref<HTMLElement | null>(null)
@@ -48,7 +50,7 @@ onUnmounted(() => {
         ref="headingRef"
         class="text-center text-3xl sm:text-4xl font-bold tracking-tight mb-12 lg:mb-16"
       >
-        Nutrition & Health Benefits
+        {{ $t('sardinesMackerel.nutrition.title') }}
       </h2>
       <div
         ref="iconsRef"
