@@ -16,7 +16,7 @@ useHead({
   <div class="min-h-screen bg-white font-sans">
     <Navbar />
     <main>
-      <AboutAboutHero />
+      <AboutHero />
       <AboutCompanyOverview />
       <AboutMissionVision />
       <AboutCoreValues />
