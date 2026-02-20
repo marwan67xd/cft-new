@@ -2,7 +2,7 @@
 import logoImage from "~/assets/logo/logo-2-10-10-63.png";
 
 const quickLinks = [
-  { label: "Company Profile", href: "/Company Profile" },
+  { label: "Company Profile", href: "/company-profile" },
   { label: "Products", href: "/#products" },
   { label: "Quality Standards", href: "/#quality" },
   { label: "Global Presence", href: "/#global" },

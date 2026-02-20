@@ -10,7 +10,7 @@ const links = [
   },
   {
     title: "Company Profile",
-    href: "/Company Profile",
+    href: "/company-profile",
     image:
       "https://images.unsplash.com/photo-1565680018434-b513d5e261b9?w=800&q=80",
     alt: "Company Profile",
