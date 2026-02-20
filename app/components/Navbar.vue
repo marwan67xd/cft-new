@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import logoImage from "~/assets/logo/logo-2-10-10-63.png";
-const { t } = useI18n();
-const localePath = useLocalePath();
 
 const navLinks = [
-  { labelKey: "nav.home", href: "/" },
-  { labelKey: "nav.companyProfile", href: "/Company Profile" },
-  { labelKey: "nav.tuna", href: "/tuna" },
-  { labelKey: "nav.sardinesMackerel", href: "/sardines-mackerel" },
-  { labelKey: "nav.exhibition", href: "/exhibition" },
-  { labelKey: "nav.contactUs", href: "/contact" },
+  { label: "Home", href: "/" },
+  { label: "Company Profile", href: "/Company Profile" },
+  { label: "Tuna", href: "/tuna" },
+  { label: "Sardines / Mackerel", href: "/sardines-mackerel" },
+  { label: "Exhibition", href: "/exhibition" },
+  { label: "Contact us", href: "/contact" },
 ];
 
 const isScrolled = ref(false);
@@ -41,9 +39,9 @@ onUnmounted(() => {
       class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between"
     >
       <NuxtLink
-        :to="localePath('/')"
+        to="/"
         class="flex items-center shrink-0 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2 rounded-lg"
-        :aria-label="t('nav.home')"
+        aria-label="Home"
       >
         <img
           :src="logoImage"
@@ -58,7 +56,7 @@ onUnmounted(() => {
       <ul class="hidden md:flex items-center gap-6">
         <li v-for="link in navLinks" :key="link.href">
           <NuxtLink
-            :to="localePath(link.href)"
+            :to="link.href"
             class="text-gray-600 hover:text-ocean-700 font-medium transition-colors"
             :class="
               link.href === '/contact'
@@ -66,11 +64,8 @@ onUnmounted(() => {
                 : ''
             "
           >
-            {{ t(link.labelKey) }}
+            {{ link.label }}
           </NuxtLink>
-        </li>
-        <li>
-          <LanguageSwitcher />
         </li>
       </ul>
 
@@ -122,16 +117,13 @@ onUnmounted(() => {
         <ul class="container mx-auto px-4 py-4 flex flex-col gap-2">
           <li v-for="link in navLinks" :key="link.href">
             <NuxtLink
-              :to="localePath(link.href)"
+              :to="link.href"
               class="block py-3 text-gray-600 hover:text-ocean-700 font-medium"
               :class="link.href === '/contact' ? 'text-ocean-600' : ''"
               @click="isMobileMenuOpen = false"
             >
-              {{ t(link.labelKey) }}
+              {{ link.label }}
             </NuxtLink>
-          </li>
-          <li class="pt-2 border-t border-gray-100">
-            <LanguageSwitcher />
           </li>
         </ul>
       </div>

@@ -1,21 +1,19 @@
 <script setup lang="ts">
 import logoImage from "~/assets/logo/logo-2-10-10-63.png";
-const { t } = useI18n();
-const localePath = useLocalePath();
 
 const quickLinks = [
-  { labelKey: "footer.companyProfile", href: "/Company Profile" },
-  { labelKey: "footer.products", href: "/#products" },
-  { labelKey: "footer.qualityStandards", href: "/#quality" },
-  { labelKey: "footer.globalPresence", href: "/#global" },
-  { labelKey: "footer.exhibitions", href: "/#exhibitions" },
-  { labelKey: "footer.contact", href: "/#contact" },
+  { label: "Company Profile", href: "/Company Profile" },
+  { label: "Products", href: "/#products" },
+  { label: "Quality Standards", href: "/#quality" },
+  { label: "Global Presence", href: "/#global" },
+  { label: "Exhibitions", href: "/#exhibitions" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 const productCategories = [
-  { labelKey: "footer.premiumTuna", href: "/tuna" },
-  { labelKey: "footer.sardines", href: "/sardines" },
-  { labelKey: "footer.mackerel", href: "/mackerel" },
+  { label: "Premium Tuna", href: "/tuna" },
+  { label: "Sardines", href: "/sardines" },
+  { label: "Mackerel", href: "/mackerel" },
 ];
 
 const socialLinks = [
@@ -33,7 +31,7 @@ const socialLinks = [
       >
         <!-- Logo & description -->
         <div class="lg:col-span-1">
-          <NuxtLink :to="localePath('/')" class="inline-block mb-4">
+          <NuxtLink to="/" class="inline-block mb-4">
             <img
               :src="logoImage"
               alt="Capital Food Logo"
@@ -41,28 +39,28 @@ const socialLinks = [
             />
           </NuxtLink>
           <p class="text-sm leading-relaxed text-gray-400 max-w-xs">
-            {{ t('footer.companyDesc') }}
+            Capital Food International Co., Ltd. is a Bangkok-based manufacturer and exporter specializing in canned seafood products, including tuna, sardines, and mackerel.
           </p>
         </div>
 
         <!-- Quick links -->
         <div>
-          <h3 class="text-white font-semibold mb-4">{{ t('footer.quickLinks') }}</h3>
+          <h3 class="text-white font-semibold mb-4">Quick Links</h3>
           <ul class="space-y-3">
             <li v-for="link in quickLinks" :key="link.href">
               <NuxtLink
                 v-if="link.href.startsWith('/') && !link.href.startsWith('/#')"
-                :to="localePath(link.href)"
+                :to="link.href"
                 class="text-sm hover:text-aqua-400 transition-colors"
               >
-                {{ t(link.labelKey) }}
+                {{ link.label }}
               </NuxtLink>
               <a
                 v-else
                 :href="link.href"
                 class="text-sm hover:text-aqua-400 transition-colors"
               >
-                {{ t(link.labelKey) }}
+                {{ link.label }}
               </a>
             </li>
           </ul>
@@ -70,22 +68,22 @@ const socialLinks = [
 
         <!-- Product categories -->
         <div>
-          <h3 class="text-white font-semibold mb-4">{{ t('footer.products') }}</h3>
+          <h3 class="text-white font-semibold mb-4">Products</h3>
           <ul class="space-y-3">
             <li v-for="cat in productCategories" :key="cat.href">
               <NuxtLink
                 v-if="cat.href.startsWith('/')"
-                :to="localePath(cat.href)"
+                :to="cat.href"
                 class="text-sm hover:text-aqua-400 transition-colors"
               >
-                {{ t(cat.labelKey) }}
+                {{ cat.label }}
               </NuxtLink>
               <a
                 v-else
                 :href="cat.href"
                 class="text-sm hover:text-aqua-400 transition-colors"
               >
-                {{ t(cat.labelKey) }}
+                {{ cat.label }}
               </a>
             </li>
           </ul>
@@ -94,8 +92,8 @@ const socialLinks = [
         <!-- Contact: Head office & Office -->
         <div class="space-y-8">
           <div>
-            <h3 class="text-white font-semibold mb-3">{{ t('footer.headOffice') }}</h3>
-            <p class="text-white/90 font-medium text-sm mb-2">{{ t('footer.callUsNow') }}</p>
+            <h3 class="text-white font-semibold mb-3">Head office</h3>
+            <p class="text-white/90 font-medium text-sm mb-2">Call us now!</p>
             <address class="text-sm not-italic space-y-1 text-gray-400">
               <p>
                 <a href="tel:+66925411454" class="hover:text-aqua-400 transition-colors">(+66) 925 411 454</a>
@@ -103,7 +101,7 @@ const socialLinks = [
               <p>
                 <a href="tel:+66847217966" class="hover:text-aqua-400 transition-colors">(+66) 847 217 966</a>
               </p>
-              <p>{{ t('footer.hours') }}</p>
+              <p>Monday to Friday 8:30 am – 5:30 pm</p>
               <p class="pt-2">
                 <a href="mailto:adelbkk@cfi-capitalfood.com" class="hover:text-aqua-400 transition-colors">adelbkk@cfi-capitalfood.com</a>
               </p>
@@ -113,13 +111,13 @@ const socialLinks = [
             </address>
           </div>
           <div>
-            <h3 class="text-white font-semibold mb-3">{{ t('footer.office') }}</h3>
-            <p class="text-white/90 font-medium text-sm mb-2">{{ t('footer.callUsNow') }}</p>
+            <h3 class="text-white font-semibold mb-3">Office</h3>
+            <p class="text-white/90 font-medium text-sm mb-2">Call us now!</p>
             <address class="text-sm not-italic space-y-1 text-gray-400">
               <p>
                 <a href="tel:+6621708334" class="hover:text-aqua-400 transition-colors">(+66) 217 083 34</a>
               </p>
-              <p>{{ t('footer.hours') }}</p>
+              <p>Monday to Friday 8:30 am – 5:30 pm</p>
               <p class="pt-2">
                 <a href="mailto:adelbkk@cfi-capitalfood.com" class="hover:text-aqua-400 transition-colors">adelbkk@cfi-capitalfood.com</a>
               </p>
@@ -180,7 +178,7 @@ const socialLinks = [
         class="pt-8 border-t border-ocean-800 text-center text-sm text-gray-500"
       >
         <p>
-          &copy; {{ new Date().getFullYear() }} {{ t('footer.copyright') }}
+          &copy; {{ new Date().getFullYear() }} Capital Food International Co., Ltd.
         </p>
       </div>
     </div>

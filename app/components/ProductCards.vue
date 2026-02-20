@@ -1,23 +1,20 @@
 <script setup lang="ts">
-const { t } = useI18n()
-const localePath = useLocalePath()
-
 const products = [
   {
-    titleKey: 'products.premiumTuna',
-    descKey: 'products.premiumTunaDesc',
+    title: 'Premium Tuna',
+    desc: 'High-quality canned tuna produced under strict food industry standards. Ideal for retail and distribution markets.',
     image: '/canned-tuna-product.jpg',
     href: '/tuna',
   },
   {
-    titleKey: 'products.qualitySardines',
-    descKey: 'products.qualitySardinesDesc',
+    title: 'Quality Sardines',
+    desc: 'Nutritious sardines processed to consistent quality levels for consumer and commercial use.',
     image: '/sardines-sea-only.jpg',
     href: '/sardines',
   },
   {
-    titleKey: 'products.mackerelFillets',
-    descKey: 'products.mackerelFilletsDesc',
+    title: 'Mackerel Fillets',
+    desc: 'Canned mackerel fillets prepared according to international production norms, offering reliable and versatile supply.',
     image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80',
     href: '/mackerel',
   },
@@ -64,23 +61,23 @@ onMounted(() => {
   >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <h2 id="products-heading" class="text-3xl sm:text-4xl font-bold text-ocean-950 text-center mb-4">
-        {{ t('products.heading') }}
+        Product Range
       </h2>
       <p class="text-gray-600 text-center max-w-2xl mx-auto mb-14">
-        {{ t('products.subheading') }}
+        Our core offerings meet the highest international standards for quality and safety.
       </p>
 
       <div class="grid md:grid-cols-3 gap-8">
         <article
           v-for="(product, i) in products"
-          :key="product.titleKey"
+          :key="product.title"
           :ref="(el) => setCardRef(el, i)"
           class="group rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300"
         >
           <div class="aspect-[4/3] overflow-hidden bg-gray-100">
             <img
               :src="product.image"
-              :alt="t(product.titleKey)"
+              :alt="product.title"
               class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               width="600"
               height="450"
@@ -88,14 +85,14 @@ onMounted(() => {
             />
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-bold text-ocean-950 mb-2">{{ t(product.titleKey) }}</h3>
-            <p class="text-gray-600 text-sm leading-relaxed mb-5">{{ t(product.descKey) }}</p>
+            <h3 class="text-xl font-bold text-ocean-950 mb-2">{{ product.title }}</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-5">{{ product.desc }}</p>
             <NuxtLink
               v-if="product.href.startsWith('/')"
-              :to="localePath(product.href)"
+              :to="product.href"
               class="inline-flex items-center gap-2 text-ocean-600 font-medium hover:text-aqua-600 transition-colors group/link"
             >
-              {{ t('products.viewDetails') }}
+              View Details
               <span class="transition-transform group-hover/link:translate-x-1">→</span>
             </NuxtLink>
             <a
@@ -103,7 +100,7 @@ onMounted(() => {
               :href="product.href"
               class="inline-flex items-center gap-2 text-ocean-600 font-medium hover:text-aqua-600 transition-colors group/link"
             >
-              {{ t('products.viewDetails') }}
+              View Details
               <span class="transition-transform group-hover/link:translate-x-1">→</span>
             </a>
           </div>
