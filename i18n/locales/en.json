@@ -9,5 +9,70 @@
   },
   "common": {
     "language": "Language"
+  },
+  "home": {
+    "hero": {
+      "badge": "GLOBAL EXPORT PARTNER",
+      "title": "Capital Food International",
+      "subtitle": "High-quality tuna, sardines, and mackerel prepared to meet international food standards.",
+      "exploreProducts": "Explore Products",
+      "downloadProfile": "Download Profile"
+    },
+    "about": {
+      "badge": "About Us",
+      "title": "About Us — Premium Seafood Products",
+      "description": "Founded in 2014, we are a dedicated producer and supplier of high-quality seafood products, including tuna, sardines, and mackerel. Our focus on consistent quality, industry standards, and reliable sourcing supports our partnerships with retailers and food distributors.",
+      "yearsExcellence": "12+ Years Excellence",
+      "commitmentTitle": "Our Commitment to Quality",
+      "quality1": "Quality-driven production and packaging practices.",
+      "quality2": "Adherence to food safety and industry standards.",
+      "sustainableTitle": "Sustainable Sourcing",
+      "sustainableDesc": "We aim for responsible sourcing and adherence to ethical practices throughout our operations.",
+      "traceabilityTitle": "Traceability",
+      "traceabilityDesc": "We maintain transparency in our supply processes from production to delivery."
+    },
+    "products": {
+      "title": "Product Range",
+      "subtitle": "Our core offerings meet the highest international standards for quality and safety.",
+      "tunaTitle": "Premium Tuna",
+      "tunaDesc": "High-quality canned tuna produced under strict food industry standards. Ideal for retail and distribution markets.",
+      "sardinesTitle": "Quality Sardines",
+      "sardinesDesc": "Nutritious sardines processed to consistent quality levels for consumer and commercial use.",
+      "mackerelTitle": "Mackerel Fillets",
+      "mackerelDesc": "Canned mackerel fillets prepared according to international production norms, offering reliable and versatile supply.",
+      "viewDetails": "View Details"
+    },
+    "whyChoose": {
+      "title": "Why Choose Us",
+      "premiumQuality": "Premium Quality",
+      "globalStandards": "Global Standards",
+      "reliableSupply": "Reliable Supply",
+      "strategicPartnerships": "Strategic Partnerships"
+    },
+    "trustBar": {
+      "internationalQuality": "International Quality Standards",
+      "exportReady": "Export Ready",
+      "premiumSelection": "Premium Selection",
+      "foodSafety": "Food Safety Compliance"
+    },
+    "exhibitions": {
+      "title": "Exhibitions",
+      "subtitle": "Meet us at the world's leading food and seafood trade shows.",
+      "viewAllEvents": "View All Events"
+    },
+    "global": {
+      "title": "Active in International Markets",
+      "subtitle": "Supplying canned tuna, sardines, and mackerel to distribution partners across regional and international markets.",
+      "tooltip": "Supplying premium seafood worldwide."
+    },
+    "cta": {
+      "title": "Looking for a trusted seafood supplier?",
+      "subtitle": "Partner with a global export leader. Get in touch for quotes and product information.",
+      "button": "Contact Us Today"
+    },
+    "meta": {
+      "title": "Premium Seafood Supplier | Trusted Worldwide",
+      "description": "High-quality tuna, sardines, and mackerel prepared to meet international food standards. Your global export partner."
+    }
   }
 }

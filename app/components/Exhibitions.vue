@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const { t } = useI18n()
+
 const events = [
   { name: 'Gulfood 2024', location: 'Dubai', country: 'UAE' },
   { name: 'SIAL Paris', location: 'France', country: 'France' },
@@ -48,10 +50,10 @@ onMounted(() => {
   >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <h2 id="exhibitions-heading" class="text-3xl sm:text-4xl font-bold text-ocean-950 text-center mb-4">
-        Exhibitions
+        {{ $t('home.exhibitions.title') }}
       </h2>
       <p class="text-gray-600 text-center max-w-2xl mx-auto mb-14">
-        Meet us at the world's leading food and seafood trade shows.
+        {{ $t('home.exhibitions.subtitle') }}
       </p>
 
       <div class="grid md:grid-cols-3 gap-8 mb-12">
@@ -83,7 +85,7 @@ onMounted(() => {
           href="#"
           class="inline-flex items-center gap-2 text-ocean-600 font-medium hover:text-aqua-600 transition-colors"
         >
-          View All Events
+          {{ $t('home.exhibitions.viewAllEvents') }}
           <span>→</span>
         </a>
       </div>

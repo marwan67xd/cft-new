@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const { t } = useI18n()
+
 const heroRef = ref<HTMLElement | null>(null)
 const badgeRef = ref<HTMLElement | null>(null)
 const headlineRef = ref<HTMLElement | null>(null)
@@ -141,19 +143,19 @@ onUnmounted(() => {
         ref="badgeRef"
         class="inline-block px-4 py-1.5 rounded-full text-aqua-400 text-sm font-medium tracking-wider border border-aqua-500/40 mb-6"
       >
-        GLOBAL EXPORT PARTNER
+        {{ $t('home.hero.badge') }}
       </p>
       <h1
         ref="headlineRef"
         class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-tight max-w-4xl mx-auto leading-tight"
       >
-        Capital Food International
+        {{ $t('home.hero.title') }}
       </h1>
       <p
         ref="subRef"
         class="mt-6 text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto leading-relaxed"
       >
-        High-quality tuna, sardines, and mackerel prepared to meet international food standards.
+        {{ $t('home.hero.subtitle') }}
       </p>
       <div
         ref="ctaRef"
@@ -163,13 +165,13 @@ onUnmounted(() => {
           href="#products"
           class="inline-flex items-center justify-center px-8 py-3.5 rounded-lg bg-aqua-500 text-white font-medium hover:bg-aqua-600 transition-colors focus:outline-none focus:ring-2 focus:ring-aqua-400 focus:ring-offset-2 focus:ring-offset-ocean-900"
         >
-          Explore Products
+          {{ $t('home.hero.exploreProducts') }}
         </a>
         <a
           href="#"
           class="inline-flex items-center justify-center px-8 py-3.5 rounded-lg border-2 border-white/60 text-white font-medium hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-ocean-900"
         >
-          Download Profile
+          {{ $t('home.hero.downloadProfile') }}
         </a>
       </div>
     </div>

@@ -2,27 +2,29 @@
 import tunaImage from '~/assets/home/de362f430d18264bb198efbe58f91583_757x757.png'
 import sardinesImage from '~/assets/home/Sardines-on-toast-6.jpg'
 import mackerelImage from '~/assets/home/fishmonger-near-me-hot-smoked-mackerel-fillets-1.jpg'
+const { t } = useI18n()
+const localePath = useLocalePath()
 
-const products = [
+const products = computed(() => [
   {
-    title: 'Premium Tuna',
-    desc: 'High-quality canned tuna produced under strict food industry standards. Ideal for retail and distribution markets.',
+    title: t('home.products.tunaTitle'),
+    desc: t('home.products.tunaDesc'),
     image: tunaImage,
-    href: '/tuna',
+    href: localePath('/tuna'),
   },
   {
-    title: 'Quality Sardines',
-    desc: 'Nutritious sardines processed to consistent quality levels for consumer and commercial use.',
+    title: t('home.products.sardinesTitle'),
+    desc: t('home.products.sardinesDesc'),
     image: sardinesImage,
-    href: '/sardines',
+    href: localePath('/sardines'),
   },
   {
-    title: 'Mackerel Fillets',
-    desc: 'Canned mackerel fillets prepared according to international production norms, offering reliable and versatile supply.',
+    title: t('home.products.mackerelTitle'),
+    desc: t('home.products.mackerelDesc'),
     image: mackerelImage,
-    href: '/mackerel',
+    href: localePath('/mackerel'),
   },
-]
+])
 
 const sectionRef = ref<HTMLElement | null>(null)
 const cardRefs = ref<HTMLElement[]>([])
@@ -65,10 +67,10 @@ onMounted(() => {
   >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <h2 id="products-heading" class="text-3xl sm:text-4xl font-bold text-ocean-950 text-center mb-4">
-        Product Range
+        {{ $t('home.products.title') }}
       </h2>
       <p class="text-gray-600 text-center max-w-2xl mx-auto mb-14">
-        Our core offerings meet the highest international standards for quality and safety.
+        {{ $t('home.products.subtitle') }}
       </p>
 
       <div class="grid md:grid-cols-3 gap-8">
@@ -96,7 +98,7 @@ onMounted(() => {
               :to="product.href"
               class="inline-flex items-center gap-2 text-ocean-600 font-medium hover:text-aqua-600 transition-colors group/link"
             >
-              View Details
+              {{ $t('home.products.viewDetails') }}
               <span class="transition-transform group-hover/link:translate-x-1">→</span>
             </NuxtLink>
             <a
@@ -104,7 +106,7 @@ onMounted(() => {
               :href="product.href"
               class="inline-flex items-center gap-2 text-ocean-600 font-medium hover:text-aqua-600 transition-colors group/link"
             >
-              View Details
+              {{ $t('home.products.viewDetails') }}
               <span class="transition-transform group-hover/link:translate-x-1">→</span>
             </a>
           </div>

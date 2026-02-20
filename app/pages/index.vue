@@ -1,8 +1,10 @@
 <script setup lang="ts">
+const { t } = useI18n()
+
 useHead({
-  title: 'Premium Seafood Supplier | Trusted Worldwide',
+  title: () => t('home.meta.title'),
   meta: [
-    { name: 'description', content: 'High-quality tuna, sardines, and mackerel prepared to meet international food standards. Your global export partner.' },
+    { name: 'description', content: () => t('home.meta.description') },
   ],
 })
 </script>

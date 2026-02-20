@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import homeImage from '~/assets/home/ChatGPT Image Feb 18, 2026, 03_51_24 PM.png'
+const { t } = useI18n()
 
-const features = [
-  'Premium Quality',
-  'Global Standards',
-  'Reliable Supply',
-  'Strategic Partnerships',
-]
+const features = computed(() => [
+  t('home.whyChoose.premiumQuality'),
+  t('home.whyChoose.globalStandards'),
+  t('home.whyChoose.reliableSupply'),
+  t('home.whyChoose.strategicPartnerships'),
+])
 
 const sectionRef = ref<HTMLElement | null>(null)
 const listRef = ref<HTMLElement | null>(null)
@@ -52,7 +53,7 @@ onMounted(() => {
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div ref="listRef" class="space-y-6">
           <h2 id="why-heading" class="text-3xl sm:text-4xl font-bold tracking-tight mb-8">
-            Why Choose Us
+            {{ $t('home.whyChoose.title') }}
           </h2>
           <ul class="space-y-4">
             <li

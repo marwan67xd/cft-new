@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import seafoodImage from '~/assets/profile/snack-25-11-63-tuna-olive-oil.jpg'
+const { t } = useI18n()
 
 const sectionRef = ref<HTMLElement | null>(null)
 const leftRef = ref<HTMLElement | null>(null)
@@ -17,10 +18,10 @@ onMounted(() => {
   }
 })
 
-const highlights = [
-  { title: 'Sustainable Sourcing', desc: 'We aim for responsible sourcing and adherence to ethical practices throughout our operations.' },
-  { title: 'Traceability', desc: 'We maintain transparency in our supply processes from production to delivery.' },
-]
+const highlights = computed(() => [
+  { title: t('home.about.sustainableTitle'), desc: t('home.about.sustainableDesc') },
+  { title: t('home.about.traceabilityTitle'), desc: t('home.about.traceabilityDesc') },
+])
 </script>
 
 <template>
@@ -46,30 +47,30 @@ const highlights = [
           <div
             class="absolute -bottom-4 left-6 right-6 sm:left-8 sm:right-auto px-5 py-3 rounded-xl bg-white shadow-card border border-gray-100"
           >
-            <span class="text-ocean-600 font-semibold">12+ Years Excellence</span>
+            <span class="text-ocean-600 font-semibold">{{ $t('home.about.yearsExcellence') }}</span>
           </div>
         </div>
 
         <div ref="rightRef">
           <p class="text-aqua-600 font-medium text-sm tracking-wider uppercase mb-4">
-            About Us
+            {{ $t('home.about.badge') }}
           </p>
           <h2 id="about-heading" class="text-3xl sm:text-4xl font-bold text-ocean-950 tracking-tight mb-6">
-            About Us — Premium Seafood Products
+            {{ $t('home.about.title') }}
           </h2>
           <p class="text-gray-600 leading-relaxed mb-8">
-            Founded in 2014, we are a dedicated producer and supplier of high-quality seafood products, including tuna, sardines, and mackerel. Our focus on consistent quality, industry standards, and reliable sourcing supports our partnerships with retailers and food distributors.
+            {{ $t('home.about.description') }}
           </p>
           <div class="mb-8 p-4 rounded-xl bg-white border border-gray-100 shadow-sm">
-            <h3 class="font-semibold text-ocean-900 mb-3">Our Commitment to Quality</h3>
+            <h3 class="font-semibold text-ocean-900 mb-3">{{ $t('home.about.commitmentTitle') }}</h3>
             <ul class="space-y-2 text-gray-600">
               <li class="flex items-start gap-2">
                 <span class="text-aqua-600 mt-1">•</span>
-                <span>Quality-driven production and packaging practices.</span>
+                <span>{{ $t('home.about.quality1') }}</span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="text-aqua-600 mt-1">•</span>
-                <span>Adherence to food safety and industry standards.</span>
+                <span>{{ $t('home.about.quality2') }}</span>
               </li>
             </ul>
           </div>

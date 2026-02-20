@@ -1,10 +1,12 @@
 <script setup lang="ts">
-const items = [
-  { label: 'International Quality Standards', icon: 'certificate' },
-  { label: 'Export Ready', icon: 'ship' },
-  { label: 'Premium Selection', icon: 'star' },
-  { label: 'Food Safety Compliance', icon: 'shield' },
-]
+const { t } = useI18n()
+
+const items = computed(() => [
+  { label: t('home.trustBar.internationalQuality'), icon: 'certificate' },
+  { label: t('home.trustBar.exportReady'), icon: 'ship' },
+  { label: t('home.trustBar.premiumSelection'), icon: 'star' },
+  { label: t('home.trustBar.foodSafety'), icon: 'shield' },
+])
 
 const sectionRef = ref<HTMLElement | null>(null)
 const itemRefs = ref<HTMLElement[]>([])
