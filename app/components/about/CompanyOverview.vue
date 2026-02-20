@@ -1,22 +1,19 @@
 <script setup lang="ts">
 import profileImage from '~/assets/profile/ChatGPT Image Feb 18, 2026, 03_59_45 PM.png'
+const { t } = useI18n()
 
 const sectionRef = ref<HTMLElement | null>(null)
 const leftRef = ref<HTMLElement | null>(null)
 const rightRef = ref<HTMLElement | null>(null)
 const statsRowRef = ref<HTMLElement | null>(null)
 
-const stats = [
-  { value: '12+', label: 'Years Experience', number: 12 },
-  { value: '65+', label: 'Export Countries', number: 65 },
-  { value: '200+', label: 'Team Members', number: 200 },
-]
+const stats = computed(() => [
+  { value: '12+', label: t('companyProfile.overview.yearsExperience'), number: 12 },
+  { value: '65+', label: t('companyProfile.overview.exportCountries'), number: 65 },
+  { value: '200+', label: t('companyProfile.overview.teamMembers'), number: 200 },
+])
 
-const displayedValues = ref({
-  'Years Experience': 0,
-  'Export Countries': 0,
-  'Team Members': 0,
-})
+const displayedValues = ref<Record<string, number>>({})
 
 const animateCounter = (label: string, target: number, duration: number = 1.5) => {
   const startValue = 0
@@ -30,17 +27,26 @@ const animateCounter = (label: string, target: number, duration: number = 1.5) =
     const easeOutQuart = 1 - Math.pow(1 - progress, 4)
     const currentValue = Math.floor(startValue + (target - startValue) * easeOutQuart)
     
-    displayedValues.value[label as keyof typeof displayedValues.value] = currentValue
+    displayedValues.value[label] = currentValue
     
     if (progress < 1) {
       requestAnimationFrame(updateCounter)
     } else {
-      displayedValues.value[label as keyof typeof displayedValues.value] = target
+      displayedValues.value[label] = target
     }
   }
   
   updateCounter()
 }
+
+// Initialize displayedValues when stats are available
+watch(() => stats.value, (newStats) => {
+  newStats.forEach(stat => {
+    if (!(stat.label in displayedValues.value)) {
+      displayedValues.value[stat.label] = 0
+    }
+  })
+}, { immediate: true })
 
 onMounted(() => {
   if (import.meta.client && sectionRef.value) {
@@ -53,7 +59,7 @@ onMounted(() => {
         const startCounterAnimation = () => {
           if (!hasAnimated) {
             hasAnimated = true
-            stats.forEach((stat, index) => {
+            stats.value.forEach((stat, index) => {
               setTimeout(() => {
                 animateCounter(stat.label, stat.number, 1.5)
               }, index * 150)
@@ -104,13 +110,13 @@ onMounted(() => {
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <div ref="leftRef">
           <p class="text-aqua-600 font-semibold text-sm tracking-wider uppercase mb-4">
-            Who We Are
+            {{ $t('companyProfile.overview.badge') }}
           </p>
           <h2 id="who-we-are-heading" class="text-3xl sm:text-4xl font-bold text-ocean-950 tracking-tight mb-6">
-            A Legacy of Excellence in Global Seafood Export
+            {{ $t('companyProfile.overview.title') }}
           </h2>
           <p class="text-gray-600 leading-relaxed mb-8">
-            Capital Food has been a trusted name in premium seafood for over three decades. We combine traditional expertise with modern food safety and quality systems to deliver products that meet the highest international standards. Our commitment to sustainable sourcing and operational excellence has made us a preferred partner for retailers and distributors worldwide.
+            {{ $t('companyProfile.overview.description') }}
           </p>
           <div ref="statsRowRef" class="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div

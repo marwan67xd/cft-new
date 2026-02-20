@@ -74,5 +74,83 @@
       "title": "Premium Seafood Supplier | Trusted Worldwide",
       "description": "High-quality tuna, sardines, and mackerel prepared to meet international food standards. Your global export partner."
     }
+  },
+  "companyProfile": {
+    "meta": {
+      "title": "About Capital Food | Company Profile",
+      "description": "Capital Food delivers premium seafood with global quality standards and sustainable sourcing since 1994. Learn about our mission, values, and compliance."
+    },
+    "hero": {
+      "breadcrumbHome": "Home",
+      "breadcrumbProfile": "Company Profile",
+      "title": "About Capital Food",
+      "subtitle": "Delivering premium seafood products with global quality standards and sustainable sourcing since 1994."
+    },
+    "overview": {
+      "badge": "Who We Are",
+      "title": "A Legacy of Excellence in Global Seafood Export",
+      "description": "Capital Food has been a trusted name in premium seafood for over three decades. We combine traditional expertise with modern food safety and quality systems to deliver products that meet the highest international standards. Our commitment to sustainable sourcing and operational excellence has made us a preferred partner for retailers and distributors worldwide.",
+      "yearsExperience": "Years Experience",
+      "exportCountries": "Export Countries",
+      "teamMembers": "Team Members"
+    },
+    "missionVision": {
+      "visionTitle": "Our Vision",
+      "visionDesc": "To be the most trusted global seafood supplier, recognized for quality, sustainability, and partnership. We aim to set the standard for responsible sourcing and food safety in the industry.",
+      "missionTitle": "Our Mission",
+      "missionDesc": "To deliver premium seafood products that meet the highest international standards while fostering long-term relationships with our customers. We commit to continuous improvement, food safety, and sustainable practices in every step of our operations."
+    },
+    "coreValues": {
+      "title": "Our Core Values",
+      "qualityExcellence": {
+        "title": "Quality Excellence",
+        "desc": "We maintain the highest standards in every product we deliver."
+      },
+      "integrity": {
+        "title": "Integrity",
+        "desc": "Transparent, ethical practices in all our business relationships."
+      },
+      "foodSafety": {
+        "title": "Food Safety",
+        "desc": "Rigorous controls and certifications to protect consumers."
+      },
+      "customerPartnership": {
+        "title": "Customer Partnership",
+        "desc": "Long-term relationships built on trust and reliability."
+      },
+      "continuousImprovement": {
+        "title": "Continuous Improvement",
+        "desc": "Innovation and learning to stay ahead of industry standards."
+      }
+    },
+    "qualityStandards": {
+      "title": "Global Compliance & Quality Standards",
+      "description": "We adhere to strict quality control and food safety management systems. Our facilities are designed and operated to meet international standards, ensuring every product meets regulatory requirements and customer expectations. From raw material intake to finished product dispatch, we maintain full traceability and documented procedures.",
+      "traceability": "100% Traceability Guaranteed"
+    },
+    "productionExport": {
+      "productionTitle": "Production & Sourcing",
+      "sustainableSourcing": "Sustainable sourcing",
+      "advancedColdChain": "Advanced cold chain",
+      "agileLogistics": "Agile logistics",
+      "exportTitle": "Global Export Presence",
+      "northAmerica": "North America",
+      "europeUK": "Europe & UK",
+      "eastAsia": "East Asia",
+      "middleEast": "Middle East"
+    },
+    "timeline": {
+      "title": "Our Journey",
+      "founded": "Company Founded",
+      "expansion": "Production Expansion",
+      "growth": "Market Growth",
+      "development": "Continued Development"
+    },
+    "cta": {
+      "title": "Partner with a Trusted Seafood Supplier",
+      "subtitle": "Join distributors and retailers who rely on Capital Food for quality, compliance, and reliability.",
+      "contactButton": "Contact Us Today",
+      "downloadButton": "Download Profile (PDF)"
+    }
   }
 }

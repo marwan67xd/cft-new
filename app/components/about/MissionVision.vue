@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { t } = useI18n()
 const sectionRef = ref<HTMLElement | null>(null)
 const visionRef = ref<HTMLElement | null>(null)
 const missionRef = ref<HTMLElement | null>(null)
@@ -39,10 +40,10 @@ onMounted(() => {
             </svg>
           </div>
           <h2 id="mission-vision-heading" class="text-2xl sm:text-3xl font-bold tracking-tight mb-4">
-            Our Vision
+            {{ $t('companyProfile.missionVision.visionTitle') }}
           </h2>
           <p class="text-gray-300 leading-relaxed">
-            To be the most trusted global seafood supplier, recognized for quality, sustainability, and partnership. We aim to set the standard for responsible sourcing and food safety in the industry.
+            {{ $t('companyProfile.missionVision.visionDesc') }}
           </p>
         </div>
       </div>
@@ -61,10 +62,10 @@ onMounted(() => {
             </svg>
           </div>
           <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-4">
-            Our Mission
+            {{ $t('companyProfile.missionVision.missionTitle') }}
           </h2>
           <p class="text-white/95 leading-relaxed">
-            To deliver premium seafood products that meet the highest international standards while fostering long-term relationships with our customers. We commit to continuous improvement, food safety, and sustainable practices in every step of our operations.
+            {{ $t('companyProfile.missionVision.missionDesc') }}
           </p>
         </div>
       </div>

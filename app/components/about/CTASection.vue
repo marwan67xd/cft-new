@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const { t } = useI18n()
+const localePath = useLocalePath()
 const ctaRef = ref<HTMLElement | null>(null)
 
 onMounted(() => {
@@ -33,23 +35,23 @@ onMounted(() => {
         />
         <div class="relative z-10">
           <h2 id="about-cta-heading" class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
-            Partner with a Trusted Seafood Supplier
+            {{ $t('companyProfile.cta.title') }}
           </h2>
           <p class="text-white/90 max-w-xl mx-auto mb-8">
-            Join distributors and retailers who rely on Capital Food for quality, compliance, and reliability.
+            {{ $t('companyProfile.cta.subtitle') }}
           </p>
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="/#contact"
+            <NuxtLink
+              :to="localePath('/#contact')"
               class="inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-white text-ocean-600 font-semibold hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-ocean-500"
             >
-              Contact Us Today
-            </a>
+              {{ $t('companyProfile.cta.contactButton') }}
+            </NuxtLink>
             <a
               href="#"
               class="inline-flex items-center justify-center px-8 py-3.5 rounded-xl border-2 border-white/80 text-white font-semibold hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-ocean-500"
             >
-              Download Profile (PDF)
+              {{ $t('companyProfile.cta.downloadButton') }}
             </a>
           </div>
         </div>

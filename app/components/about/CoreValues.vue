@@ -1,35 +1,36 @@
 <script setup lang="ts">
+const { t } = useI18n()
 const sectionRef = ref<HTMLElement | null>(null)
 const titleRef = ref<HTMLElement | null>(null)
 const cardsRef = ref<HTMLElement | null>(null)
 
-const values = [
+const values = computed(() => [
   {
-    title: 'Quality Excellence',
-    desc: 'We maintain the highest standards in every product we deliver.',
+    title: t('companyProfile.coreValues.qualityExcellence.title'),
+    desc: t('companyProfile.coreValues.qualityExcellence.desc'),
     icon: 'quality',
   },
   {
-    title: 'Integrity',
-    desc: 'Transparent, ethical practices in all our business relationships.',
+    title: t('companyProfile.coreValues.integrity.title'),
+    desc: t('companyProfile.coreValues.integrity.desc'),
     icon: 'integrity',
   },
   {
-    title: 'Food Safety',
-    desc: 'Rigorous controls and certifications to protect consumers.',
+    title: t('companyProfile.coreValues.foodSafety.title'),
+    desc: t('companyProfile.coreValues.foodSafety.desc'),
     icon: 'safety',
   },
   {
-    title: 'Customer Partnership',
-    desc: 'Long-term relationships built on trust and reliability.',
+    title: t('companyProfile.coreValues.customerPartnership.title'),
+    desc: t('companyProfile.coreValues.customerPartnership.desc'),
     icon: 'partnership',
   },
   {
-    title: 'Continuous Improvement',
-    desc: 'Innovation and learning to stay ahead of industry standards.',
+    title: t('companyProfile.coreValues.continuousImprovement.title'),
+    desc: t('companyProfile.coreValues.continuousImprovement.desc'),
     icon: 'improvement',
   },
-]
+])
 
 onMounted(() => {
   if (import.meta.client && sectionRef.value) {
@@ -59,7 +60,7 @@ onMounted(() => {
         id="core-values-heading"
         class="text-3xl sm:text-4xl font-bold text-ocean-950 text-center tracking-tight mb-12 sm:mb-16"
       >
-        Our Core Values
+        {{ $t('companyProfile.coreValues.title') }}
       </h2>
       <div
         ref="cardsRef"

@@ -1,10 +1,12 @@
 <script setup lang="ts">
+const { t } = useI18n()
+
 useHead({
-  title: 'About Capital Food | Company Profile',
+  title: () => t('companyProfile.meta.title'),
   meta: [
     {
       name: 'description',
-      content: 'Capital Food delivers premium seafood with global quality standards and sustainable sourcing since 1994. Learn about our mission, values, and compliance.',
+      content: () => t('companyProfile.meta.description'),
     },
   ],
 })

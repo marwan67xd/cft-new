@@ -1,14 +1,15 @@
 <script setup lang="ts">
+const { t } = useI18n()
 const sectionRef = ref<HTMLElement | null>(null)
 const lineRef = ref<HTMLElement | null>(null)
 const itemsRef = ref<HTMLElement | null>(null)
 
-const milestones = [
-  { year: '2014', title: 'Company Founded' },
-  { year: '2016', title: 'Production Expansion' },
-  { year: '2019', title: 'Market Growth' },
-  { year: '2024', title: 'Continued Development' },
-]
+const milestones = computed(() => [
+  { year: '2014', title: t('companyProfile.timeline.founded') },
+  { year: '2016', title: t('companyProfile.timeline.expansion') },
+  { year: '2019', title: t('companyProfile.timeline.growth') },
+  { year: '2024', title: t('companyProfile.timeline.development') },
+])
 
 onMounted(() => {
   if (import.meta.client && sectionRef.value) {
@@ -41,7 +42,7 @@ onMounted(() => {
         id="journey-heading"
         class="text-3xl sm:text-4xl font-bold text-ocean-950 text-center tracking-tight mb-12 sm:mb-16"
       >
-        Our Journey
+        {{ $t('companyProfile.timeline.title') }}
       </h2>
       <div ref="itemsRef" class="relative max-w-4xl mx-auto">
         <!-- Horizontal line -->

@@ -1,21 +1,22 @@
 <script setup lang="ts">
+const { t } = useI18n()
 const sectionRef = ref<HTMLElement | null>(null)
 const leftRef = ref<HTMLElement | null>(null)
 const rightRef = ref<HTMLElement | null>(null)
 const mapRef = ref<HTMLElement | null>(null)
 
-const features = [
-  { label: 'Sustainable sourcing', icon: true },
-  { label: 'Advanced cold chain', icon: true },
-  { label: 'Agile logistics', icon: true },
-]
+const features = computed(() => [
+  { label: t('companyProfile.productionExport.sustainableSourcing'), icon: true },
+  { label: t('companyProfile.productionExport.advancedColdChain'), icon: true },
+  { label: t('companyProfile.productionExport.agileLogistics'), icon: true },
+])
 
-const regions = [
-  'North America',
-  'Europe & UK',
-  'East Asia',
-  'Middle East',
-]
+const regions = computed(() => [
+  t('companyProfile.productionExport.northAmerica'),
+  t('companyProfile.productionExport.europeUK'),
+  t('companyProfile.productionExport.eastAsia'),
+  t('companyProfile.productionExport.middleEast'),
+])
 
 onMounted(() => {
   if (import.meta.client && sectionRef.value) {
@@ -41,7 +42,7 @@ onMounted(() => {
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
         <div ref="leftRef">
           <h2 id="production-heading" class="text-3xl sm:text-4xl font-bold text-ocean-950 tracking-tight mb-6">
-            Production & Sourcing
+            {{ $t('companyProfile.productionExport.productionTitle') }}
           </h2>
           <ul class="space-y-4">
             <li
@@ -60,7 +61,7 @@ onMounted(() => {
         </div>
         <div ref="rightRef">
           <h2 class="text-2xl sm:text-3xl font-bold text-ocean-950 tracking-tight mb-6">
-            Global Export Presence
+            {{ $t('companyProfile.productionExport.exportTitle') }}
           </h2>
           <div
             ref="mapRef"

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { t } = useI18n()
 const sectionRef = ref<HTMLElement | null>(null)
 const leftRef = ref<HTMLElement | null>(null)
 const rightRef = ref<HTMLElement | null>(null)
@@ -33,10 +34,10 @@ onMounted(() => {
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <div ref="leftRef">
           <h2 id="quality-standards-heading" class="text-3xl sm:text-4xl font-bold tracking-tight mb-6">
-            Global Compliance & Quality Standards
+            {{ $t('companyProfile.qualityStandards.title') }}
           </h2>
           <p class="text-gray-300 leading-relaxed mb-8">
-            We adhere to strict quality control and food safety management systems. Our facilities are designed and operated to meet international standards, ensuring every product meets regulatory requirements and customer expectations. From raw material intake to finished product dispatch, we maintain full traceability and documented procedures.
+            {{ $t('companyProfile.qualityStandards.description') }}
           </p>
           <div ref="badgesRef" class="flex flex-wrap gap-4">
             <span
@@ -62,7 +63,7 @@ onMounted(() => {
           <div
             class="absolute -bottom-4 left-6 right-6 sm:left-8 px-5 py-3 rounded-xl bg-aqua-500 text-white font-semibold text-sm shadow-lg text-center"
           >
-            100% Traceability Guaranteed
+            {{ $t('companyProfile.qualityStandards.traceability') }}
           </div>
         </div>
       </div>
