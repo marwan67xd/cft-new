@@ -4,14 +4,12 @@ import ContactSection from '~/components/contact/ContactSection.vue'
 import ContactMap from '~/components/contact/ContactMap.vue'
 import ContactCTA from '~/components/contact/ContactCTA.vue'
 
-const { t } = useI18n()
-
 useHead({
-  title: () => t('contact.meta.title'),
+  title: 'Contact Us | Get in Touch | Capital Food',
   meta: [
     {
       name: 'description',
-      content: () => t('contact.meta.description'),
+      content: 'Reach Capital Food for inquiries, quotations, or partnership opportunities. Contact our head office by form, email, or phone. Premium seafood supplier.',
     },
   ],
 })
