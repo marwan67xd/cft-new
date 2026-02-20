@@ -1,10 +1,9 @@
 <script setup lang="ts">
-const { t, tm, locale } = useI18n()
+const { t, locale } = useI18n()
 
 const form = reactive({
   firstName: '',
   email: '',
-  product: '',
   subject: '',
   message: '',
 })
@@ -12,7 +11,6 @@ const form = reactive({
 const touched = reactive({
   firstName: false,
   email: false,
-  product: false,
   subject: false,
   message: false,
 })
@@ -20,15 +18,9 @@ const touched = reactive({
 const submitted = ref(false)
 const isSubmitting = ref(false)
 
-const products = computed(() => {
-  const value = tm('contact.section.products')
-  return Array.isArray(value) ? (value as string[]) : []
-})
-
 const errors = computed(() => ({
   firstName: touched.firstName && !form.firstName.trim() ? t('contact.section.errors.firstNameRequired') : '',
   email: touched.email && !form.email.trim() ? t('contact.section.errors.emailRequired') : (touched.email && form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email) ? t('contact.section.errors.emailInvalid') : ''),
-  product: touched.product && !form.product.trim() ? t('contact.section.errors.productRequired') : '',
   subject: touched.subject && !form.subject.trim() ? t('contact.section.errors.subjectRequired') : '',
   message: touched.message && !form.message.trim() ? t('contact.section.errors.messageRequired') : '',
 }))
@@ -37,7 +29,6 @@ const isValid = computed(() =>
   form.firstName.trim() &&
   form.email.trim() &&
   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email) &&
-  form.product.trim() &&
   form.subject.trim() &&
   form.message.trim()
 )
@@ -55,7 +46,6 @@ async function onSubmit() {
   isSubmitting.value = false
   form.firstName = ''
   form.email = ''
-  form.product = ''
   form.subject = ''
   form.message = ''
   Object.keys(touched).forEach((k) => { touched[k as keyof typeof touched] = false })
@@ -204,21 +194,6 @@ onUnmounted(() => {
                       @blur="blur('email')"
                     />
                     <p v-if="errors.email" class="mt-1 text-sm text-red-500">{{ errors.email }}</p>
-                  </div>
-                  <div>
-                    <label for="contact-product" class="block text-sm font-medium text-navy mb-1.5">{{ $t('contact.section.product') }} <span class="text-red-500">{{ $t('contact.section.required') }}</span></label>
-                    <select
-                      id="contact-product"
-                      v-model="form.product"
-                      name="product"
-                      class="w-full px-4 py-3 rounded-xl border bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-colors"
-                      :class="errors.product ? 'border-red-400' : 'border-gray-200'"
-                      @blur="blur('product')"
-                    >
-                      <option value="">{{ $t('contact.section.productPlaceholder') }}</option>
-                      <option v-for="product in products" :key="product" :value="product">{{ product }}</option>
-                    </select>
-                    <p v-if="errors.product" class="mt-1 text-sm text-red-500">{{ errors.product }}</p>
                   </div>
                   <div>
                     <label for="contact-subject" class="block text-sm font-medium text-navy mb-1.5">{{ $t('contact.section.subject') }} <span class="text-red-500">{{ $t('contact.section.required') }}</span></label>

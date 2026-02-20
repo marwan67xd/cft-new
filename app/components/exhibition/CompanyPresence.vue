@@ -1,8 +1,23 @@
 <script setup lang="ts">
-const { t } = useI18n()
+const { t, tm, rt } = useI18n()
 
-const regions = computed(() => {
-  return t('exhibition.presence.regions') as Array<{ name: string; count: string }>
+function toText(value: unknown): string {
+  if (typeof value === 'function') return String(rt(value as () => unknown))
+  if (typeof value === 'string') return value
+  if (value == null) return ''
+  return String(value)
+}
+
+const regions = computed<Array<{ name: string; count: string }>>(() => {
+  const value = tm('exhibition.presence.regions')
+  const raw = Array.isArray(value) ? (value as unknown[]) : []
+  return raw.map((item: unknown) => {
+    const row = item as Record<string, unknown> | null
+    return {
+      name: toText(row?.name),
+      count: toText(row?.count),
+    }
+  })
 })
 
 const sectionRef = ref<HTMLElement | null>(null)
@@ -88,7 +103,7 @@ onUnmounted(() => {
 
         <ul ref="listRef" class="space-y-4">
           <li
-            v-for="region in regions.value"
+            v-for="region in regions"
             :key="region.name"
             data-region
             class="flex items-center justify-between gap-4 p-4 sm:p-5 rounded-xl bg-gray-50 border border-gray-100 hover:border-ocean-200 hover:shadow-card transition-all duration-300 group"

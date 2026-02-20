@@ -1,8 +1,14 @@
 <script setup lang="ts">
 const { t } = useI18n()
 
-const mapUrl = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.988674319!2d-122.4194156846815!3d37.774929279759!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c6c8f4459%3A0xb10ed6d9b5050fa5!2sTwitter%20HQ!5e0!3m2!1sen!2sus!4v1234567890'
-const mapLink = 'https://www.google.com/maps'
+/** موقع الشركة على الخريطة — الرابط ومرجع التضمين في مكان واحد */
+const CONTACT_MAP = {
+  openInMapsLink: 'https://maps.app.goo.gl/ZdJShqiP7BSe65q19',
+  embedPlaceQuery: 'Capital Food International Co.,Ltd. 91/7 The Pretium, Bangna - Trad Rd., Bangkeaw Bang Phli District, Samut Prakan 10540, Thailand',
+} as const
+
+const mapLink = CONTACT_MAP.openInMapsLink
+const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(CONTACT_MAP.embedPlaceQuery)}&output=embed`
 
 const sectionRef = ref<HTMLElement | null>(null)
 const mapRef = ref<HTMLElement | null>(null)

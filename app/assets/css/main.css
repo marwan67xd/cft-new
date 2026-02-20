@@ -14,59 +14,10 @@
   }
 }
 
-/* Ocean wave gradient for hero */
-.hero-ocean-bg {
-  background: linear-gradient(135deg, #0f2a39 0%, #1e4a5f 40%, #225067 70%, #1e4a5f 100%);
-  background-size: 400% 400%;
-}
-
 /* About page hero parallax background */
 .about-hero-bg {
   background: linear-gradient(135deg, #0a1c2e 0%, #0f2744 30%, #152d47 60%, #0f2a39 100%);
   background-size: cover;
-}
-
-/* Moving tuna fish – keyframes and classes */
-@keyframes fish-swim {
-  0% {
-    transform: translateX(100vw);
-    opacity: 0;
-  }
-  3% {
-    opacity: 0.5;
-  }
-  97% {
-    opacity: 0.5;
-  }
-  100% {
-    transform: translateX(-150px);
-    opacity: 0;
-  }
-}
-
-@keyframes fish-swim-reverse {
-  0% {
-    transform: translateX(-150px);
-    opacity: 0;
-  }
-  3% {
-    opacity: 0.5;
-  }
-  97% {
-    opacity: 0.5;
-  }
-  100% {
-    transform: translateX(100vw);
-    opacity: 0;
-  }
-}
-
-.fish-swim {
-  animation: fish-swim 18s linear infinite;
-}
-
-.fish-swim-reverse {
-  animation: fish-swim-reverse 20s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -74,11 +25,5 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-  /* Keep fish visible but still (no motion) when user prefers reduced motion */
-  .fish-swim,
-  .fish-swim-reverse {
-    animation: none;
-    opacity: 0.1;
   }
 }
