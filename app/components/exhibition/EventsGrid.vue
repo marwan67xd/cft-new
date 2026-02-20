@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { t } = useI18n()
+const { t, tm, rt } = useI18n()
 const localePath = useLocalePath()
 
 interface ExhibitionEvent {
@@ -13,18 +13,33 @@ interface ExhibitionEvent {
   upcoming?: boolean
 }
 
+function toText(value: unknown): string {
+  if (typeof value === 'function') return String(rt(value as any))
+  if (typeof value === 'string') return value
+  if (value == null) return ''
+  return String(value)
+}
+
 const events = computed<ExhibitionEvent[]>(() => {
-  const eventsData = t('exhibition.events.events') as any[]
-  return eventsData.map((event, index) => ({
-    id: String(index + 1),
-    name: event.name,
-    location: event.location,
-    date: event.date,
-    year: event.date.includes('2024') ? '2024' : undefined,
-    description: event.description,
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80',
-    upcoming: event.date.includes('2025'),
-  }))
+  const value = tm('exhibition.events.events')
+  const eventsData = Array.isArray(value) ? (value as any[]) : []
+  return eventsData.map((event, index) => {
+    const name = toText(event?.name)
+    const location = toText(event?.location)
+    const date = toText(event?.date)
+    const description = toText(event?.description)
+
+    return {
+      id: String(index + 1),
+      name,
+      location,
+      date,
+      year: date.includes('2024') ? '2024' : undefined,
+      description,
+      image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80',
+      upcoming: date.includes('2025'),
+    }
+  })
 })
 
 const sectionRef = ref<HTMLElement | null>(null)
@@ -73,7 +88,7 @@ onUnmounted(() => {
 
       <div ref="cardsRef" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
         <article
-          v-for="event in events.value"
+          v-for="event in events"
           :key="event.id"
           data-event-card
           class="group rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 flex flex-col"

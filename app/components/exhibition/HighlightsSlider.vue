@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { t } = useI18n()
+const { t, tm, rt } = useI18n()
 
 interface Highlight {
   id: string
@@ -10,14 +10,22 @@ interface Highlight {
   image: string
 }
 
+function toText(value: unknown): string {
+  if (typeof value === 'function') return String(rt(value as any))
+  if (typeof value === 'string') return value
+  if (value == null) return ''
+  return String(value)
+}
+
 const highlights = computed<Highlight[]>(() => {
-  const highlightsData = t('exhibition.highlights.highlights') as any[]
+  const value = tm('exhibition.highlights.highlights')
+  const highlightsData = Array.isArray(value) ? (value as any[]) : []
   return highlightsData.map((highlight, index) => ({
     id: String(index + 1),
-    title: highlight.title,
-    location: highlight.location,
-    year: highlight.year,
-    achievement: highlight.achievement,
+    title: toText(highlight?.title),
+    location: toText(highlight?.location),
+    year: toText(highlight?.year),
+    achievement: toText(highlight?.achievement),
     image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80',
   }))
 })
@@ -30,7 +38,8 @@ let gsapCtx: { revert: () => void } | null = null
 let intervalId: ReturnType<typeof setInterval> | null = null
 
 const goTo = (index: number) => {
-  currentIndex.value = ((index % highlights.value.length) + highlights.value.length) % highlights.value.length
+  const len = highlights.value.length || 1
+  currentIndex.value = ((index % len) + len) % len
 }
 
 const next = () => {
@@ -76,7 +85,7 @@ onUnmounted(() => {
       </h2>
 
       <div class="relative max-w-4xl mx-auto">
-        <div class="relative rounded-2xl overflow-hidden shadow-card aspect-[16/9] min-h-[280px] bg-gray-200">
+        <div v-if="highlights.length" class="relative rounded-2xl overflow-hidden shadow-card aspect-[16/9] min-h-[280px] bg-gray-200">
           <Transition
             mode="out-in"
             enter-active-class="transition duration-500 ease-out"
@@ -87,13 +96,13 @@ onUnmounted(() => {
             leave-to-class="opacity-0 -translate-x-8"
           >
             <div
-              :key="highlights.value[currentIndex]?.id"
+              :key="highlights[currentIndex]?.id"
               ref="slideRef"
               class="absolute inset-0"
             >
               <img
-                :src="highlights.value[currentIndex]?.image"
-                :alt="highlights.value[currentIndex]?.title"
+                :src="highlights[currentIndex]?.image"
+                :alt="highlights[currentIndex]?.title"
                 class="absolute inset-0 w-full h-full object-cover"
                 width="1200"
                 height="675"
@@ -101,12 +110,15 @@ onUnmounted(() => {
               />
               <div class="absolute inset-0 bg-gradient-to-t from-navy-dark/95 via-navy/60 to-transparent" />
               <div class="absolute inset-0 flex flex-col justify-end p-8 sm:p-10 lg:p-12">
-                <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">{{ highlights.value[currentIndex]?.title }}</h3>
-                <p class="mt-1 text-ocean-200">{{ highlights.value[currentIndex]?.location }} · {{ highlights.value[currentIndex]?.year }}</p>
-                <p class="mt-4 text-gray-200 max-w-xl">{{ highlights.value[currentIndex]?.achievement }}</p>
+                <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">{{ highlights[currentIndex]?.title }}</h3>
+                <p class="mt-1 text-ocean-200">{{ highlights[currentIndex]?.location }} · {{ highlights[currentIndex]?.year }}</p>
+                <p class="mt-4 text-gray-200 max-w-xl">{{ highlights[currentIndex]?.achievement }}</p>
               </div>
             </div>
           </Transition>
+        </div>
+        <div v-else class="rounded-2xl border border-gray-200 bg-white p-8 text-center text-gray-600">
+          {{ $t('common.loading') }}
         </div>
 
         <button
@@ -132,7 +144,7 @@ onUnmounted(() => {
 
         <div class="flex justify-center gap-2 mt-6">
           <button
-            v-for="(_, i) in highlights.value"
+            v-for="(_, i) in highlights"
             :key="i"
             type="button"
             class="w-2.5 h-2.5 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2"

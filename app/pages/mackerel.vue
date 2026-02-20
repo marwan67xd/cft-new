@@ -14,14 +14,14 @@ useHead({
   <div class="min-h-screen bg-white font-sans">
     <Navbar />
     <main>
-      <MackerelMackerelHero />
+      <MackerelHero />
       <SardinesIntroductionSection />
       <SardinesPackagingOptions />
       <SardinesSpecificationsSection />
       <SardinesQualityFoodSafety />
       <SardinesNutritionBenefits />
       <SardinesExportDistribution />
-      <SardinesSardinesCTA />
+      <SardinesCTA />
       <SardinesRelatedProducts />
       <Footer />
     </main>

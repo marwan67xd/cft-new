@@ -8,7 +8,8 @@
     "contact": "Contact us"
   },
   "common": {
-    "language": "Language"
+    "language": "Language",
+    "loading": "Loading…"
   },
   "home": {
     "hero": {
@@ -456,6 +457,75 @@
       "subtitle": "Connect with our team for meetings, samples, and partnership opportunities.",
       "contactUs": "Contact Us",
       "viewUpcomingEvents": "View Upcoming Events"
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact Us | Capital Food International",
+      "description": "Get in touch with Capital Food International for quotations, product details, private label inquiries, and export partnerships."
+    },
+    "hero": {
+      "breadcrumbHome": "Home",
+      "breadcrumbContact": "Contact",
+      "title": "Contact Capital Food International",
+      "subtitle": "Request a quotation, ask about specifications, or discuss private label and export opportunities with our team."
+    },
+    "section": {
+      "badge": "Contact",
+      "title": "Send us a message",
+      "subtitle": "Fill out the form and we’ll get back to you as soon as possible.",
+      "formTitle": "Inquiry form",
+      "formDescription": "Share a few details and our team will follow up with the right product information and pricing.",
+      "firstName": "First name",
+      "firstNamePlaceholder": "Your first name",
+      "email": "Email",
+      "emailPlaceholder": "name[at]domain.com",
+      "product": "Product",
+      "productPlaceholder": "Select a product",
+      "products": ["Tuna", "Sardines", "Mackerel", "Private label", "Other"],
+      "subject": "Subject",
+      "subjectPlaceholder": "How can we help?",
+      "message": "Message",
+      "messagePlaceholder": "Tell us about your needs (format, quantity, destination, timeline)…",
+      "required": "*",
+      "haveQuestions": "Have questions? Call us directly.",
+      "submit": "Send inquiry",
+      "sending": "Sending…",
+      "successTitle": "Message sent",
+      "successMessage": "Thanks—our team will reach out shortly.",
+      "sendAnother": "Send another message",
+      "detailsTitle": "Company details",
+      "details": {
+        "headOffice": "Head Office",
+        "officeBranch1": "Office Branch 1",
+        "phone": "Phone",
+        "email": "Email",
+        "website": "Website",
+        "lineId": "LINE ID",
+        "whatsapp": "WhatsApp",
+        "workingHours": "Working hours"
+      },
+      "contactWithUs": "Connect with us",
+      "errors": {
+        "firstNameRequired": "Please enter your first name.",
+        "emailRequired": "Please enter your email address.",
+        "emailInvalid": "Please enter a valid email address.",
+        "productRequired": "Please select a product.",
+        "subjectRequired": "Please enter a subject.",
+        "messageRequired": "Please enter your message."
+      }
+    },
+    "map": {
+      "badge": "Location",
+      "title": "Find us on the map",
+      "subtitle": "Visit our office or reach out to arrange a meeting.",
+      "openInGoogleMaps": "Open in Google Maps"
+    },
+    "cta": {
+      "title": "Ready to discuss your inquiry?",
+      "subtitle": "Our team is available to support product questions, quotations, and export requirements.",
+      "haveQuestions": "Prefer to call?",
+      "sendInquiry": "Send an inquiry"
     }
   }
 }
