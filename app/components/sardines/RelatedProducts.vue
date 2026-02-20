@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import tunaImage from '~/assets/profile/snack-25-11-63-tuna-olive-oil.jpg'
+
 const links = [
   {
     title: "Tuna Products",
     href: "/tuna",
-    image:
-      "https://images.unsplash.com/photo-1559847844-5315695dadae?w=800&q=80",
+    image: tunaImage,
     alt: "Tuna Products",
   },
   {

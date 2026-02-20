@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import logoImage from "~/assets/logo/logo-2-10-10-63.png";
+
 const quickLinks = [
   { label: "Company Profile", href: "/Company Profile" },
   { label: "Products", href: "/#products" },
@@ -17,7 +19,7 @@ const productCategories = [
 const socialLinks = [
   { label: "LinkedIn", href: "#", icon: "linkedin" },
   { label: "Twitter", href: "#", icon: "twitter" },
-  { label: "Facebook", href: "#", icon: "facebook" },
+  { label: "Facebook", href: "https://www.facebook.com/capitalfoodinternational", icon: "facebook" },
 ];
 </script>
 
@@ -31,9 +33,15 @@ const socialLinks = [
         <div class="lg:col-span-1">
           <NuxtLink
             to="/"
-            class="inline-block text-xl font-bold text-white tracking-tight mb-4"
+            class="inline-block mb-4 transition-opacity hover:opacity-90"
+            aria-label="Home"
           >
-            SEAFOOD<span class="text-aqua-500">CO</span>
+            <img
+              :src="logoImage"
+              alt="Capital Food Logo"
+              class="h-12 sm:h-14 w-auto object-contain"
+              loading="lazy"
+            />
           </NuxtLink>
           <p class="text-sm leading-relaxed text-gray-400 max-w-xs">
             Premium seafood supplier. Trusted worldwide for quality tuna,
@@ -92,19 +100,31 @@ const socialLinks = [
           <h3 class="text-white font-semibold mb-4">Contact</h3>
           <address class="text-sm not-italic space-y-2">
             <p>
-              Email:
               <a
-                href="mailto:contact@example.com"
+                href="mailto:adelbkk@cfi-capitalfood.com"
                 class="hover:text-aqua-400 transition-colors"
-                >contact@example.com</a
+                >adelbkk@cfi-capitalfood.com</a
               >
             </p>
             <p>
-              Phone:
               <a
-                href="tel:+1234567890"
+                href="mailto:kathy@cfi-capitalfood.com"
                 class="hover:text-aqua-400 transition-colors"
-                >+1 234 567 890</a
+                >kathy@cfi-capitalfood.com</a
+              >
+            </p>
+            <p>
+              <a
+                href="tel:+66925411454"
+                class="hover:text-aqua-400 transition-colors"
+                >+66 925411454</a
+              >
+            </p>
+            <p>
+              <a
+                href="tel:+66847217966"
+                class="hover:text-aqua-400 transition-colors"
+                >+66 847217966</a
               >
             </p>
           </address>
