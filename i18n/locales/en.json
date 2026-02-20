@@ -1,0 +1,13 @@
+{
+  "nav": {
+    "home": "Home",
+    "companyProfile": "Company Profile",
+    "tuna": "Tuna",
+    "sardinesMackerel": "Sardines / Mackerel",
+    "exhibition": "Exhibition",
+    "contact": "Contact us"
+  },
+  "common": {
+    "language": "Language"
+  }
+}

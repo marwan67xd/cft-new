@@ -1,0 +1,13 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "companyProfile": "الملف التعريفي",
+    "tuna": "التونة",
+    "sardinesMackerel": "السردين / الماكريل",
+    "exhibition": "المعرض",
+    "contact": "اتصل بنا"
+  },
+  "common": {
+    "language": "اللغة"
+  }
+}

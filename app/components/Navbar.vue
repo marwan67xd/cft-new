@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import logoImage from "~/assets/logo/logo-2-10-10-63.png";
+const { t } = useI18n();
+const localePath = useLocalePath();
 
-const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "Company Profile", href: "/company-profile" },
-  { label: "Tuna", href: "/tuna" },
-  { label: "Sardines / Mackerel", href: "/sardines-mackerel" },
-  { label: "Exhibition", href: "/exhibition" },
-  { label: "Contact us", href: "/contact" },
-];
+const navLinks = computed(() => [
+  { label: t('nav.home'), href: localePath('/') },
+  { label: t('nav.companyProfile'), href: localePath('/company-profile') },
+  { label: t('nav.tuna'), href: localePath('/tuna') },
+  { label: t('nav.sardinesMackerel'), href: localePath('/sardines-mackerel') },
+  { label: t('nav.exhibition'), href: localePath('/exhibition') },
+  { label: t('nav.contact'), href: localePath('/contact') },
+]);
 
 const isScrolled = ref(false);
 const isMobileMenuOpen = ref(false);
@@ -39,7 +41,7 @@ onUnmounted(() => {
       class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between"
     >
       <NuxtLink
-        to="/"
+        :to="localePath('/')"
         class="flex items-center shrink-0 transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2 rounded-lg"
         aria-label="Home"
       >
@@ -66,6 +68,9 @@ onUnmounted(() => {
           >
             {{ link.label }}
           </NuxtLink>
+        </li>
+        <li>
+          <LanguageSwitcher />
         </li>
       </ul>
 
@@ -124,6 +129,12 @@ onUnmounted(() => {
             >
               {{ link.label }}
             </NuxtLink>
+          </li>
+          <li class="pt-2 border-t border-gray-200">
+            <div class="flex items-center justify-between py-3">
+              <span class="text-gray-600 font-medium">{{ $t('common.language') }}</span>
+              <LanguageSwitcher />
+            </div>
           </li>
         </ul>
       </div>

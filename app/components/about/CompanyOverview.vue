@@ -7,21 +7,86 @@ const rightRef = ref<HTMLElement | null>(null)
 const statsRowRef = ref<HTMLElement | null>(null)
 
 const stats = [
-  { value: '30+', label: 'Years Experience' },
-  { value: '45+', label: 'Export Countries' },
-  { value: '200+', label: 'Team Members' },
+  { value: '12+', label: 'Years Experience', number: 12 },
+  { value: '65+', label: 'Export Countries', number: 65 },
+  { value: '200+', label: 'Team Members', number: 200 },
 ]
+
+const displayedValues = ref({
+  'Years Experience': 0,
+  'Export Countries': 0,
+  'Team Members': 0,
+})
+
+const animateCounter = (label: string, target: number, duration: number = 1.5) => {
+  const startValue = 0
+  const startTime = Date.now()
+  
+  const updateCounter = () => {
+    const elapsed = (Date.now() - startTime) / 1000
+    const progress = Math.min(elapsed / duration, 1)
+    
+    // Easing function for smooth animation
+    const easeOutQuart = 1 - Math.pow(1 - progress, 4)
+    const currentValue = Math.floor(startValue + (target - startValue) * easeOutQuart)
+    
+    displayedValues.value[label as keyof typeof displayedValues.value] = currentValue
+    
+    if (progress < 1) {
+      requestAnimationFrame(updateCounter)
+    } else {
+      displayedValues.value[label as keyof typeof displayedValues.value] = target
+    }
+  }
+  
+  updateCounter()
+}
 
 onMounted(() => {
   if (import.meta.client && sectionRef.value) {
     import('gsap').then(({ default: gsap }) => {
       import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
         gsap.registerPlugin(ScrollTrigger)
+        
+        let hasAnimated = false
+        
+        const startCounterAnimation = () => {
+          if (!hasAnimated) {
+            hasAnimated = true
+            stats.forEach((stat, index) => {
+              setTimeout(() => {
+                animateCounter(stat.label, stat.number, 1.5)
+              }, index * 150)
+            })
+          }
+        }
+        
         gsap.fromTo(leftRef.value, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.7, scrollTrigger: { trigger: sectionRef.value, start: 'top 82%' } })
         gsap.fromTo(rightRef.value, { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.8, scrollTrigger: { trigger: sectionRef.value, start: 'top 82%' } })
+        
         if (statsRowRef.value) {
           const children = statsRowRef.value.querySelectorAll('.stat-card')
-          gsap.fromTo(children, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.12, scrollTrigger: { trigger: sectionRef.value, start: 'top 75%' } })
+          
+          ScrollTrigger.create({
+            trigger: sectionRef.value,
+            start: 'top 75%',
+            onEnter: startCounterAnimation,
+            once: true
+          })
+          
+          gsap.fromTo(children, { 
+            opacity: 0, 
+            y: 16 
+          }, { 
+            opacity: 1, 
+            y: 0, 
+            duration: 0.5, 
+            stagger: 0.12, 
+            scrollTrigger: { 
+              trigger: sectionRef.value, 
+              start: 'top 75%'
+            } 
+          })
         }
       })
     })
@@ -53,7 +118,7 @@ onMounted(() => {
               :key="stat.label"
               class="stat-card rounded-2xl bg-gray-50 border border-gray-100 px-5 py-4 text-center"
             >
-              <span class="block text-2xl sm:text-3xl font-bold text-ocean-600">{{ stat.value }}</span>
+              <span class="block text-2xl sm:text-3xl font-bold text-ocean-600">{{ displayedValues[stat.label] }}+</span>
               <span class="text-sm font-medium text-gray-600">{{ stat.label }}</span>
             </div>
           </div>
