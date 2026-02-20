@@ -9,6 +9,9 @@
   body {
     @apply text-gray-700 antialiased;
   }
+  [dir='rtl'] body {
+    font-family: 'Noto Sans Arabic', system-ui, sans-serif;
+  }
 }
 
 /* Ocean wave gradient for hero */
@@ -23,10 +26,59 @@
   background-size: cover;
 }
 
+/* Moving tuna fish – keyframes and classes */
+@keyframes fish-swim {
+  0% {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+  3% {
+    opacity: 0.5;
+  }
+  97% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(-150px);
+    opacity: 0;
+  }
+}
+
+@keyframes fish-swim-reverse {
+  0% {
+    transform: translateX(-150px);
+    opacity: 0;
+  }
+  3% {
+    opacity: 0.5;
+  }
+  97% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+}
+
+.fish-swim {
+  animation: fish-swim 18s linear infinite;
+}
+
+.fish-swim-reverse {
+  animation: fish-swim-reverse 20s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  /* Keep fish visible but still (no motion) when user prefers reduced motion */
+  .fish-swim,
+  .fish-swim-reverse {
+    animation: none;
+    opacity: 0.1;
   }
 }

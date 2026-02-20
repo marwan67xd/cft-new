@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import tunaImage from '~/assets/profile/snack-25-11-63-tuna-olive-oil.jpg'
-
 const links = [
   {
     title: "Tuna Products",
     href: "/tuna",
-    image: tunaImage,
+    image:
+      "https://images.unsplash.com/photo-1559847844-5315695dadae?w=800&q=80",
     alt: "Tuna Products",
   },
   {
     title: "Company Profile",
-    href: "/company-profile",
+    href: "/Company Profile",
     image:
       "https://images.unsplash.com/photo-1565680018434-b513d5e261b9?w=800&q=80",
     alt: "Company Profile",

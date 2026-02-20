@@ -1,9 +1,10 @@
 <script setup lang="ts">
+const { t } = useI18n()
 const items = [
-  { label: 'International Quality Standards', icon: 'certificate' },
-  { label: 'Export Ready', icon: 'ship' },
-  { label: 'Premium Selection', icon: 'star' },
-  { label: 'Food Safety Compliance', icon: 'shield' },
+  { labelKey: 'trust.qualityStandards', icon: 'certificate' },
+  { labelKey: 'trust.exportReady', icon: 'ship' },
+  { labelKey: 'trust.premiumSelection', icon: 'star' },
+  { labelKey: 'trust.foodSafety', icon: 'shield' },
 ]
 
 const sectionRef = ref<HTMLElement | null>(null)
@@ -47,7 +48,7 @@ onMounted(() => {
       <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
         <li
           v-for="(item, i) in items"
-          :key="item.label"
+          :key="item.labelKey"
           :ref="(el) => setItemRef(el, i)"
           class="flex flex-col items-center text-center group"
         >
@@ -94,7 +95,7 @@ onMounted(() => {
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
           </div>
-          <span class="text-gray-700 font-medium">{{ item.label }}</span>
+          <span class="text-gray-700 font-medium">{{ t(item.labelKey) }}</span>
         </li>
       </ul>
     </div>

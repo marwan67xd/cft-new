@@ -1,25 +1,27 @@
 <script setup lang="ts">
 import logoImage from "~/assets/logo/logo-2-10-10-63.png";
+const { t } = useI18n();
+const localePath = useLocalePath();
 
 const quickLinks = [
-  { label: "Company Profile", href: "/company-profile" },
-  { label: "Products", href: "/#products" },
-  { label: "Quality Standards", href: "/#quality" },
-  { label: "Global Presence", href: "/#global" },
-  { label: "Exhibitions", href: "/#exhibitions" },
-  { label: "Contact", href: "/#contact" },
+  { labelKey: "footer.companyProfile", href: "/Company Profile" },
+  { labelKey: "footer.products", href: "/#products" },
+  { labelKey: "footer.qualityStandards", href: "/#quality" },
+  { labelKey: "footer.globalPresence", href: "/#global" },
+  { labelKey: "footer.exhibitions", href: "/#exhibitions" },
+  { labelKey: "footer.contact", href: "/#contact" },
 ];
 
 const productCategories = [
-  { label: "Premium Tuna", href: "/tuna" },
-  { label: "Sardines", href: "#" },
-  { label: "Mackerel", href: "#" },
+  { labelKey: "footer.premiumTuna", href: "/tuna" },
+  { labelKey: "footer.sardines", href: "/sardines" },
+  { labelKey: "footer.mackerel", href: "/mackerel" },
 ];
 
 const socialLinks = [
   { label: "LinkedIn", href: "#", icon: "linkedin" },
   { label: "Twitter", href: "#", icon: "twitter" },
-  { label: "Facebook", href: "https://www.facebook.com/capitalfoodinternational", icon: "facebook" },
+  { label: "Facebook", href: "#", icon: "facebook" },
 ];
 </script>
 
@@ -31,42 +33,36 @@ const socialLinks = [
       >
         <!-- Logo & description -->
         <div class="lg:col-span-1">
-          <NuxtLink
-            to="/"
-            class="inline-block mb-4 transition-opacity hover:opacity-90"
-            aria-label="Home"
-          >
+          <NuxtLink :to="localePath('/')" class="inline-block mb-4">
             <img
               :src="logoImage"
               alt="Capital Food Logo"
-              class="h-12 sm:h-14 w-auto object-contain"
-              loading="lazy"
+              class="h-10 w-auto object-contain"
             />
           </NuxtLink>
           <p class="text-sm leading-relaxed text-gray-400 max-w-xs">
-            Premium seafood supplier. Trusted worldwide for quality tuna,
-            sardines, and mackerel. Your global export partner.
+            {{ t('footer.companyDesc') }}
           </p>
         </div>
 
         <!-- Quick links -->
         <div>
-          <h3 class="text-white font-semibold mb-4">Quick Links</h3>
+          <h3 class="text-white font-semibold mb-4">{{ t('footer.quickLinks') }}</h3>
           <ul class="space-y-3">
             <li v-for="link in quickLinks" :key="link.href">
               <NuxtLink
                 v-if="link.href.startsWith('/') && !link.href.startsWith('/#')"
-                :to="link.href"
+                :to="localePath(link.href)"
                 class="text-sm hover:text-aqua-400 transition-colors"
               >
-                {{ link.label }}
+                {{ t(link.labelKey) }}
               </NuxtLink>
               <a
                 v-else
                 :href="link.href"
                 class="text-sm hover:text-aqua-400 transition-colors"
               >
-                {{ link.label }}
+                {{ t(link.labelKey) }}
               </a>
             </li>
           </ul>
@@ -74,61 +70,65 @@ const socialLinks = [
 
         <!-- Product categories -->
         <div>
-          <h3 class="text-white font-semibold mb-4">Products</h3>
+          <h3 class="text-white font-semibold mb-4">{{ t('footer.products') }}</h3>
           <ul class="space-y-3">
             <li v-for="cat in productCategories" :key="cat.href">
               <NuxtLink
                 v-if="cat.href.startsWith('/')"
-                :to="cat.href"
+                :to="localePath(cat.href)"
                 class="text-sm hover:text-aqua-400 transition-colors"
               >
-                {{ cat.label }}
+                {{ t(cat.labelKey) }}
               </NuxtLink>
               <a
                 v-else
                 :href="cat.href"
                 class="text-sm hover:text-aqua-400 transition-colors"
               >
-                {{ cat.label }}
+                {{ t(cat.labelKey) }}
               </a>
             </li>
           </ul>
         </div>
 
-        <!-- Contact -->
-        <div>
-          <h3 class="text-white font-semibold mb-4">Contact</h3>
-          <address class="text-sm not-italic space-y-2">
-            <p>
-              <a
-                href="mailto:adelbkk@cfi-capitalfood.com"
-                class="hover:text-aqua-400 transition-colors"
-                >adelbkk@cfi-capitalfood.com</a
-              >
-            </p>
-            <p>
-              <a
-                href="mailto:kathy@cfi-capitalfood.com"
-                class="hover:text-aqua-400 transition-colors"
-                >kathy@cfi-capitalfood.com</a
-              >
-            </p>
-            <p>
-              <a
-                href="tel:+66925411454"
-                class="hover:text-aqua-400 transition-colors"
-                >+66 925411454</a
-              >
-            </p>
-            <p>
-              <a
-                href="tel:+66847217966"
-                class="hover:text-aqua-400 transition-colors"
-                >+66 847217966</a
-              >
-            </p>
-          </address>
-          <div class="flex gap-4 mt-4" aria-label="Social links">
+        <!-- Contact: Head office & Office -->
+        <div class="space-y-8">
+          <div>
+            <h3 class="text-white font-semibold mb-3">{{ t('footer.headOffice') }}</h3>
+            <p class="text-white/90 font-medium text-sm mb-2">{{ t('footer.callUsNow') }}</p>
+            <address class="text-sm not-italic space-y-1 text-gray-400">
+              <p>
+                <a href="tel:+66925411454" class="hover:text-aqua-400 transition-colors">(+66) 925 411 454</a>
+              </p>
+              <p>
+                <a href="tel:+66847217966" class="hover:text-aqua-400 transition-colors">(+66) 847 217 966</a>
+              </p>
+              <p>{{ t('footer.hours') }}</p>
+              <p class="pt-2">
+                <a href="mailto:adelbkk@cfi-capitalfood.com" class="hover:text-aqua-400 transition-colors">adelbkk@cfi-capitalfood.com</a>
+              </p>
+              <p>
+                <a href="mailto:kathy@cfi-capitalfood.com" class="hover:text-aqua-400 transition-colors">kathy@cfi-capitalfood.com</a>
+              </p>
+            </address>
+          </div>
+          <div>
+            <h3 class="text-white font-semibold mb-3">{{ t('footer.office') }}</h3>
+            <p class="text-white/90 font-medium text-sm mb-2">{{ t('footer.callUsNow') }}</p>
+            <address class="text-sm not-italic space-y-1 text-gray-400">
+              <p>
+                <a href="tel:+6621708334" class="hover:text-aqua-400 transition-colors">(+66) 217 083 34</a>
+              </p>
+              <p>{{ t('footer.hours') }}</p>
+              <p class="pt-2">
+                <a href="mailto:adelbkk@cfi-capitalfood.com" class="hover:text-aqua-400 transition-colors">adelbkk@cfi-capitalfood.com</a>
+              </p>
+              <p>
+                <a href="mailto:kathy@cfi-capitalfood.com" class="hover:text-aqua-400 transition-colors">kathy@cfi-capitalfood.com</a>
+              </p>
+            </address>
+          </div>
+          <div class="flex gap-4" aria-label="Social links">
             <a
               v-for="s in socialLinks"
               :key="s.icon"
@@ -180,7 +180,7 @@ const socialLinks = [
         class="pt-8 border-t border-ocean-800 text-center text-sm text-gray-500"
       >
         <p>
-          &copy; {{ new Date().getFullYear() }} Seafood Co. All rights reserved.
+          &copy; {{ new Date().getFullYear() }} {{ t('footer.copyright') }}
         </p>
       </div>
     </div>

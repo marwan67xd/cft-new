@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "home": "Home",
+    "companyProfile": "Company Profile",
+    "tuna": "Tuna",
+    "sardinesMackerel": "Sardines / Mackerel",
+    "exhibition": "Exhibition",
+    "contactUs": "Contact us"
+  },
+  "hero": {
+    "badge": "GLOBAL EXPORT PARTNER",
+    "title": "Capital Food International",
+    "subtitle": "High-quality tuna, sardines, and mackerel prepared to meet international food standards.",
+    "exploreProducts": "Explore Products",
+    "downloadProfile": "Download Profile"
+  },
+  "trust": {
+    "qualityStandards": "International Quality Standards",
+    "exportReady": "Export Ready",
+    "premiumSelection": "Premium Selection",
+    "foodSafety": "Food Safety Compliance"
+  },
+  "products": {
+    "heading": "Product Range",
+    "subheading": "Our core offerings meet the highest international standards for quality and safety.",
+    "premiumTuna": "Premium Tuna",
+    "premiumTunaDesc": "High-quality canned tuna produced under strict food industry standards. Ideal for retail and distribution markets.",
+    "qualitySardines": "Quality Sardines",
+    "qualitySardinesDesc": "Nutritious sardines processed to consistent quality levels for consumer and commercial use.",
+    "mackerelFillets": "Mackerel Fillets",
+    "mackerelFilletsDesc": "Canned mackerel fillets prepared according to international production norms, offering reliable and versatile supply.",
+    "viewDetails": "View Details"
+  },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "products": "Products",
+    "companyProfile": "Company Profile",
+    "qualityStandards": "Quality Standards",
+    "globalPresence": "Global Presence",
+    "exhibitions": "Exhibitions",
+    "contact": "Contact",
+    "premiumTuna": "Premium Tuna",
+    "sardines": "Sardines",
+    "mackerel": "Mackerel",
+    "headOffice": "Head office",
+    "office": "Office",
+    "callUsNow": "Call us now!",
+    "hours": "Monday to Friday 8:30 am – 5:30 pm",
+    "companyDesc": "Capital Food International Co., Ltd. is a Bangkok-based manufacturer and exporter specializing in canned seafood products, including tuna, sardines, and mackerel.",
+    "copyright": "Capital Food International Co., Ltd."
+  }
+}
