@@ -78,14 +78,14 @@
   },
   "companyProfile": {
     "meta": {
-      "title": "About Capital Food | Company Profile",
-      "description": "Capital Food delivers premium seafood with global quality standards and sustainable sourcing since 1994. Learn about our mission, values, and compliance."
+      "title": "About us | Company Profile",
+      "description": "Capital Food delivers premium seafood with global quality standards and sustainable sourcing since 2014. Learn about our mission, values, and compliance."
     },
     "hero": {
       "breadcrumbHome": "Home",
       "breadcrumbProfile": "Company Profile",
-      "title": "About Capital Food",
-      "subtitle": "Delivering premium seafood products with global quality standards and sustainable sourcing since 1994."
+      "title": "About us",
+      "subtitle": "Delivering premium seafood products with global quality standards and sustainable sourcing since 2014."
     },
     "overview": {
       "badge": "Who We Are",

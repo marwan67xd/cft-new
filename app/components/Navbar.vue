@@ -59,25 +59,28 @@ onUnmounted(() => {
         <li v-for="link in navLinks" :key="link.href">
           <NuxtLink
             :to="link.href"
-            class="text-gray-600 hover:text-ocean-700 font-medium transition-colors"
+            class="font-medium transition-colors"
             :class="
-              link.href === '/contact'
+              link.href === '/contact' || link.href?.endsWith('/contact')
                 ? 'inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-ocean-600 text-white hover:bg-ocean-700 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2'
-                : ''
+                : isScrolled
+                  ? 'text-gray-700 hover:text-sky-500'
+                  : 'text-white hover:text-sky-400'
             "
           >
             {{ link.label }}
           </NuxtLink>
         </li>
         <li>
-          <LanguageSwitcher />
+          <LanguageSwitcher :scrolled="isScrolled" />
         </li>
       </ul>
 
       <!-- Mobile menu button -->
       <button
         type="button"
-        class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-ocean-500"
+        class="md:hidden p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-ocean-500 transition-colors"
+        :class="isScrolled ? 'text-gray-600 hover:bg-gray-100' : 'text-white hover:bg-white/10'"
         :aria-expanded="isMobileMenuOpen"
         aria-label="Toggle menu"
         @click="isMobileMenuOpen = !isMobileMenuOpen"
@@ -123,8 +126,8 @@ onUnmounted(() => {
           <li v-for="link in navLinks" :key="link.href">
             <NuxtLink
               :to="link.href"
-              class="block py-3 text-gray-600 hover:text-ocean-700 font-medium"
-              :class="link.href === '/contact' ? 'text-ocean-600' : ''"
+              class="block py-3 font-medium transition-colors hover:text-sky-500"
+              :class="link.href === '/contact' || link.href?.endsWith('/contact') ? 'text-ocean-600' : 'text-gray-600'"
               @click="isMobileMenuOpen = false"
             >
               {{ link.label }}

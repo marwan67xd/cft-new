@@ -52,7 +52,7 @@ onUnmounted(() => {
   <section
     ref="heroRef"
     class="relative min-h-[70vh] flex items-center justify-center overflow-hidden"
-    aria-label="About Capital Food"
+    aria-label="About us"
   >
     <!-- Full-width background: seafood/ocean with dark overlay -->
     <div
