@@ -61,16 +61,14 @@ onUnmounted(() => {
       aria-hidden="true"
     >
       <img
-        src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=1920&q=80"
+        src="~/assets/tuna/ChatGPT Image Feb 22, 2026, 05_37_48 AM.png"
         alt=""
-        class="absolute inset-0 w-full h-full object-cover opacity-40"
-        width="1920"
-        height="1080"
+        class="absolute inset-0 w-full h-full object-cover opacity-40 filter mix-blend-multiply"
         fetchpriority="high"
       />
     </div>
     <div
-      class="absolute inset-0 bg-gradient-to-b from-navy-dark/90 via-navy/85 to-navy-dark/95"
+      class="absolute inset-0 bg-gradient-to-b from-navy-dark/80 via-navy/70 to-navy-dark/90"
       aria-hidden="true"
     />
 

@@ -47,12 +47,6 @@ onMounted(() => {
             >
               {{ $t('companyProfile.cta.contactButton') }}
             </NuxtLink>
-            <a
-              href="#"
-              class="inline-flex items-center justify-center px-8 py-3.5 rounded-xl border-2 border-white/80 text-white font-semibold hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-ocean-500"
-            >
-              {{ $t('companyProfile.cta.downloadButton') }}
-            </a>
           </div>
         </div>
       </div>
