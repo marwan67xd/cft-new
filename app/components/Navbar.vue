@@ -136,7 +136,7 @@ onUnmounted(() => {
           <li class="pt-2 border-t border-gray-200">
             <div class="flex items-center justify-between py-3">
               <span class="text-gray-600 font-medium">{{ $t('common.language') }}</span>
-              <LanguageSwitcher />
+              <LanguageSwitcher :mobile="true" />
             </div>
           </li>
         </ul>
