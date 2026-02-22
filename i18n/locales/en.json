@@ -21,7 +21,7 @@
     },
     "about": {
       "badge": "About Us",
-      "title": "About Us — Premium Seafood Products",
+      "title": "About Us",
       "description": "Founded in 2014, we are a dedicated producer and supplier of high-quality seafood products, including tuna, sardines, and mackerel. Our focus on consistent quality, industry standards, and reliable sourcing supports our partnerships with retailers and food distributors.",
       "yearsExcellence": "12+ Years Excellence",
       "commitmentTitle": "Our Commitment to Quality",
@@ -482,7 +482,13 @@
       "emailPlaceholder": "name[at]domain.com",
       "product": "Product",
       "productPlaceholder": "Select a product",
-      "products": ["Tuna", "Sardines", "Mackerel", "Private label", "Other"],
+      "products": [
+        "Tuna",
+        "Sardines",
+        "Mackerel",
+        "Private label",
+        "Other"
+      ],
       "subject": "Subject",
       "subjectPlaceholder": "How can we help?",
       "message": "Message",
