@@ -60,11 +60,9 @@ onUnmounted(() => {
       aria-hidden="true"
     >
       <img
-        src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=1920&q=80"
+        src="~/assets/tuna/ChatGPT Image Feb 22, 2026, 05_37_48 AM.png"
         alt=""
-        class="absolute inset-0 w-full h-full object-cover opacity-40"
-        width="1920"
-        height="1080"
+        class="absolute inset-0 w-full h-full object-cover opacity-40 filter mix-blend-multiply"
         fetchpriority="high"
         loading="eager"
       />
