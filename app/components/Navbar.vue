@@ -9,8 +9,12 @@ const navLinks = computed(() => [
   { label: t('nav.tuna'), href: localePath('/tuna') },
   { label: t('nav.sardinesMackerel'), href: localePath('/sardines-mackerel') },
   { label: t('nav.exhibition'), href: localePath('/exhibition') },
-  { label: t('nav.contact'), href: localePath('/contact') },
 ]);
+
+const contactLink = computed(() => ({ label: t('nav.contact'), href: localePath('/contact') }));
+
+const route = useRoute();
+const isTunaPage = computed(() => route.path === localePath('/tuna') || route.path.endsWith('/tuna'));
 
 const isScrolled = ref(false);
 const isMobileMenuOpen = ref(false);
@@ -34,7 +38,9 @@ onUnmounted(() => {
     :class="[
       isScrolled
         ? 'bg-white/95 backdrop-blur-sm shadow-nav py-3'
-        : 'bg-transparent py-5',
+        : isTunaPage
+          ? 'bg-[#1b2c3e] py-3'
+          : 'bg-transparent py-5',
     ]"
   >
     <nav
@@ -54,27 +60,29 @@ onUnmounted(() => {
         />
       </NuxtLink>
 
-      <!-- Desktop nav -->
-      <ul class="hidden md:flex items-center gap-6">
+      <!-- Desktop nav (Centered) -->
+      <ul class="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
         <li v-for="link in navLinks" :key="link.href">
           <NuxtLink
             :to="link.href"
             class="font-medium transition-colors"
-            :class="
-              link.href === '/contact' || link.href?.endsWith('/contact')
-                ? 'inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-ocean-600 text-white hover:bg-ocean-700 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2'
-                : isScrolled
-                  ? 'text-gray-700 hover:text-sky-500'
-                  : 'text-white hover:text-sky-400'
-            "
+            :class="isScrolled ? 'text-gray-700 hover:text-sky-500' : isTunaPage ? 'text-white hover:text-sky-400' : 'text-white hover:text-sky-400'"
           >
             {{ link.label }}
           </NuxtLink>
         </li>
-        <li>
-          <LanguageSwitcher :scrolled="isScrolled" />
-        </li>
       </ul>
+
+      <!-- Desktop Right Side (Contact + Language) -->
+      <div class="hidden md:flex items-center gap-6">
+        <NuxtLink
+          :to="contactLink.href"
+          class="font-medium transition-colors inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-ocean-600 text-white hover:bg-ocean-700 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2"
+        >
+          {{ contactLink.label }}
+        </NuxtLink>
+        <LanguageSwitcher :scrolled="isScrolled" :mobile="false" :tunaPage="!isScrolled && isTunaPage" />
+      </div>
 
       <!-- Mobile menu button -->
       <button
@@ -126,11 +134,19 @@ onUnmounted(() => {
           <li v-for="link in navLinks" :key="link.href">
             <NuxtLink
               :to="link.href"
-              class="block py-3 font-medium transition-colors hover:text-sky-500"
-              :class="link.href === '/contact' || link.href?.endsWith('/contact') ? 'text-ocean-600' : 'text-gray-600'"
+              class="block py-3 font-medium transition-colors hover:text-sky-500 text-gray-600"
               @click="isMobileMenuOpen = false"
             >
               {{ link.label }}
+            </NuxtLink>
+          </li>
+          <li>
+            <NuxtLink
+              :to="contactLink.href"
+              class="block py-3 font-medium transition-colors hover:text-sky-500 text-ocean-600"
+              @click="isMobileMenuOpen = false"
+            >
+              {{ contactLink.label }}
             </NuxtLink>
           </li>
           <li class="pt-2 border-t border-gray-200">
