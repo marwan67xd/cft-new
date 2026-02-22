@@ -15,6 +15,7 @@ const contactLink = computed(() => ({ label: t('nav.contact'), href: localePath(
 
 const route = useRoute();
 const isTunaPage = computed(() => route.path === localePath('/tuna') || route.path.endsWith('/tuna'));
+const isHomePage = computed(() => route.path === localePath('/') || route.path === '/');
 
 const isScrolled = ref(false);
 const isMobileMenuOpen = ref(false);
@@ -40,7 +41,9 @@ onUnmounted(() => {
         ? 'bg-white/95 backdrop-blur-sm shadow-nav py-3'
         : isTunaPage
           ? 'bg-[#1b2c3e] py-3'
-          : 'bg-transparent py-5',
+          : isHomePage
+            ? 'bg-transparent backdrop-blur-sm py-5'
+            : 'bg-transparent py-5',
     ]"
   >
     <nav
