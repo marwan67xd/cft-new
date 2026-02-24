@@ -1,20 +1,23 @@
 <script setup lang="ts">
 import heroBg1 from '~/assets/home/ChatGPT Image Feb 21, 2026, 01_25_45 AM.png'
 import heroBg2 from '~/assets/home/8b39e93f-c5e8-43d1-a4bf-b405de8e001d.jpeg'
+import heroMobile1 from '~/assets/mobile/WhatsApp Image 2026-02-22 at 2.41.34 PM (2).jpeg'
+import heroMobile2 from '~/assets/mobile/WhatsApp Image 2026-02-22 at 2.41.34 PM (3).jpeg'
 
 const heroRef = ref<HTMLElement | null>(null)
 const headlineRef = ref<HTMLElement | null>(null)
 
 let gsapCtx: { revert: () => void } | null = null
 
-const bgImages = [heroBg1, heroBg2]
+const bgImagesDesktop = [heroBg1, heroBg2]
+const bgImagesMobile = [heroMobile1, heroMobile2]
 const activeBg = ref(0)
 let bgTimer: ReturnType<typeof setInterval> | null = null
 
 onMounted(() => {
   if (import.meta.client && heroRef.value) {
     bgTimer = window.setInterval(() => {
-      activeBg.value = (activeBg.value + 1) % bgImages.length
+      activeBg.value = (activeBg.value + 1) % bgImagesDesktop.length
     }, 4500)
 
     import('gsap').then(({ default: gsap }) => {
@@ -42,10 +45,19 @@ onUnmounted(() => {
     aria-label="Hero"
   >
     <div class="absolute inset-0 z-0" aria-hidden="true">
+      <!-- Desktop: from md breakpoint -->
       <div
-        v-for="(src, i) in bgImages"
-        :key="src"
-        class="absolute inset-0 bg-center bg-cover transition-opacity duration-1000"
+        v-for="(src, i) in bgImagesDesktop"
+        :key="`desktop-${i}`"
+        class="absolute inset-0 hidden bg-center bg-cover transition-opacity duration-1000 md:block"
+        :class="activeBg === i ? 'opacity-100' : 'opacity-0'"
+        :style="{ backgroundImage: `url('${src}')` }"
+      />
+      <!-- Mobile: below md -->
+      <div
+        v-for="(src, i) in bgImagesMobile"
+        :key="`mobile-${i}`"
+        class="absolute inset-0 bg-center bg-cover transition-opacity duration-1000 md:hidden"
         :class="activeBg === i ? 'opacity-100' : 'opacity-0'"
         :style="{ backgroundImage: `url('${src}')` }"
       />
