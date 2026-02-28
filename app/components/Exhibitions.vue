@@ -1,63 +1,9 @@
 <script setup lang="ts">
+import type { ExhibitionEvent } from '~/composables/useExhibitions'
+
 const { t } = useI18n()
 const localePath = useLocalePath()
-
-interface ExhibitionCard {
-  name: string
-  location: string
-  country: string
-  date?: string
-  summary?: string
-  gallery?: string[]
-}
-
-const gulfoodGallery: string[] = [
-  '/images/gulfood-1.jpeg',
-  '/images/gulfood-2.jpeg',
-  '/images/gulfood-3.jpeg',
-  '/images/gulfood-4.jpeg',
-]
-
-const saudiFoodGallery: string[] = [
-  '/images/saudi-1.jpeg',
-  '/images/saudi-2.jpeg',
-  '/images/saudi-3.jpeg',
-  '/images/saudi-4.jpeg',
-]
-
-const turkeyGallery: string[] = [
-  '/images/turkey-1.jpeg',
-  '/images/turkey-2.jpeg',
-  '/images/turkey-3.jpeg',
-  '/images/turkey-4.jpeg',
-]
-
-const events: ExhibitionCard[] = [
-  {
-    name: 'Gulfood',
-    location: 'Dubai',
-    country: 'UAE',
-    date: '2026',
-    summary: 'Capital Food International participated in Gulfood Dubai 2026, connecting with global partners.',
-    gallery: gulfoodGallery,
-  },
-  {
-    name: 'The Saudi Food Show',
-    location: 'Riyadh',
-    country: 'Saudi Arabia',
-    date: '2026',
-    summary: 'Capital Food International participated in The Saudi Food Show in Riyadh 2026, presenting our premium canned seafood products.',
-    gallery: saudiFoodGallery,
-  },
-  {
-    name: 'TÜYAP Fair Center',
-    location: 'Istanbul, Turkey',
-    country: 'Turkey',
-    date: '2026',
-    summary: 'Capital Food International participated at TÜYAP Fair Center in Istanbul 2026, showcasing our canned tuna and seafood range.',
-    gallery: turkeyGallery,
-  },
-]
+const { events } = useExhibitions()
 
 const sectionRef = ref<HTMLElement | null>(null)
 const cardRefs = ref<HTMLElement[]>([])
@@ -71,7 +17,7 @@ const activeGallery = ref<string[]>([])
 const activeGalleryTitle = ref('')
 const activeImageIndex = ref(0)
 
-function openGallery(event: ExhibitionCard) {
+function openGallery(event: ExhibitionEvent) {
   if (!event.gallery || !event.gallery.length) return
   activeGallery.value = event.gallery
   activeGalleryTitle.value = event.name
@@ -140,12 +86,22 @@ onMounted(() => {
       <div class="grid md:grid-cols-3 gap-8 mb-12">
         <article
           v-for="(event, i) in events"
-          :key="event.name"
+          :key="event.id"
           :ref="(el) => setCardRef(el, i)"
           class="group rounded-2xl overflow-hidden border border-gray-100 shadow-card hover:shadow-card-hover transition-all duration-300"
         >
           <div class="aspect-[4/3] overflow-hidden bg-gray-100">
-            <template v-if="event.gallery?.length">
+            <template v-if="event.logo">
+              <img
+                :src="event.logo"
+                :alt="event.name"
+                class="w-full h-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+                width="400"
+                height="300"
+                loading="lazy"
+              />
+            </template>
+            <template v-else-if="event.gallery?.length">
               <div class="grid grid-cols-2 grid-rows-2 w-full h-full">
                 <img
                   v-for="(img, idx) in event.gallery"
@@ -185,7 +141,7 @@ onMounted(() => {
               class="mt-4 inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-ocean-600 text-white text-sm font-medium hover:bg-ocean-700 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2"
               @click="openGallery(event)"
             >
-              View photos
+              {{ $t('exhibition.events.viewPhotos') }}
             </button>
           </div>
         </article>

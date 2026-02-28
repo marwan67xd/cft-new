@@ -19,6 +19,7 @@ useHead({
       <ProductCards />
       <WhyChooseUs />
       <GlobalMap />
+      <BrandShowcase />
       <Exhibitions />
       <CTASection />
       <Footer />

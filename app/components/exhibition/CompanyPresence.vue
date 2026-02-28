@@ -1,24 +1,20 @@
 <script setup lang="ts">
-const { t, tm, rt } = useI18n()
+const { t } = useI18n()
 
-function toText(value: unknown): string {
-  if (typeof value === 'function') return String(rt(value as () => unknown))
-  if (typeof value === 'string') return value
-  if (value == null) return ''
-  return String(value)
-}
+const regionKeys = [
+  { nameKey: 'exhibition.presence.regions.0.name', countKey: 'exhibition.presence.regions.0.count' },
+  { nameKey: 'exhibition.presence.regions.1.name', countKey: 'exhibition.presence.regions.1.count' },
+  { nameKey: 'exhibition.presence.regions.2.name', countKey: 'exhibition.presence.regions.2.count' },
+  { nameKey: 'exhibition.presence.regions.3.name', countKey: 'exhibition.presence.regions.3.count' },
+  { nameKey: 'exhibition.presence.regions.4.name', countKey: 'exhibition.presence.regions.4.count' },
+]
 
-const regions = computed<Array<{ name: string; count: string }>>(() => {
-  const value = tm('exhibition.presence.regions')
-  const raw = Array.isArray(value) ? (value as unknown[]) : []
-  return raw.map((item: unknown) => {
-    const row = item as Record<string, unknown> | null
-    return {
-      name: toText(row?.name),
-      count: toText(row?.count),
-    }
-  })
-})
+const regions = computed<Array<{ name: string; count: string }>>(() =>
+  regionKeys.map(({ nameKey, countKey }) => ({
+    name: t(nameKey),
+    count: t(countKey),
+  }))
+)
 
 const sectionRef = ref<HTMLElement | null>(null)
 const headingRef = ref<HTMLElement | null>(null)

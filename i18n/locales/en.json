@@ -56,6 +56,10 @@
       "premiumSelection": "Premium Selection",
       "foodSafety": "Food Safety Compliance"
     },
+    "brands": {
+      "title": "Brands We Work With",
+      "subtitle": "Trusted by leading partners worldwide for quality seafood supply."
+    },
     "exhibitions": {
       "title": "Exhibitions",
       "subtitle": "Meet us at the world's leading food and seafood trade shows.",
@@ -360,6 +364,10 @@
       "subtitle": "Meet Capital Food at the world's leading seafood and food trade exhibitions.",
       "upcoming": "Upcoming",
       "learnMore": "Learn More",
+      "viewPhotos": "View photos",
+      "closeGallery": "Close gallery",
+      "previousImage": "Previous image",
+      "nextImage": "Next image",
       "events": [
         {
           "name": "Gulfood",

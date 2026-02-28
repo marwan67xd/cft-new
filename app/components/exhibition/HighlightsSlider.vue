@@ -1,50 +1,17 @@
 <script setup lang="ts">
-const { t, tm, rt } = useI18n()
+const { t } = useI18n()
+const { events } = useExhibitions()
 
-interface Highlight {
-  id: string
-  title: string
-  location: string
-  year: string
-  achievement: string
-  image: string
-}
-
-function toText(value: unknown): string {
-  if (typeof value === 'function') return String(rt(value as any))
-  if (typeof value === 'string') return value
-  if (value == null) return ''
-  return String(value)
-}
-
-const highlights = computed<Highlight[]>(() => {
-  const value = tm('exhibition.highlights.highlights')
-  const highlightsData = Array.isArray(value) ? (value as any[]) : []
-  return highlightsData.map((highlight, index) => {
-    const title = toText(highlight?.title)
-    const location = toText(highlight?.location)
-    const year = toText(highlight?.year)
-    const achievement = toText(highlight?.achievement)
-
-    let image = 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80'
-    if (title === 'Gulfood') {
-      image = '/images/gulfood-2.jpeg'
-    } else if (title === 'The Saudi Food Show') {
-      image = '/images/saudi-2.jpeg'
-    } else if (title === 'TÜYAP Fair Center') {
-      image = '/images/turkey-2.jpeg'
-    }
-
-    return {
-      id: String(index + 1),
-      title,
-      location,
-      year,
-      achievement,
-      image,
-    }
-  })
-})
+const highlights = computed(() =>
+  events.map((event) => ({
+    id: event.id,
+    title: event.name,
+    location: event.location.includes(event.country) ? event.location : `${event.location}, ${event.country}`,
+    year: event.date,
+    achievement: event.summary,
+    image: event.gallery[1] ?? event.gallery[0] ?? '',
+  }))
+)
 
 const currentIndex = ref(0)
 const sectionRef = ref<HTMLElement | null>(null)

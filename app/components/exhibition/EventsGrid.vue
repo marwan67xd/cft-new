@@ -1,58 +1,36 @@
 <script setup lang="ts">
-const { t, tm, rt } = useI18n()
+const { t } = useI18n()
 const localePath = useLocalePath()
+const { events } = useExhibitions()
 
-interface ExhibitionEvent {
-  id: string
-  name: string
-  location: string
-  date: string
-  year?: string
-  description: string
-  image: string
-  upcoming?: boolean
+const eventCards = computed(() =>
+  events.map((event) => ({
+    id: event.id,
+    name: event.name,
+    location: event.location,
+    date: event.date,
+    description: event.summary,
+    image: event.logo ?? event.gallery[0] ?? '',
+    isLogo: !!event.logo,
+    gallery: event.gallery,
+    upcoming: event.date.includes('2025'),
+  }))
+)
+
+const isGalleryOpen = ref(false)
+const activeGallery = ref<string[]>([])
+const activeGalleryTitle = ref('')
+
+function openGallery(card: { name: string; gallery: string[] }) {
+  if (!card.gallery?.length) return
+  activeGallery.value = card.gallery
+  activeGalleryTitle.value = card.name
+  isGalleryOpen.value = true
 }
 
-function toText(value: unknown): string {
-  if (typeof value === 'function') return String(rt(value as any))
-  if (typeof value === 'string') return value
-  if (value == null) return ''
-  return String(value)
+function closeGallery() {
+  isGalleryOpen.value = false
 }
-
-const events = computed<ExhibitionEvent[]>(() => {
-  const value = tm('exhibition.events.events')
-  const eventsData = Array.isArray(value) ? (value as any[]) : []
-  return eventsData.map((event, index) => {
-    const name = toText(event?.name)
-    const location = toText(event?.location)
-    const date = toText(event?.date)
-    const description = toText(event?.description)
-
-    const isGulfoodDubai = name === 'Gulfood' && location.toLowerCase().includes('dubai')
-    const isSaudiFoodShow = name === 'The Saudi Food Show' && location.toLowerCase().includes('riyadh')
-    const isTuyapIstanbul = name === 'TÜYAP Fair Center' && location.toLowerCase().includes('istanbul')
-    const image = isGulfoodDubai
-      ? '/images/gulfood-1.jpeg'
-      : isSaudiFoodShow
-        ? '/images/saudi-1.jpeg'
-        : isTuyapIstanbul
-          ? '/images/turkey-3.jpeg'
-          : 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80'
-
-    return {
-      id: String(index + 1),
-      name,
-      location,
-      date,
-      year: date.includes('2024') ? '2024' : undefined,
-      description,
-      image,
-      // Only 2025 events are marked as "Upcoming" for now
-      upcoming: date.includes('2025'),
-    }
-  })
-})
 
 const sectionRef = ref<HTMLElement | null>(null)
 const headingRef = ref<HTMLElement | null>(null)
@@ -100,7 +78,7 @@ onUnmounted(() => {
 
       <div ref="cardsRef" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
         <article
-          v-for="event in events"
+          v-for="event in eventCards"
           :key="event.id"
           data-event-card
           class="group rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 flex flex-col"
@@ -109,7 +87,7 @@ onUnmounted(() => {
             <img
               :src="event.image"
               :alt="event.name"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              :class="event.isLogo ? 'w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-110' : 'w-full h-full object-cover transition-transform duration-500 group-hover:scale-110'"
               width="600"
               height="375"
               loading="lazy"
@@ -126,7 +104,17 @@ onUnmounted(() => {
             <p class="mt-1 text-sm font-medium text-ocean-600">{{ event.location }}</p>
             <p class="mt-1 text-sm text-gray-500">{{ event.date }}</p>
             <p class="mt-3 text-sm text-gray-600 leading-relaxed flex-1">{{ event.description }}</p>
+            <!-- Events with gallery: View photos opens gallery slider -->
+            <button
+              v-if="event.gallery?.length"
+              type="button"
+              class="mt-4 inline-flex items-center justify-center gap-1 px-4 py-2.5 rounded-xl border-2 border-ocean-600 text-ocean-600 font-medium hover:bg-ocean-600 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2"
+              @click="openGallery(event)"
+            >
+              {{ $t('exhibition.events.viewPhotos') }}
+            </button>
             <NuxtLink
+              v-else
               :to="localePath('/contact')"
               class="mt-4 inline-flex items-center justify-center gap-1 px-4 py-2.5 rounded-xl border-2 border-ocean-600 text-ocean-600 font-medium hover:bg-ocean-600 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2"
             >
@@ -138,4 +126,11 @@ onUnmounted(() => {
       </div>
     </div>
   </section>
+
+  <ExhibitionGallery
+    :images="activeGallery"
+    :title="activeGalleryTitle"
+    :is-open="isGalleryOpen"
+    @close="closeGallery"
+  />
 </template>
