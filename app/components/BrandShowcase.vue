@@ -225,8 +225,10 @@ onUnmounted(() => {
             <img
               :src="logo"
               :alt="`Brand ${(i % brandLogos.length) + 1}`"
-              class="h-20 sm:h-24 lg:h-28 w-auto object-contain rounded-xl"
+              class="brand-strip-img h-20 sm:h-24 lg:h-28 w-auto object-contain rounded-xl"
               loading="lazy"
+              draggable="false"
+              @dragstart.prevent
             />
           </div>
         </div>
@@ -237,4 +239,10 @@ onUnmounted(() => {
 
 <style scoped>
 /* صور البراندات تظهر بألوانها الأصلية دون أي فلتر */
+/* منع سحب الصور في المتصفح حتى يعمل سحب الشريط عند الضغط على الصور */
+.brand-strip-img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  pointer-events: none;
+}
 </style>
