@@ -84,9 +84,9 @@ const exhibitionsData: ExhibitionEvent[] = [
     name: 'Thaifex',
     location: 'Bangkok',
     country: 'Thailand',
-    date: '2026',
+    date: '2024',
     summary:
-      'Capital Food International participated in Thaifex Bangkok 2026, connecting with buyers and partners across Asia.',
+      'Capital Food International participated in Thaifex Bangkok 2024, connecting with buyers and partners across Asia.',
     logo: '/logo-Exhibitions/logo_h2/ChatGPT%20Image%20Feb%2028%2C%202026%2C%2001_20_47%20PM.png',
     gallery: thaiGallery,
   },
