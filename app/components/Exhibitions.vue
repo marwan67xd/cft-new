@@ -1,53 +1,54 @@
 <script setup lang="ts">
-import type { ExhibitionEvent } from '~/composables/useExhibitions'
+import type { ExhibitionEvent } from "~/composables/useExhibitions";
 
-const { t } = useI18n()
-const localePath = useLocalePath()
-const { events } = useExhibitions()
+const { t } = useI18n();
+const localePath = useLocalePath();
+const { events } = useExhibitions();
 
-const sectionRef = ref<HTMLElement | null>(null)
-const cardRefs = ref<HTMLElement[]>([])
+const sectionRef = ref<HTMLElement | null>(null);
+const cardRefs = ref<HTMLElement[]>([]);
 
 function setCardRef(el: unknown, i: number) {
-  if (el) (cardRefs.value as (HTMLElement | null)[])[i] = el as HTMLElement
+  if (el) (cardRefs.value as (HTMLElement | null)[])[i] = el as HTMLElement;
 }
 
-const isGalleryOpen = ref(false)
-const activeGallery = ref<string[]>([])
-const activeGalleryTitle = ref('')
-const activeImageIndex = ref(0)
+const isGalleryOpen = ref(false);
+const activeGallery = ref<string[]>([]);
+const activeGalleryTitle = ref("");
+const activeImageIndex = ref(0);
 
 function openGallery(event: ExhibitionEvent) {
-  if (!event.gallery || !event.gallery.length) return
-  activeGallery.value = event.gallery
-  activeGalleryTitle.value = event.name
-  activeImageIndex.value = 0
-  isGalleryOpen.value = true
+  if (!event.gallery || !event.gallery.length) return;
+  activeGallery.value = event.gallery;
+  activeGalleryTitle.value = event.name;
+  activeImageIndex.value = 0;
+  isGalleryOpen.value = true;
 }
 
 function closeGallery() {
-  isGalleryOpen.value = false
+  isGalleryOpen.value = false;
 }
 
 function showNextImage() {
-  const gallery = activeGallery.value
-  if (!gallery.length) return
-  activeImageIndex.value = (activeImageIndex.value + 1) % gallery.length
+  const gallery = activeGallery.value;
+  if (!gallery.length) return;
+  activeImageIndex.value = (activeImageIndex.value + 1) % gallery.length;
 }
 
 function showPrevImage() {
-  const gallery = activeGallery.value
-  if (!gallery.length) return
-  activeImageIndex.value = (activeImageIndex.value - 1 + gallery.length) % gallery.length
+  const gallery = activeGallery.value;
+  if (!gallery.length) return;
+  activeImageIndex.value =
+    (activeImageIndex.value - 1 + gallery.length) % gallery.length;
 }
 
 onMounted(() => {
   if (import.meta.client && sectionRef.value) {
     nextTick(() => {
-      import('gsap').then(({ default: gsap }) => {
-        import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
-          gsap.registerPlugin(ScrollTrigger)
-          const els = cardRefs.value.filter(Boolean)
+      import("gsap").then(({ default: gsap }) => {
+        import("gsap/ScrollTrigger").then(({ default: ScrollTrigger }) => {
+          gsap.registerPlugin(ScrollTrigger);
+          const els = cardRefs.value.filter(Boolean);
           if (els.length) {
             gsap.fromTo(
               els,
@@ -57,15 +58,15 @@ onMounted(() => {
                 y: 0,
                 duration: 0.5,
                 stagger: 0.1,
-                scrollTrigger: { trigger: sectionRef.value, start: 'top 82%' },
-              }
-            )
+                scrollTrigger: { trigger: sectionRef.value, start: "top 82%" },
+              },
+            );
           }
-        })
-      })
-    })
+        });
+      });
+    });
   }
-})
+});
 </script>
 
 <template>
@@ -76,11 +77,14 @@ onMounted(() => {
     aria-labelledby="exhibitions-heading"
   >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 id="exhibitions-heading" class="text-3xl sm:text-4xl font-bold text-ocean-950 text-center mb-4">
-        {{ $t('home.exhibitions.title') }}
+      <h2
+        id="exhibitions-heading"
+        class="text-3xl sm:text-4xl font-bold text-ocean-950 text-center mb-4"
+      >
+        {{ $t("home.exhibitions.title") }}
       </h2>
       <p class="text-gray-600 text-center max-w-2xl mx-auto mb-14">
-        {{ $t('home.exhibitions.subtitle') }}
+        {{ $t("home.exhibitions.subtitle") }}
       </p>
 
       <div class="grid md:grid-cols-3 gap-8 mb-12">
@@ -127,22 +131,25 @@ onMounted(() => {
             </template>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-bold text-ocean-950">{{ event.name }} — {{ event.location }}</h3>
+            <h3 class="text-xl font-bold text-ocean-950">
+              {{ event.name }} — {{ event.location }}
+            </h3>
             <p class="text-gray-600 text-sm mt-1">{{ event.country }}</p>
-            <p v-if="event.date" class="text-xs font-medium text-ocean-600 mt-1">
+            <p
+              v-if="event.date"
+              class="text-xs font-medium text-ocean-600 mt-1"
+            >
               {{ event.date }}
             </p>
             <p v-if="event.summary" class="text-sm text-gray-600 mt-2">
               {{ event.summary }}
             </p>
-            <button
-              v-if="event.gallery?.length"
-              type="button"
+            <NuxtLink
+              :to="localePath('/exhibition')"
               class="mt-4 inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-ocean-600 text-white text-sm font-medium hover:bg-ocean-700 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2"
-              @click="openGallery(event)"
             >
-              {{ $t('exhibition.events.viewPhotos') }}
-            </button>
+              {{ $t("exhibition.events.viewPhotos") }}
+            </NuxtLink>
           </div>
         </article>
       </div>
@@ -152,7 +159,7 @@ onMounted(() => {
           :to="localePath('/exhibition')"
           class="inline-flex items-center gap-2 text-ocean-600 font-medium hover:text-aqua-600 transition-colors"
         >
-          {{ $t('home.exhibitions.viewAllEvents') }}
+          {{ $t("home.exhibitions.viewAllEvents") }}
           <span>→</span>
         </NuxtLink>
       </div>
@@ -166,7 +173,9 @@ onMounted(() => {
       role="dialog"
       aria-modal="true"
     >
-      <div class="relative w-full max-w-4xl bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
+      <div
+        class="relative w-full max-w-4xl bg-gray-900 rounded-2xl overflow-hidden shadow-2xl"
+      >
         <button
           type="button"
           class="absolute top-3 right-3 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-white hover:bg-black"
@@ -215,10 +224,19 @@ onMounted(() => {
               :key="idx"
               type="button"
               class="h-12 w-16 rounded-md overflow-hidden border transition-all"
-              :class="idx === activeImageIndex ? 'border-aqua-400 ring-2 ring-aqua-400' : 'border-transparent opacity-70 hover:opacity-100'"
+              :class="
+                idx === activeImageIndex
+                  ? 'border-aqua-400 ring-2 ring-aqua-400'
+                  : 'border-transparent opacity-70 hover:opacity-100'
+              "
               @click="activeImageIndex = idx"
             >
-              <img :src="img" :alt="`${activeGalleryTitle} thumbnail ${idx + 1}`" class="h-full w-full object-cover" loading="lazy" />
+              <img
+                :src="img"
+                :alt="`${activeGalleryTitle} thumbnail ${idx + 1}`"
+                class="h-full w-full object-cover"
+                loading="lazy"
+              />
             </button>
           </div>
         </div>
