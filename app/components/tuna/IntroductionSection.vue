@@ -34,11 +34,14 @@ onUnmounted(() => {
 <template>
   <section
     ref="sectionRef"
-    class="py-12 sm:py-16 lg:py-20 bg-white"
+    class="pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-16 lg:pb-20 bg-white"
     aria-labelledby="intro-heading"
   >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 id="intro-heading" class="text-3xl sm:text-4xl font-bold text-navy tracking-tight mb-8 lg:mb-12 text-center">
+      <h2
+        id="intro-heading"
+        class="scroll-mt-24 text-3xl sm:text-4xl font-bold text-navy tracking-tight mb-8 lg:mb-12 text-center"
+      >
         {{ $t('tuna.introduction.title') }}
       </h2>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
