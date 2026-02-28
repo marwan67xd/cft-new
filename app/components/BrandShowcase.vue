@@ -59,6 +59,7 @@ const brandPaths = [
   'WhatsApp Image 2026-02-28 at 12.04.41 AM.jpeg',
   'WhatsApp Image 2026-02-28 at 12.04.41 AM (1).jpeg',
 ]
+// 43 صورة فريدة؛ تُعرض مكررة مرتين (86 عنصر) في الشريط لحركة حلقة سلسة
 
 const brandLogos = computed(() =>
   brandPaths.map((name) => `/brans/${encodeURIComponent(name)}`)
@@ -98,15 +99,16 @@ onMounted(() => {
           )
         }
 
-        // Horizontal auto-scroll (slow, smooth)
+        // Horizontal auto-scroll: يمر على 43 صورة ثم يعيد من البداية (حلقة سلسة)
         if (trackRef.value) {
           const track = trackRef.value
-          const width = track.scrollWidth / 2
+          const halfWidth = track.scrollWidth / 2
           scrollTween = gsap.to(track, {
-            x: -width,
-            duration: width / 30,
+            x: -halfWidth,
+            duration: halfWidth / 30,
             ease: 'none',
             repeat: -1,
+            onRepeat: () => gsap.set(track, { x: 0 }),
           })
         }
       }, sectionRef.value)
