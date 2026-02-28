@@ -23,7 +23,7 @@ useHead({
       <TunaPackagingTrust />
       <TunaNutritionSection />
       <TunaExportLogistics />
-      <TunaTunaCTA />
+      <TunaTunaCta />
       <Footer />
     </main>
   </div>

@@ -362,40 +362,28 @@
       "learnMore": "Learn More",
       "events": [
         {
-          "name": "Seafood Expo Global",
-          "location": "Barcelona, Spain",
-          "date": "April 2025",
-          "description": "The world's largest seafood trade event. Meet our team at the Capital Food booth for premium tuna, sardines, and mackerel."
-        },
-        {
           "name": "Gulfood",
           "location": "Dubai, UAE",
-          "date": "February 2025",
-          "description": "Leading food & beverage exhibition in the Middle East. Connect with us for export opportunities and private label solutions."
+          "date": "2026",
+          "description": "Capital Food International participated in Gulfood Dubai 2026, connecting with global partners."
         },
         {
-          "name": "Anuga",
-          "location": "Cologne, Germany",
-          "date": "October 2024",
-          "description": "Premier trade fair for food and beverages. We showcased our full range of export-grade seafood products."
+          "name": "The Saudi Food Show",
+          "location": "Riyadh, Saudi Arabia",
+          "date": "2026",
+          "description": "Capital Food International participated in The Saudi Food Show in Riyadh 2026, engaging with partners across the region."
         },
         {
-          "name": "SIAL Paris",
-          "location": "Paris, France",
-          "date": "October 2024",
-          "description": "International food products exhibition. Capital Food presented sustainable sourcing and quality certifications."
+          "name": "TÜYAP Fair Center",
+          "location": "Istanbul, Turkey",
+          "date": "2026",
+          "description": "Capital Food International participated at TÜYAP Fair Center in Istanbul 2026, meeting buyers and partners from Turkey and beyond."
         },
         {
-          "name": "Boston Seafood Show",
-          "location": "Boston, USA",
-          "date": "March 2024",
-          "description": "North America's largest seafood event. We met distributors and retailers from across the Americas."
-        },
-        {
-          "name": "Seafood Expo Asia",
-          "location": "Singapore",
-          "date": "September 2024",
-          "description": "Key Asian seafood trade show. Strengthening partnerships across Asia-Pacific and Oceania."
+          "name": "Thaifex",
+          "location": "Bangkok, Thailand",
+          "date": "2024",
+          "description": "Capital Food International participated in Thaifex in Bangkok, Thailand 2024, connecting with buyers and partners across Asia."
         }
       ]
     },
@@ -406,22 +394,22 @@
       "goToSlide": "Go to slide",
       "highlights": [
         {
-          "title": "Seafood Expo Global",
-          "location": "Barcelona",
-          "year": "2024",
-          "achievement": "Largest booth presence to date; 500+ qualified leads."
-        },
-        {
           "title": "Gulfood",
-          "location": "Dubai",
-          "year": "2024",
-          "achievement": "Featured in regional media; new distribution agreements signed."
+          "location": "Dubai, UAE",
+          "year": "2026",
+          "achievement": "Capital Food International participated in Gulfood Dubai 2026, connecting with global partners from around the world."
         },
         {
-          "title": "Anuga",
-          "location": "Cologne",
-          "year": "2024",
-          "achievement": "Premium tuna and sardines range highlighted; EU buyers engaged."
+          "title": "The Saudi Food Show",
+          "location": "Riyadh, Saudi Arabia",
+          "year": "2026",
+          "achievement": "Showcasing our canned tuna and seafood range to key buyers across the GCC region."
+        },
+        {
+          "title": "TÜYAP Fair Center",
+          "location": "Istanbul, Turkey",
+          "year": "2026",
+          "achievement": "Strengthening partnerships in Turkey and surrounding markets with our premium export products."
         }
       ]
     },

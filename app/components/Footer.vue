@@ -18,8 +18,16 @@ const productCategories = [
 
 const socialLinks = [
   { label: "LinkedIn", href: "#", icon: "linkedin" },
-  { label: "YouTube", href: "https://www.youtube.com/@capitalfoodinternational140", icon: "youtube" },
-  { label: "Facebook", href: "#", icon: "facebook" },
+  {
+    label: "YouTube",
+    href: "https://www.youtube.com/@capitalfoodinternational140",
+    icon: "youtube",
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/capitalfoodinternational",
+    icon: "facebook",
+  },
 ];
 </script>
 

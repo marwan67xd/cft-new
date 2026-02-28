@@ -29,6 +29,17 @@ const events = computed<ExhibitionEvent[]>(() => {
     const date = toText(event?.date)
     const description = toText(event?.description)
 
+    const isGulfoodDubai = name === 'Gulfood' && location.toLowerCase().includes('dubai')
+    const isSaudiFoodShow = name === 'The Saudi Food Show' && location.toLowerCase().includes('riyadh')
+    const isTuyapIstanbul = name === 'TÜYAP Fair Center' && location.toLowerCase().includes('istanbul')
+    const image = isGulfoodDubai
+      ? '/images/gulfood-1.jpeg'
+      : isSaudiFoodShow
+        ? '/images/saudi-1.jpeg'
+        : isTuyapIstanbul
+          ? '/images/turkey-3.jpeg'
+          : 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80'
+
     return {
       id: String(index + 1),
       name,
@@ -36,7 +47,8 @@ const events = computed<ExhibitionEvent[]>(() => {
       date,
       year: date.includes('2024') ? '2024' : undefined,
       description,
-      image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80',
+      image,
+      // Only 2025 events are marked as "Upcoming" for now
       upcoming: date.includes('2025'),
     }
   })

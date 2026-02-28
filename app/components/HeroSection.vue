@@ -9,8 +9,8 @@ const headlineRef = ref<HTMLElement | null>(null)
 
 let gsapCtx: { revert: () => void } | null = null
 
-const bgImagesDesktop = [heroBg1, heroBg2]
-const bgImagesMobile = [heroMobile1, heroMobile2]
+const bgImagesDesktop = [heroBg2, heroBg1]
+const bgImagesMobile = [heroMobile2, heroMobile1]
 const activeBg = ref(0)
 let bgTimer: ReturnType<typeof setInterval> | null = null
 
@@ -63,11 +63,11 @@ onUnmounted(() => {
       />
     </div>
 
-    <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="rounded-xl py-4 px-4 sm:py-5 sm:px-5 max-w-4xl mx-auto inline-block">
+    <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 text-center -mt-36 md:-mt-44 lg:-mt-52">
+      <div class="py-4 px-4 sm:py-5 sm:px-6 max-w-4xl mx-auto inline-block">
         <h1
           ref="headlineRef"
-          class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-tight max-w-4xl mx-auto leading-tight"
+          class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white tracking-tight max-w-4xl mx-auto leading-tight uppercase drop-shadow-[0_8px_24px_rgba(0,0,0,1)]"
         >
           {{ $t('home.hero.title') }}
         </h1>

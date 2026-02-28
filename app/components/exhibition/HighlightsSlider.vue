@@ -20,14 +20,30 @@ function toText(value: unknown): string {
 const highlights = computed<Highlight[]>(() => {
   const value = tm('exhibition.highlights.highlights')
   const highlightsData = Array.isArray(value) ? (value as any[]) : []
-  return highlightsData.map((highlight, index) => ({
-    id: String(index + 1),
-    title: toText(highlight?.title),
-    location: toText(highlight?.location),
-    year: toText(highlight?.year),
-    achievement: toText(highlight?.achievement),
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80',
-  }))
+  return highlightsData.map((highlight, index) => {
+    const title = toText(highlight?.title)
+    const location = toText(highlight?.location)
+    const year = toText(highlight?.year)
+    const achievement = toText(highlight?.achievement)
+
+    let image = 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80'
+    if (title === 'Gulfood') {
+      image = '/images/gulfood-2.jpeg'
+    } else if (title === 'The Saudi Food Show') {
+      image = '/images/saudi-2.jpeg'
+    } else if (title === 'TÜYAP Fair Center') {
+      image = '/images/turkey-2.jpeg'
+    }
+
+    return {
+      id: String(index + 1),
+      title,
+      location,
+      year,
+      achievement,
+      image,
+    }
+  })
 })
 
 const currentIndex = ref(0)
