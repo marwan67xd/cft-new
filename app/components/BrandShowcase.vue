@@ -105,7 +105,7 @@ onMounted(() => {
           const halfWidth = track.scrollWidth / 2
           scrollTween = gsap.to(track, {
             x: -halfWidth,
-            duration: halfWidth / 30,
+            duration: halfWidth / 50,
             ease: 'none',
             repeat: -1,
             onRepeat: () => gsap.set(track, { x: 0 }),
