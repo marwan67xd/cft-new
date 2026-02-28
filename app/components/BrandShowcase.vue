@@ -1,12 +1,17 @@
 <script setup lang="ts">
 /**
  * Brand Logo Showcase — horizontal auto-scroll, GSAP scroll-in.
- * Logos shown in original colors, no box/border. Pause scroll on hover.
+ * Logos shown in original colors, no box/border. Pause on hover. Drag with mouse.
  */
 
 const sectionRef = ref<HTMLElement | null>(null)
 const trackRef = ref<HTMLElement | null>(null)
 const marqueeRef = ref<HTMLElement | null>(null)
+
+// Mouse drag state
+const isDragging = ref(false)
+const dragStartX = ref(0)
+const dragStartScrollX = ref(0)
 
 const brandPaths = [
   'WhatsApp Image 2026-02-28 at 12.04.29 AM.jpeg',
@@ -64,10 +69,12 @@ const brandLogosDoubled = computed(() => [...brandLogos.value, ...brandLogos.val
 
 let gsapCtx: { revert: () => void } | null = null
 let scrollTween: { pause: () => void; play: () => void } | null = null
+let gsapLib: { getProperty: (t: Element, p: string) => number; set: (t: Element, v: object) => void } | null = null
 
 onMounted(() => {
   if (!import.meta.client || !sectionRef.value) return
   import('gsap').then(({ default: gsap }) => {
+    gsapLib = gsap
     import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
       gsap.registerPlugin(ScrollTrigger)
 
@@ -115,7 +122,61 @@ function playScroll() {
   scrollTween?.play()
 }
 
+function onDragStart(e: MouseEvent) {
+  if (!trackRef.value) return
+  isDragging.value = true
+  dragStartX.value = e.clientX
+  if (gsapLib) {
+    dragStartScrollX.value = gsapLib.getProperty(trackRef.value, 'x') as number
+  } else {
+    const style = getComputedStyle(trackRef.value)
+    const m = style.transform.match(/matrix\(.*,\s*([-\d.]+)\s*\)/)
+    dragStartScrollX.value = m ? parseFloat(m[1]) : 0
+  }
+  pauseScroll()
+}
+
+function onDragMove(e: MouseEvent) {
+  if (!isDragging.value || !trackRef.value || !gsapLib) return
+  const deltaX = e.clientX - dragStartX.value
+  let newX = dragStartScrollX.value + deltaX
+  const halfWidth = trackRef.value.scrollWidth / 2
+  if (newX > 0) newX = 0
+  if (newX < -halfWidth * 2) newX = -halfWidth * 2
+  gsapLib.set(trackRef.value, { x: newX })
+}
+
+function onDragEnd() {
+  if (!isDragging.value || !trackRef.value || !gsapLib) return
+  isDragging.value = false
+  const currentX = gsapLib.getProperty(trackRef.value, 'x') as number
+  const halfWidth = trackRef.value.scrollWidth / 2
+  const normalizedX = Math.max(-halfWidth, Math.min(0, ((currentX % halfWidth) + halfWidth) % halfWidth - halfWidth))
+  scrollTween?.kill?.()
+  import('gsap').then(({ default: gsap }) => {
+    gsapLib?.set(trackRef.value!, { x: normalizedX })
+    scrollTween = gsap.to(trackRef.value, {
+      x: -halfWidth,
+      duration: (halfWidth + normalizedX) / 30,
+      ease: 'none',
+      repeat: -1,
+      onRepeat: () => gsap.set(trackRef.value, { x: 0 }),
+    })
+  })
+}
+
+onMounted(() => {
+  if (import.meta.client) {
+    document.addEventListener('mousemove', onDragMove)
+    document.addEventListener('mouseup', onDragEnd)
+  }
+})
+
 onUnmounted(() => {
+  if (import.meta.client) {
+    document.removeEventListener('mousemove', onDragMove)
+    document.removeEventListener('mouseup', onDragEnd)
+  }
   gsapCtx?.revert()
   scrollTween = null
 })
@@ -141,12 +202,14 @@ onUnmounted(() => {
         {{ $t('home.brands.subtitle') }}
       </p>
 
-      <!-- Marquee wrapper: pause on hover -->
+      <!-- Marquee wrapper: pause on hover, drag with mouse -->
       <div
         ref="marqueeRef"
-        class="w-full overflow-hidden"
+        class="w-full overflow-hidden select-none"
+        :class="isDragging ? 'cursor-grabbing' : 'cursor-grab'"
         @mouseenter="pauseScroll"
-        @mouseleave="playScroll"
+        @mouseleave="() => { if (!isDragging.value) playScroll() }"
+        @mousedown="onDragStart"
       >
         <div
           ref="trackRef"
