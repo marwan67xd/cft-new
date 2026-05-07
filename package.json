@@ -1,0 +1,24 @@
+{
+  "name": "CPT",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "validate:i18n": "node scripts/validate-i18n.js",
+    "prebuild": "npm run validate:i18n"
+  },
+  "dependencies": {
+    "@nuxtjs/i18n": "^10.2.3",
+    "gsap": "^3.14.2",
+    "nuxt": "^4.3.1",
+    "vue": "^3.5.28",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.14.0"
+  }
+}

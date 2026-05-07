@@ -1,0 +1,570 @@
+{
+  "nav": {
+    "home": "Home",
+    "companyProfile": "Company Profile",
+    "tuna": "Tuna",
+    "sardinesMackerel": "Sardines / Mackerel",
+    "exhibition": "Exhibition",
+    "contact": "Contact us"
+  },
+  "common": {
+    "language": "Language",
+    "loading": "Loading…"
+  },
+  "home": {
+    "hero": {
+      "badge": "GLOBAL EXPORT PARTNER",
+      "title": "Capital Food International",
+      "subtitle": "High-quality tuna, sardines, and mackerel prepared to meet international food standards.",
+      "exploreProducts": "Explore Products",
+      "downloadProfile": "Download Profile"
+    },
+    "about": {
+      "badge": "About Us",
+      "title": "About Us",
+      "description": "Founded in 2014, we are a dedicated producer and supplier of high-quality seafood products, including tuna, sardines, and mackerel. Our focus on consistent quality, industry standards, and reliable sourcing supports our partnerships with retailers and food distributors.",
+      "yearsExcellence": "12+ Years Excellence",
+      "commitmentTitle": "Our Commitment to Quality",
+      "quality1": "Quality-driven production and packaging practices.",
+      "quality2": "Adherence to food safety and industry standards.",
+      "sustainableTitle": "Sustainable Sourcing",
+      "sustainableDesc": "We aim for responsible sourcing and adherence to ethical practices throughout our operations.",
+      "traceabilityTitle": "Traceability",
+      "traceabilityDesc": "We maintain transparency in our supply processes from production to delivery."
+    },
+    "products": {
+      "title": "Product Range",
+      "subtitle": "Our core offerings meet the highest international standards for quality and safety.",
+      "tunaTitle": "Premium Tuna",
+      "tunaDesc": "High-quality canned tuna produced under strict food industry standards. Ideal for retail and distribution markets.",
+      "sardinesTitle": "Quality Sardines",
+      "sardinesDesc": "Nutritious sardines processed to consistent quality levels for consumer and commercial use.",
+      "mackerelTitle": "Mackerel Fillets",
+      "mackerelDesc": "Canned mackerel fillets prepared according to international production norms, offering reliable and versatile supply.",
+      "viewDetails": "View Details"
+    },
+    "whyChoose": {
+      "title": "Why Choose Us",
+      "premiumQuality": "Premium Quality",
+      "globalStandards": "Global Standards",
+      "reliableSupply": "Reliable Supply",
+      "strategicPartnerships": "Strategic Partnerships"
+    },
+    "trustBar": {
+      "internationalQuality": "International Quality Standards",
+      "exportReady": "Export Ready",
+      "premiumSelection": "Premium Selection",
+      "foodSafety": "Food Safety Compliance"
+    },
+    "brands": {
+      "title": "Our clients brands",
+      "subtitle": "Trusted by leading partners worldwide for quality seafood supply."
+    },
+    "exhibitions": {
+      "title": "Exhibitions",
+      "subtitle": "Meet us at the world's leading food and seafood trade shows.",
+      "viewAllEvents": "View All Events"
+    },
+    "global": {
+      "title": "Active in International Markets",
+      "subtitle": "Supplying canned tuna, sardines, and mackerel to distribution partners across regional and international markets.",
+      "tooltip": "Supplying premium seafood worldwide."
+    },
+    "cta": {
+      "title": "Looking for a trusted seafood supplier?",
+      "subtitle": "Partner with a global export leader. Get in touch for quotes and product information.",
+      "button": "Contact Us Today"
+    },
+    "meta": {
+      "title": "Capital Food International",
+      "description": "High-quality tuna, sardines, and mackerel prepared to meet international food standards. Your global export partner."
+    }
+  },
+  "companyProfile": {
+    "meta": {
+      "title": "About us | Company Profile",
+      "description": "Capital Food delivers premium seafood with global quality standards and sustainable sourcing since 2014. Learn about our mission, values, and compliance."
+    },
+    "hero": {
+      "breadcrumbHome": "Home",
+      "breadcrumbProfile": "Company Profile",
+      "title": "About us",
+      "subtitle": "Delivering premium seafood products with global quality standards and sustainable sourcing since 2014."
+    },
+    "overview": {
+      "badge": "Who We Are",
+      "title": "A Legacy of Excellence in Global Seafood Export",
+      "description": "Capital Food International Co., Ltd. was established in April 2014 as a holding company for seafood processing operations in Thailand. The company specializes in the processing and export of high-quality tuna, sardines, and mackerel products.\n\nWith advanced production technology and strict quality control systems, Capital Food International ensures that its products meet international food safety and quality standards. The company is committed to delivering reliable, competitively produced seafood products tailored to global market requirements.\n\nThrough continuous operational development and a strong export network, Capital Food International Co., Ltd. has positioned itself as a trusted supplier in the international seafood industry.",
+      "yearsExperience": "Years Experience",
+      "exportCountries": "Export Countries",
+      "teamMembers": "Team Members"
+    },
+    "missionVision": {
+      "visionTitle": "Our Vision",
+      "visionDesc": "To be the most trusted global seafood supplier, recognized for quality, sustainability, and partnership. We aim to set the standard for responsible sourcing and food safety in the industry.",
+      "missionTitle": "Our Mission",
+      "missionDesc": "To deliver premium seafood products that meet the highest international standards while fostering long-term relationships with our customers. We commit to continuous improvement, food safety, and sustainable practices in every step of our operations."
+    },
+    "coreValues": {
+      "title": "Our Core Values",
+      "qualityExcellence": {
+        "title": "Quality Excellence",
+        "desc": "We maintain the highest standards in every product we deliver."
+      },
+      "integrity": {
+        "title": "Integrity",
+        "desc": "Transparent, ethical practices in all our business relationships."
+      },
+      "foodSafety": {
+        "title": "Food Safety",
+        "desc": "Rigorous controls and certifications to protect consumers."
+      },
+      "customerPartnership": {
+        "title": "Customer Partnership",
+        "desc": "Long-term relationships built on trust and reliability."
+      },
+      "continuousImprovement": {
+        "title": "Continuous Improvement",
+        "desc": "Innovation and learning to stay ahead of industry standards."
+      }
+    },
+    "qualityStandards": {
+      "title": "Global Compliance & Quality Standards",
+      "description": "We adhere to strict quality control and food safety management systems. Our facilities are designed and operated to meet international standards, ensuring every product meets regulatory requirements and customer expectations. From raw material intake to finished product dispatch, we maintain full traceability and documented procedures.",
+      "traceability": "100% Traceability Guaranteed"
+    },
+    "productionExport": {
+      "productionTitle": "Production & Sourcing",
+      "sustainableSourcing": "Sustainable sourcing",
+      "advancedColdChain": "Advanced cold chain",
+      "agileLogistics": "Agile logistics",
+      "exportTitle": "Global Export Presence",
+      "northAmerica": "North America",
+      "europeUK": "Europe & UK",
+      "eastAsia": "East Asia",
+      "middleEast": "Middle East"
+    },
+    "timeline": {
+      "title": "Our Journey",
+      "founded": "Company Founded",
+      "expansion": "Production Expansion",
+      "growth": "Market Growth",
+      "development": "Continued Development"
+    },
+    "team": {
+      "badge": "Our Team",
+      "title": "Meet the Team",
+      "subtitle": "The people behind our quality, service, and global export operations.",
+      "viewProfile": "View profile",
+      "close": "Close",
+      "done": "Done",
+      "profileTitle": "About",
+      "modalHint": "This section can be expanded with bios, contact links, or department details anytime.",
+      "members": {
+        "adel": {
+          "name": "Adel",
+          "role": "CEO",
+          "bio": "Leads the company’s strategy and long-term partnerships, focusing on quality, compliance, and sustainable growth across global markets."
+        },
+        "kathay": {
+          "name": "Kathay",
+          "role": "Export-Import Manager",
+          "bio": "Oversees export-import operations from order planning to shipment coordination, ensuring smooth execution and on-time delivery."
+        },
+        "kob": {
+          "name": "Kob",
+          "role": "Export-Import Documentation Officer",
+          "bio": "Manages shipping documents, regulatory requirements, and customer paperwork to ensure every shipment is accurate and compliant."
+        },
+        "tommy": {
+          "name": "Tommy",
+          "role": "Executive Assistant",
+          "bio": "Supports leadership with scheduling, coordination, and communication, keeping priorities aligned and daily operations moving efficiently."
+        },
+        "noey": {
+          "name": "Noey",
+          "role": "Service Administrator",
+          "bio": "Handles service coordination and administrative workflows, helping customers and internal teams stay organized and responsive."
+        }
+      }
+    },
+    "cta": {
+      "title": "Partner with a Trusted Seafood Supplier",
+      "subtitle": "Join distributors and retailers who rely on Capital Food for quality, compliance, and reliability.",
+      "contactButton": "Contact Us Today",
+      "downloadButton": "Download Profile (PDF)"
+    }
+  },
+  "tuna": {
+    "meta": {
+      "title": "Premium Tuna Products | High-Quality Export-Grade Tuna",
+      "description": "Premium tuna products prepared to meet international food standards. HACCP & ISO certified, sustainable sourcing, cold-chain integrity. Request a quotation."
+    },
+    "hero": {
+      "breadcrumbHome": "Home",
+      "breadcrumbTuna": "Tuna",
+      "title": "Premium Tuna Products",
+      "subtitle": "High-quality tuna prepared to meet international food standards and export requirements."
+    },
+    "introduction": {
+      "title": "TUNA",
+      "paragraph1": "We serve CANNED TUNA the tasty meal from the sea. Tuna is one of the popular commercial fishes. It is the oily fish, contained a high amount of Vitamin D and good source of Omega-3 fatty acids suitable for infants, children, men and woman.",
+      "paragraph2": "We are exporter for canned tuna (light meat tuna /Bonito Tuna, Skipjack Tuna and white meat Tuna / Yellow fin and Tonggol tuna) in variety of recipes such as vegetable Oil, Brine, Brine and Oil etc.",
+      "paragraph3": "It's absolutely that our Canned Tuna is also enrich of Protein, low in Fat and Calories. It is the excellent source of essential Omega-3 Fatty Acids which help to lower blood pressure and cholesterol as the products are produced under strictly control to ensure the freshness and meet the world standards of sanitation and hygienic…"
+    },
+    "specifications": {
+      "title": "Canned Tuna",
+      "tunaSpecies": "Tuna Species",
+      "oilBrine": "Oil/Brine",
+      "packIn": "Pack In",
+      "whiteMeat": "White Meat",
+      "lightMeat": "Light Meat",
+      "packingSize": "Packing Size",
+      "netWeight": "N.W.",
+      "drainedWeight": "D.W",
+      "loadingQty": "Loading qty. (Cartons)"
+    },
+    "collection": {
+      "title": "Our Tuna Collection",
+      "subtitle": "A variety of formats and pack sizes to meet global culinary needs and retail, food service, and industrial requirements.",
+      "sunflowerOil": {
+        "title": "Tuna in Sunflower Oil",
+        "description": "Premium skipjack tuna in refined sunflower oil. Mild taste, ideal for salads and sandwiches.",
+        "packaging": "48x170g, 24x185g, 12x425g"
+      },
+      "oliveOil": {
+        "title": "Tuna in Olive Oil",
+        "description": "Select tuna in extra virgin olive oil. Rich flavor for gourmet and Mediterranean recipes.",
+        "packaging": "48x170g, 24x185g, 12x425g"
+      },
+      "brine": {
+        "title": "Tuna in Brine",
+        "description": "Light tuna in natural brine. Low fat, high protein—perfect for health-conscious consumers.",
+        "packaging": "48x170g, 24x185g, 12x425g"
+      },
+      "chunks": {
+        "title": "Tuna Chunks",
+        "description": "Solid tuna chunks in oil or brine. Versatile for casseroles, pasta, and ready meals.",
+        "packaging": "24x185g, 12x425g, 6x1kg"
+      },
+      "flakes": {
+        "title": "Tuna Flakes",
+        "description": "Flaked tuna for spreads, fillings, and food service. Consistent quality, easy to use.",
+        "packaging": "24x185g, 12x425g, bulk"
+      },
+      "custom": {
+        "title": "Custom Formulation",
+        "description": "Private label and custom recipes to match your market and brand.",
+        "packaging": "Flexible formats",
+        "button": "Private Label Inquiry",
+        "details": "Details"
+      }
+    },
+    "packaging": {
+      "packagingTitle": "Packaging Solutions",
+      "retailPacks": "Retail Packs",
+      "bulkIndustrial": "Bulk Industrial",
+      "privateLabel": "Private Label",
+      "institutionalPacks": "Institutional Packs",
+      "trustTitle": "Trust & Safety",
+      "isoCertified": "ISO Certified",
+      "haccp": "HACCP",
+      "euStandards": "EU Standards",
+      "fdaRegistered": "FDA Registered"
+    },
+    "nutrition": {
+      "title": "Nutritional Excellence",
+      "highProtein": "High Protein",
+      "richOmega3": "Rich in Omega-3",
+      "globalCuisine": "Global Cuisine Versatility",
+      "pureHealthy": "Pure & Healthy"
+    },
+    "export": {
+      "title": "Export & Global Logistics",
+      "description": "We handle export documentation, cold-chain shipping, and customs clearance so your tuna reaches 40+ countries in optimal condition. Tracked shipments and full export documentation included.",
+      "countries": "40+ Countries",
+      "trackedShipments": "Tracked Shipments",
+      "fullExportDocs": "Full Export Docs",
+      "coldChain": "Cold Chain Assurance"
+    },
+    "cta": {
+      "title": "Interested in our Tuna products?",
+      "subtitle": "Request a quotation or speak with our sales team for bulk orders and private label.",
+      "requestQuotation": "Request Quotation",
+      "contactSales": "Contact Sales"
+    }
+  },
+  "sardinesMackerel": {
+    "meta": {
+      "title": "Premium Sardines & Mackerel | Capital Food | International Seafood",
+      "description": "Nutritious, high-quality sardines and mackerel prepared to meet international food safety and export standards. Multiple formats, private label, and global distribution."
+    },
+    "hero": {
+      "breadcrumbHome": "Home",
+      "breadcrumbSardines": "Sardines & Mackerel",
+      "title": "Premium Sardines & Mackerel",
+      "subtitle": "Nutritious, high-quality seafood prepared to meet international food safety and export standards."
+    },
+    "introduction": {
+      "title": "SARDINES / MACKEREL",
+      "paragraph1": "Sardines / Mackerel are known as well as in the processing of canned fish.",
+      "paragraph2": "Popular product: SARDINES / MACKEREL IN TOMATO SAUCE, SARDINES / MACKEREL IN OIL WITH CHILI. Sardines / Mackerel are known as well as in the processing of canned fish in various sauces such as tomato sauce, oil, or brine. Or dishes such as grilled or smoked. Which sardines nutrition than milk or 3 times with fish of 100 grams of various nutrients like Omega 3 to 200 mg, which is sufficient for the needs of the human body each week. It also contains phosphorus, copper, magnesium alloy, iron, manganese, lycopene and vitamin B"
+    },
+    "packaging": {
+      "title": "Packaging Options",
+      "multipleCanSizes": {
+        "label": "Multiple can sizes",
+        "description": "From retail to food service formats"
+      },
+      "bulkPackaging": {
+        "label": "Bulk packaging options",
+        "description": "Industrial and wholesale"
+      },
+      "privateLabel": {
+        "label": "Private label production",
+        "description": "Your brand, our quality"
+      },
+      "customBranding": {
+        "label": "Custom branding availability",
+        "description": "Flexible packaging and labels"
+      }
+    },
+    "specifications": {
+      "title": "Popular product: SARDINES / MACKEREL IN TOMATO SAUCE SARDINES / MACKEREL IN OIL WITH CHILI",
+      "fishSpecies": "Fish Species",
+      "kindOfSauce": "Kind of Sauce",
+      "sardines": "SARDINES",
+      "mackerel": "Mackerel",
+      "inTomatoSauce": "In Tomato Sauce",
+      "inBrine": "In Brine",
+      "inOil": "In Oil",
+      "name": "Name",
+      "cannedSize": "Canned Size Size",
+      "packingSize": "Packing Size",
+      "netWeight": "N.W.",
+      "loadingQty": "Loading qty. (Cartons)"
+    },
+    "quality": {
+      "title": "Quality & Food Safety",
+      "hygienicProcessing": {
+        "label": "Hygienic processing practices",
+        "badge": "HACCP"
+      },
+      "internationalCompliance": {
+        "label": "International compliance standards",
+        "badge": "Global"
+      },
+      "qualityInspection": {
+        "label": "Quality inspection procedures",
+        "badge": "ISO"
+      },
+      "exportReady": {
+        "label": "Export-ready packaging",
+        "badge": "FDA"
+      }
+    },
+    "nutrition": {
+      "title": "Nutrition & Health Benefits",
+      "richOmega3": "Rich in Omega-3",
+      "highProtein": "High protein source",
+      "heartHealthy": "Heart-healthy nutrients",
+      "essentialVitamins": "Essential vitamins & minerals"
+    },
+    "export": {
+      "title": "Export & Global Distribution",
+      "description": "Reliable logistics, secure packaging, and efficient global delivery to ensure product freshness. We ship sardines and mackerel to importers and distributors worldwide with full documentation and cold-chain assurance.",
+      "northAmerica": "North America",
+      "europeUK": "Europe & UK",
+      "eastAsia": "East Asia",
+      "middleEast": "Middle East"
+    },
+    "cta": {
+      "title": "Looking for high-quality sardines or mackerel?",
+      "subtitle": "Request a quotation or speak with our sales team for bulk orders and private label.",
+      "requestQuotation": "Request Quotation",
+      "contactSales": "Contact Sales"
+    }
+  },
+  "exhibition": {
+    "meta": {
+      "title": "Our Exhibitions & Events | Capital Food | International Seafood",
+      "description": "Capital Food at international seafood trade shows and global events. Meet us at Seafood Expo, Gulfood, Anuga, and more. Join us or get in touch to collaborate."
+    },
+    "hero": {
+      "breadcrumbHome": "Home",
+      "breadcrumbExhibitions": "Exhibitions",
+      "title": "Our Exhibitions & Events",
+      "subtitle": "Highlighting Capital Food's participation in international seafood trade shows and global events."
+    },
+    "events": {
+      "title": "Upcoming & Past Events",
+      "subtitle": "Meet Capital Food at the world's leading seafood and food trade exhibitions.",
+      "upcoming": "Upcoming",
+      "learnMore": "Learn More",
+      "viewPhotos": "View photos",
+      "closeGallery": "Close gallery",
+      "previousImage": "Previous image",
+      "nextImage": "Next image",
+      "events": [
+        {
+          "name": "Gulfood",
+          "location": "Dubai, UAE",
+          "date": "2026",
+          "description": "Capital Food International participated in Gulfood Dubai 2026, connecting with global partners."
+        },
+        {
+          "name": "The Saudi Food Show",
+          "location": "Riyadh, Saudi Arabia",
+          "date": "2026",
+          "description": "Capital Food International participated in The Saudi Food Show in Riyadh 2026, engaging with partners across the region."
+        },
+        {
+          "name": "TÜYAP Fair Center",
+          "location": "Istanbul, Turkey",
+          "date": "2026",
+          "description": "Capital Food International participated at TÜYAP Fair Center in Istanbul 2026, meeting buyers and partners from Turkey and beyond."
+        },
+        {
+          "name": "Thaifex",
+          "location": "Bangkok, Thailand",
+          "date": "2024",
+          "description": "Capital Food International participated in Thaifex in Bangkok, Thailand 2024, connecting with buyers and partners across Asia."
+        }
+      ]
+    },
+    "highlights": {
+      "title": "Exhibition Highlights",
+      "previousSlide": "Previous slide",
+      "nextSlide": "Next slide",
+      "goToSlide": "Go to slide",
+      "highlights": [
+        {
+          "title": "Gulfood",
+          "location": "Dubai, UAE",
+          "year": "2026",
+          "achievement": "Capital Food International participated in Gulfood Dubai 2026, connecting with global partners from around the world."
+        },
+        {
+          "title": "The Saudi Food Show",
+          "location": "Riyadh, Saudi Arabia",
+          "year": "2026",
+          "achievement": "Showcasing our canned tuna and seafood range to key buyers across the GCC region."
+        },
+        {
+          "title": "TÜYAP Fair Center",
+          "location": "Istanbul, Turkey",
+          "year": "2026",
+          "achievement": "Strengthening partnerships in Turkey and surrounding markets with our premium export products."
+        }
+      ]
+    },
+    "presence": {
+      "title": "Company Presence",
+      "subtitle": "Capital Food participates in trade shows and events across key international markets.",
+      "globalParticipation": "Global event participation across 5 regions",
+      "regions": [
+        {
+          "name": "North America",
+          "count": "12+ events"
+        },
+        {
+          "name": "Europe & UK",
+          "count": "18+ events"
+        },
+        {
+          "name": "Middle East",
+          "count": "8+ events"
+        },
+        {
+          "name": "East Asia",
+          "count": "6+ events"
+        },
+        {
+          "name": "Southeast Asia",
+          "count": "5+ events"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Join us at upcoming exhibitions or get in touch to collaborate.",
+      "subtitle": "Connect with our team for meetings, samples, and partnership opportunities.",
+      "contactUs": "Contact Us",
+      "viewUpcomingEvents": "View Upcoming Events"
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact Us | Capital Food International",
+      "description": "Get in touch with Capital Food International for quotations, product details, private label inquiries, and export partnerships."
+    },
+    "hero": {
+      "breadcrumbHome": "Home",
+      "breadcrumbContact": "Contact",
+      "title": "Contact Capital Food International",
+      "subtitle": "Request a quotation, ask about specifications, or discuss private label and export opportunities with our team."
+    },
+    "section": {
+      "badge": "Contact",
+      "title": "Send us a message",
+      "subtitle": "Fill out the form and we’ll get back to you as soon as possible.",
+      "formTitle": "Inquiry form",
+      "formDescription": "Share a few details and our team will follow up with the right product information and pricing.",
+      "firstName": "First name",
+      "firstNamePlaceholder": "Your first name",
+      "email": "Email",
+      "emailPlaceholder": "name[at]domain.com",
+      "product": "Product",
+      "productPlaceholder": "Select a product",
+      "products": [
+        "Tuna",
+        "Sardines",
+        "Mackerel",
+        "Private label",
+        "Other"
+      ],
+      "subject": "Subject",
+      "subjectPlaceholder": "How can we help?",
+      "message": "Message",
+      "messagePlaceholder": "Tell us about your needs (format, quantity, destination, timeline)…",
+      "required": "*",
+      "haveQuestions": "Have questions? Call us directly.",
+      "submit": "Send inquiry",
+      "sending": "Sending…",
+      "successTitle": "Message sent",
+      "successMessage": "Thanks—our team will reach out shortly.",
+      "sendAnother": "Send another message",
+      "detailsTitle": "Company details",
+      "details": {
+        "headOffice": "Head Office",
+        "officeBranch1": "Office Branch 1",
+        "phone": "Phone",
+        "email": "Email",
+        "website": "Website",
+        "lineId": "LINE ID",
+        "whatsapp": "WhatsApp",
+        "workingHours": "Working hours"
+      },
+      "contactWithUs": "Connect with us",
+      "errors": {
+        "firstNameRequired": "Please enter your first name.",
+        "emailRequired": "Please enter your email address.",
+        "emailInvalid": "Please enter a valid email address.",
+        "productRequired": "Please select a product.",
+        "subjectRequired": "Please enter a subject.",
+        "messageRequired": "Please enter your message."
+      }
+    },
+    "map": {
+      "badge": "Location",
+      "title": "Find us on the map",
+      "subtitle": "Visit our office or reach out to arrange a meeting.",
+      "openInGoogleMaps": "Open in Google Maps"
+    },
+    "cta": {
+      "title": "Ready to discuss your inquiry?",
+      "subtitle": "Our team is available to support product questions, quotations, and export requirements.",
+      "haveQuestions": "Prefer to call?",
+      "sendInquiry": "Send an inquiry"
+    }
+  }
+}

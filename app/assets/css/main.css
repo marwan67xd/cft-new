@@ -1,0 +1,54 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply text-gray-700 antialiased;
+  }
+  [dir='rtl'] body {
+    font-family: 'Noto Sans Arabic', system-ui, sans-serif;
+  }
+}
+
+/* Home hero slideshow background */
+.hero-slide {
+  opacity: 0;
+  transform: translate3d(28px, 0, 0) scale(1.02);
+  transition: opacity 900ms ease, transform 900ms ease;
+  will-change: opacity, transform;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-slide.is-active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* On phones, show more of the image (less cropping) */
+@media (max-width: 640px) {
+  .hero-slide {
+    background-size: contain;
+    background-color: #000; /* fills letterbox area nicely under the dark overlay */
+    background-position: center center;
+  }
+}
+
+/* About page hero parallax background */
+.about-hero-bg {
+  background: linear-gradient(135deg, #0a1c2e 0%, #0f2744 30%, #152d47 60%, #0f2a39 100%);
+  background-size: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
