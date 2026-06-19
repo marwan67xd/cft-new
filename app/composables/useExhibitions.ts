@@ -36,13 +36,27 @@ const turkeyGallery: string[] = [
   '/images/turkey/turkey-4.jpeg',
 ]
 
-const thaiGallery: string[] = [
+const thaifex2025Gallery: string[] = [
   '/images/thai/tha1.jpeg',
   '/images/thai/th2.jpeg',
   '/images/thai/thai3.jpeg',
   '/images/thai/thai4.jpeg',
   '/images/thai/thai6.jpeg',
   '/images/thai/thai7.jpeg',
+]
+
+const thaifex2026Gallery: string[] = [
+  '/images/thaifex/thaifex-1.png',
+  '/images/thaifex/thaifex-2.png',
+  '/images/thaifex/thaifex-3.png',
+  '/images/thaifex/thaifex-4.png',
+]
+
+const foodexJapan2026Gallery: string[] = [
+  '/images/foodex-japan/foodex-japan-1.png',
+  '/images/foodex-japan/foodex-japan-2.png',
+  '/images/foodex-japan/foodex-japan-3.png',
+  '/images/foodex-japan/foodex-japan-4.png',
 ]
 
 const exhibitionsData: ExhibitionEvent[] = [
@@ -80,15 +94,37 @@ const exhibitionsData: ExhibitionEvent[] = [
     gallery: turkeyGallery,
   },
   {
-    id: 'thai',
+    id: 'thaifex-2025',
     name: 'Thaifex',
     location: 'Bangkok',
     country: 'Thailand',
-    date: '2024',
+    date: '2025',
     summary:
-      'Capital Food International participated in Thaifex Bangkok 2024, connecting with buyers and partners across Asia.',
+      'Capital Food International participated in Thaifex Bangkok 2025, connecting with buyers and partners across Asia.',
     logo: '/logo-Exhibitions/logo_h2/ChatGPT%20Image%20Feb%2028%2C%202026%2C%2001_20_47%20PM.png',
-    gallery: thaiGallery,
+    gallery: thaifex2025Gallery,
+  },
+  {
+    id: 'thaifex-2026',
+    name: 'Thaifex 2026',
+    location: 'Bangkok',
+    country: 'Thailand',
+    date: '2026',
+    summary:
+      'Capital Food International participated in Thaifex Bangkok 2026, connecting with buyers and partners across Asia.',
+    logo: '/logo-Exhibitions/logo_h2/ChatGPT%20Image%20Feb%2028%2C%202026%2C%2001_20_47%20PM.png',
+    gallery: thaifex2026Gallery,
+  },
+  {
+    id: 'foodex-japan-2026',
+    name: 'Foodex Japan 2026',
+    location: 'Tokyo',
+    country: 'Japan',
+    date: '2026',
+    summary:
+      'Capital Food International participated in Foodex Japan 2026, showcasing our canned tuna and seafood products to buyers across Japan and Asia.',
+    logo: '/images/foodex-japan/foodex-japan-logo.png',
+    gallery: foodexJapan2026Gallery,
   },
 ]
 

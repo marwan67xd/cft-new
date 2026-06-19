@@ -95,7 +95,6 @@ onMounted(() => {
           class="group rounded-2xl overflow-hidden border border-gray-100 shadow-card hover:shadow-card-hover transition-all duration-300"
         >
           <div class="aspect-[4/3] overflow-hidden bg-gray-100">
-            <!-- Home preview should show photos (not logos). Use first 4 gallery images. -->
             <template v-if="event.gallery?.length">
               <button
                 type="button"
@@ -114,6 +113,16 @@ onMounted(() => {
                   loading="lazy"
                 />
               </button>
+            </template>
+            <template v-else-if="event.logo">
+              <img
+                :src="event.logo"
+                :alt="event.name"
+                class="w-full h-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+                width="400"
+                height="300"
+                loading="lazy"
+              />
             </template>
             <template v-else>
               <img

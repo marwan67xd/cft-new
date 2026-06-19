@@ -26,13 +26,13 @@ const fishSpecies = computed<FishSpecies[]>(() => [
 ])
 
 const packingSpecs: PackingSpec[] = [
-  { name: 'Jitney Can', canSize: '202 x 308', packingSize: '50 x 155g', netWeight: '155g', loadingQty: '2,000' },
-  { name: 'Jitney Can', canSize: '202 x 308', packingSize: '100 x 155g', netWeight: '155g', loadingQty: '1,000' },
-  { name: 'Club Can', canSize: '104 x 60 x 29', packingSize: '50 x 125g', netWeight: '125g', loadingQty: '3,200' },
-  { name: 'Tall Can', canSize: '300 x 206', packingSize: '48 x 200g', netWeight: '200g', loadingQty: '1,700' },
-  { name: 'Tall Can', canSize: '300 x 407', packingSize: '24 x 425g', netWeight: '425g', loadingQty: '1,800' },
-  { name: 'Oval Can', canSize: '500 x 304 x 103', packingSize: '24 x 215g', netWeight: '215g', loadingQty: '1,700' },
-  { name: 'Oval Can', canSize: '605 x 405 x 108', packingSize: '24 x 425g', netWeight: '425g', loadingQty: '1,700' },
+  { name: 'Jitney Can', canSize: '202 x 308', packingSize: '50 x 155g', netWeight: '93g', loadingQty: '2,000' },
+  { name: 'Jitney Can', canSize: '202 x 308', packingSize: '100 x 155g', netWeight: '90g', loadingQty: '1,000' },
+  { name: 'Club Can', canSize: '104 x 60 x 29', packingSize: '50 x 125g', netWeight: '90g', loadingQty: '3,200' },
+  { name: 'Tall Can', canSize: '300 x 407', packingSize: '24 x 425g', netWeight: '255g', loadingQty: '1,800' },
+  { name: 'Oval Can', canSize: '500 x 304 x 103', packingSize: '24 x 215g', netWeight: '130g', loadingQty: '1,800' },
+  { name: 'Oval Can', canSize: '605 x 405 x 108', packingSize: '24 x 425g', netWeight: '255g', loadingQty: '1,700' },
+  { name: 'Can', canSize: '300 x 203', packingSize: '24 x 190g', netWeight: '120g', loadingQty: '3,600' },
 ]
 
 const sectionRef = ref<HTMLElement | null>(null)

@@ -30,6 +30,18 @@
   transform: translate3d(0, 0, 0) scale(1);
 }
 
+.hero-glow {
+  animation: heroGlowFloat 7s ease-in-out infinite;
+}
+
+.hero-glow-delay {
+  animation-delay: 1.2s;
+}
+
+.hero-scroll-hint > span {
+  animation: heroScrollDot 1.4s ease-in-out infinite;
+}
+
 /* On phones, show more of the image (less cropping) */
 @media (max-width: 640px) {
   .hero-slide {
@@ -38,7 +50,6 @@
     background-position: center center;
   }
 }
-
 /* About page hero parallax background */
 .about-hero-bg {
   background: linear-gradient(135deg, #0a1c2e 0%, #0f2744 30%, #152d47 60%, #0f2a39 100%);
@@ -50,5 +61,31 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes heroGlowFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+    opacity: 0.9;
+  }
+}
+
+@keyframes heroScrollDot {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(12px);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

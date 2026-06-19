@@ -11,9 +11,7 @@ const eventCards = computed(() =>
     date: event.date,
     description: event.summary,
     image: event.logo ?? event.gallery[0] ?? '',
-    isLogo: !!event.logo,
     gallery: event.gallery,
-    upcoming: event.date.includes('2025'),
   }))
 )
 
@@ -87,17 +85,11 @@ onUnmounted(() => {
             <img
               :src="event.image"
               :alt="event.name"
-              :class="event.isLogo ? 'w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-110' : 'w-full h-full object-cover transition-transform duration-500 group-hover:scale-110'"
+              class="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
               width="600"
               height="375"
               loading="lazy"
             />
-            <span
-              v-if="event.upcoming"
-              class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-aqua-500 text-white"
-            >
-              {{ $t('exhibition.events.upcoming') }}
-            </span>
           </div>
           <div class="p-6 flex flex-col flex-1">
             <h3 class="text-xl font-bold tracking-tight text-navy">{{ event.name }}</h3>
