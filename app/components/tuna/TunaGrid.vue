@@ -60,8 +60,13 @@ const headingRef = ref<HTMLElement | null>(null);
 const subRef = ref<HTMLElement | null>(null);
 const cardsRef = ref<HTMLElement | null>(null);
 
-useSectionMotion(sectionRef, { preset: 'cards' })
-;
+useSectionMotion(sectionRef, {
+  preset: 'cards',
+  headingRef,
+  subtitleRef: subRef,
+  cardsContainerRef: cardsRef,
+  cardsSelector: 'article',
+})
 </script>
 
 <template>

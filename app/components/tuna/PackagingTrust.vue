@@ -15,11 +15,12 @@ const trustItems = computed(() => [
   { label: t('tuna.packaging.fdaRegistered'), icon: "fda" },
 ]);
 
-const sectionRef = ref<HTMLElement | null>(null);
-const cardsRef = ref<HTMLElement | null>(null);
+const sectionRef = ref<HTMLElement | null>(null)
 
-useSectionMotion(sectionRef, { preset: 'cards' })
-;
+useSectionMotion(sectionRef, {
+  preset: 'cards',
+  cardsSelector: '[data-pack-card]',
+})
 </script>
 
 <template>
@@ -38,7 +39,7 @@ useSectionMotion(sectionRef, { preset: 'cards' })
           >
             {{ $t('tuna.packaging.packagingTitle') }}
           </h2>
-          <div ref="cardsRef" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div
               v-for="item in packagingItems"
               :key="item.label"

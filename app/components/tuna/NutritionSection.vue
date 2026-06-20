@@ -12,8 +12,11 @@ const sectionRef = ref<HTMLElement | null>(null);
 const headingRef = ref<HTMLElement | null>(null);
 const iconsRef = ref<HTMLElement | null>(null);
 
-useSectionMotion(sectionRef, { preset: 'cards' })
-;
+useSectionMotion(sectionRef, {
+  preset: 'cards',
+  headingRef,
+  cardsContainerRef: iconsRef,
+})
 </script>
 
 <template>

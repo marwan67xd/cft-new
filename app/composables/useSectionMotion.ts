@@ -19,7 +19,7 @@ export type SectionMotionApi = {
 }
 
 export type SectionMotionOptions = {
-  preset?: 'standard' | 'split' | 'cards' | 'cta'
+  preset?: 'standard' | 'split' | 'cards' | 'cta' | 'tables'
   headingRef?: Ref<HTMLElement | null>
   subtitleRef?: Ref<HTMLElement | null>
   imageRef?: Ref<HTMLElement | null>
@@ -28,6 +28,8 @@ export type SectionMotionOptions = {
   cardsContainerRef?: Ref<HTMLElement | null>
   cardsSelector?: string
   cardRefs?: Ref<HTMLElement[]>
+  tablesContainerRef?: Ref<HTMLElement | null>
+  tablesSelector?: string
   headingSelector?: string
   setup?: (api: SectionMotionApi) => void
 }
@@ -146,14 +148,13 @@ export function useSectionMotion(
 
         revealHeader(headingEl, options.subtitleRef?.value ?? null)
 
+        const cardSelector = options.cardsSelector
+          ?? 'article, [data-reveal-item], [data-pack-card], [data-event-card], .value-card, .grid > *'
+
         const cards = options.cardRefs?.value?.filter(Boolean)
           ?? (options.cardsContainerRef?.value
-            ? Array.from(
-                options.cardsContainerRef.value.querySelectorAll(
-                  options.cardsSelector ?? 'article, [data-reveal-item], [data-pack-card], [data-event-card], .value-card, .grid > *',
-                ),
-              )
-            : [])
+            ? Array.from(options.cardsContainerRef.value.querySelectorAll(cardSelector))
+            : Array.from(section.querySelectorAll(cardSelector)))
 
         if (cards.length) {
           cards.forEach((card) => {
@@ -165,6 +166,88 @@ export function useSectionMotion(
             })
           })
         }
+        return
+      }
+
+      if (preset === 'tables') {
+        const headingEl = options.headingRef?.value
+          ?? (options.headingSelector
+            ? section.querySelector<HTMLElement>(options.headingSelector)
+            : section.querySelector('h2'))
+
+        revealHeader(headingEl, options.subtitleRef?.value ?? null)
+
+        const tableSelector = options.tablesSelector ?? '.spec-table'
+        const tables = options.tablesContainerRef?.value
+          ? Array.from(options.tablesContainerRef.value.querySelectorAll(tableSelector))
+          : Array.from(section.querySelectorAll(tableSelector))
+
+        tables.forEach((tableEl, index) => {
+          const table = tableEl as HTMLElement
+          const thead = table.querySelector('thead')
+          const rows = table.querySelectorAll('tbody tr')
+          const tableDelay = index * 0.1
+
+          gsap.fromTo(
+            table,
+            { y: getRevealY(52), autoAlpha: 0, scale: 0.96, force3D: true },
+            {
+              y: 0,
+              autoAlpha: 1,
+              scale: 1,
+              duration: 0.92,
+              ease: SCROLL_REVEAL_EASE,
+              force3D: true,
+              delay: tableDelay,
+              scrollTrigger: {
+                trigger: table,
+                start: SCROLL_REVEAL_START,
+                once: true,
+              },
+            },
+          )
+
+          if (thead) {
+            gsap.fromTo(
+              thead,
+              { y: -14, autoAlpha: 0, force3D: true },
+              {
+                y: 0,
+                autoAlpha: 1,
+                duration: 0.74,
+                ease: SCROLL_REVEAL_EASE,
+                force3D: true,
+                delay: 0.14 + tableDelay,
+                scrollTrigger: {
+                  trigger: table,
+                  start: SCROLL_REVEAL_START,
+                  once: true,
+                },
+              },
+            )
+          }
+
+          if (rows.length) {
+            gsap.fromTo(
+              rows,
+              { y: getRevealY(22), autoAlpha: 0, force3D: true },
+              {
+                y: 0,
+                autoAlpha: 1,
+                duration: 0.62,
+                stagger: 0.045,
+                ease: SCROLL_REVEAL_EASE,
+                force3D: true,
+                delay: 0.24 + tableDelay,
+                scrollTrigger: {
+                  trigger: table,
+                  start: SCROLL_REVEAL_START,
+                  once: true,
+                },
+              },
+            )
+          }
+        })
         return
       }
 

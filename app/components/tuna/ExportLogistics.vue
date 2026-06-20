@@ -12,8 +12,12 @@ const sectionRef = ref<HTMLElement | null>(null);
 const leftRef = ref<HTMLElement | null>(null);
 const rightRef = ref<HTMLElement | null>(null);
 
-useSectionMotion(sectionRef, { preset: 'cards' })
-;
+useSectionMotion(sectionRef, {
+  preset: 'split',
+  contentRef: leftRef,
+  imageRef: rightRef,
+  headingSelector: '#export-heading',
+})
 </script>
 
 <template>
