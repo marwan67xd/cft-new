@@ -3,7 +3,7 @@ const { t } = useI18n()
 const localePath = useLocalePath()
 const ctaRef = ref<HTMLElement | null>(null)
 
-useSectionMotion(sectionRef, { preset: 'standard' })
+useSectionMotion(ctaRef, { preset: 'standard' })
 </script>
 
 <template>
