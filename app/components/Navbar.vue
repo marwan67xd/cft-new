@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import logoImage from "~/assets/logo/logo-2-10-10-63.png";
+import gsap from 'gsap'
 const { t } = useI18n();
 const localePath = useLocalePath();
 
@@ -27,8 +28,25 @@ const updateScroll = () => {
   isScrolled.value = window.scrollY > 20;
 };
 
-onMounted(() => {
+onMounted(async () => {
   window.addEventListener("scroll", updateScroll, { passive: true });
+
+  if (!import.meta.client || !headerRef.value) return
+
+  await nextTick()
+
+  if (isHomePage.value && shouldPlayHomeIntro()) return
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+  const header = headerRef.value
+  const startY = -header.offsetHeight
+
+  gsap.fromTo(
+    header,
+    { y: startY, autoAlpha: 0, immediateRender: true },
+    { y: 0, autoAlpha: 1, duration: 1.1, ease: 'expo.out', force3D: true },
+  )
 });
 
 onUnmounted(() => {

@@ -21,6 +21,11 @@
 
   body {
     @apply text-gray-700 antialiased;
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
+  }
+
+  html.is-scrolling body {
     scrollbar-width: thin;
     scrollbar-color: #1e293b transparent;
   }
@@ -30,9 +35,14 @@
   }
 }
 
-/* Premium global scrollbar — WebKit */
+/* Premium global scrollbar — hidden until scrolling */
 @supports selector(::-webkit-scrollbar) {
   ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  html.is-scrolling ::-webkit-scrollbar {
     width: 7px;
     height: 7px;
   }
@@ -42,14 +52,19 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
+    background: transparent;
     border-radius: 9999px;
     border: 2px solid transparent;
     background-clip: padding-box;
-    transition: background-color 220ms ease, background 220ms ease;
+    transition: background 280ms ease, opacity 280ms ease;
   }
 
-  ::-webkit-scrollbar-thumb:hover {
+  html.is-scrolling ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
+    background-clip: padding-box;
+  }
+
+  html.is-scrolling ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(180deg, #475569 0%, #334155 100%);
     background-clip: padding-box;
   }

@@ -126,6 +126,7 @@ onUnmounted(() => {
 <template>
   <section
     ref="sectionRef"
+    data-motion-handled
     class="relative min-h-[70vh] sm:min-h-[90vh] flex items-center justify-center overflow-hidden"
     aria-label="Hero"
   >

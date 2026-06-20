@@ -3,14 +3,37 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import 'lenis/dist/lenis.css'
 
+const SCROLLBAR_IDLE_MS = 900
+
 export default defineNuxtPlugin({
   name: 'smooth-scroll',
   dependsOn: ['gsap'],
   setup(nuxtApp) {
     if (!import.meta.client) return
 
+    const root = document.documentElement
+    let scrollbarTimer: number | null = null
+
+    const showScrollbar = () => {
+      root.classList.add('is-scrolling')
+    }
+
+    const hideScrollbar = () => {
+      root.classList.remove('is-scrolling')
+    }
+
+    const markScrollActivity = () => {
+      showScrollbar()
+      if (scrollbarTimer) window.clearTimeout(scrollbarTimer)
+      scrollbarTimer = window.setTimeout(hideScrollbar, SCROLLBAR_IDLE_MS)
+    }
+
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReducedMotion) return
+
+    if (prefersReducedMotion) {
+      root.classList.add('is-scrolling')
+      return
+    }
 
     const lenis = new Lenis({
       lerp: 0.085,
@@ -50,7 +73,10 @@ export default defineNuxtPlugin({
       pinType: scroller.style.transform ? 'transform' : 'fixed',
     })
 
-    lenis.on('scroll', ScrollTrigger.update)
+    lenis.on('scroll', () => {
+      markScrollActivity()
+      ScrollTrigger.update()
+    })
 
     ScrollTrigger.addEventListener('refresh', () => {
       lenis.resize()
@@ -63,6 +89,11 @@ export default defineNuxtPlugin({
     gsap.ticker.add(onTicker)
     gsap.ticker.lagSmoothing(0)
 
+    const onNativeScroll = () => markScrollActivity()
+    window.addEventListener('scroll', onNativeScroll, { passive: true })
+    window.addEventListener('wheel', markScrollActivity, { passive: true })
+    window.addEventListener('touchmove', markScrollActivity, { passive: true })
+
     ScrollTrigger.refresh()
 
     nuxtApp.hook('page:finish', () => {
@@ -73,10 +104,15 @@ export default defineNuxtPlugin({
     })
 
     nuxtApp.hook('app:beforeUnmount', () => {
+      if (scrollbarTimer) window.clearTimeout(scrollbarTimer)
+      window.removeEventListener('scroll', onNativeScroll)
+      window.removeEventListener('wheel', markScrollActivity)
+      window.removeEventListener('touchmove', markScrollActivity)
       lenis.destroy()
       gsap.ticker.remove(onTicker)
       ScrollTrigger.scrollerProxy(scroller, {})
       ScrollTrigger.clearScrollMemory()
+      hideScrollbar()
     })
 
     return {

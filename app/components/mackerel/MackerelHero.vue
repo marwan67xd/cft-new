@@ -50,6 +50,7 @@ onUnmounted(() => {
 <template>
   <section
     ref="heroRef"
+    data-motion-handled
     class="relative min-h-[70vh] flex items-center justify-center overflow-hidden"
     aria-label="Mackerel Fillets"
   >

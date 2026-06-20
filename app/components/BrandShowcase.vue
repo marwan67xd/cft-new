@@ -238,6 +238,7 @@ onUnmounted(() => {
 <template>
   <section
     ref="sectionRef"
+    data-motion-handled
     class="py-16 sm:py-20 lg:py-24 bg-white overflow-hidden"
     aria-labelledby="brands-heading"
   >

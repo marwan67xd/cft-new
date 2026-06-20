@@ -63,6 +63,7 @@ onUnmounted(() => {
 <template>
   <section
     ref="heroRef"
+    data-motion-handled
     class="relative min-h-[80vh] flex flex-col justify-start pt-40 sm:pt-48 pb-24 overflow-hidden"
     aria-label="Premium Tuna Products"
   >
