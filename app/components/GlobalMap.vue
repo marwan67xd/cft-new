@@ -9,26 +9,22 @@ const tooltipRef = ref<HTMLElement | null>(null)
 
 const { run } = useScrollReveal(sectionRef)
 
-run(({ reveal, revealHeader }) => {
+run(({ revealHeader, revealWhenCentered }) => {
   if (!sectionRef.value) return
 
   revealHeader(headingRef.value, subtitleRef.value, sectionRef.value)
 
   if (cardRef.value) {
-    reveal(cardRef.value, {
-      trigger: sectionRef.value,
+    revealWhenCentered(cardRef.value, {
       from: { y: 40, opacity: 0, scale: 0.97 },
       duration: 1,
-      delay: 0.12,
     })
   }
 
   if (tooltipRef.value) {
-    reveal(tooltipRef.value, {
-      trigger: sectionRef.value,
+    revealWhenCentered(tooltipRef.value, {
       from: { y: 20, opacity: 0, scale: 0.94 },
       duration: 0.8,
-      delay: 0.28,
     })
   }
 })

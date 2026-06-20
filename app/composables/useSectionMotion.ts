@@ -3,6 +3,8 @@ import type gsap from 'gsap'
 import type { ScrollTrigger as ScrollTriggerPlugin } from 'gsap/ScrollTrigger'
 import {
   SCROLL_REVEAL_EASE,
+  SCROLL_REVEAL_START,
+  SCROLL_REVEAL_START_CENTER,
   markMotionHandled,
   revealTargets,
   type ScrollRevealOptions,
@@ -75,16 +77,16 @@ export function useSectionMotion(
     const revealHeader = (heading: Element | null, subtitle: Element | null) => {
       if (heading) {
         reveal(heading, {
-          trigger: section,
-          start: 'top 86%',
+          trigger: heading as HTMLElement,
+          start: SCROLL_REVEAL_START,
           from: { y: 36, opacity: 0 },
           duration: 0.92,
         })
       }
       if (subtitle) {
         reveal(subtitle, {
-          trigger: section,
-          start: 'top 86%',
+          trigger: subtitle as HTMLElement,
+          start: SCROLL_REVEAL_START,
           from: { y: 28, opacity: 0 },
           duration: 0.88,
           delay: heading ? 0.1 : 0,
@@ -110,25 +112,26 @@ export function useSectionMotion(
 
         if (headingEl) {
           reveal(headingEl, {
-            trigger: section,
+            trigger: headingEl as HTMLElement,
+            start: SCROLL_REVEAL_START,
             from: { y: 32, opacity: 0 },
             duration: 0.9,
           })
         }
         if (imageEl) {
           reveal(imageEl, {
-            trigger: section,
+            trigger: imageEl,
+            start: SCROLL_REVEAL_START,
             from: { x: -48, opacity: 0, scale: 0.97 },
             duration: 0.95,
-            delay: 0.08,
           })
         }
         if (contentEl) {
           reveal(contentEl, {
-            trigger: section,
+            trigger: contentEl,
+            start: SCROLL_REVEAL_START,
             from: { x: 48, opacity: 0 },
             duration: 0.95,
-            delay: 0.14,
           })
         }
         return
@@ -152,12 +155,13 @@ export function useSectionMotion(
             : [])
 
         if (cards.length) {
-          reveal(cards, {
-            trigger: section,
-            from: { y: 40, opacity: 0, scale: 0.96 },
-            duration: 0.88,
-            stagger: 0.1,
-            delay: 0.12,
+          cards.forEach((card) => {
+            reveal(card, {
+              trigger: card as HTMLElement,
+              start: SCROLL_REVEAL_START,
+              from: { y: 40, opacity: 0, scale: 0.96 },
+              duration: 0.88,
+            })
           })
         }
         return
@@ -169,7 +173,7 @@ export function useSectionMotion(
           trigger: section,
           from: { y: 48, opacity: 0, scale: 0.96 },
           duration: 1,
-          start: 'top 88%',
+          start: SCROLL_REVEAL_START_CENTER,
         })
 
         const headingEl = options.headingRef?.value ?? section.querySelector('h2')
@@ -181,7 +185,7 @@ export function useSectionMotion(
             from: { y: 28, opacity: 0 },
             duration: 0.85,
             delay: 0.1,
-            start: 'top 88%',
+            start: SCROLL_REVEAL_START_CENTER,
           })
         }
         if (subtitleEl) {
@@ -190,7 +194,7 @@ export function useSectionMotion(
             from: { y: 22, opacity: 0 },
             duration: 0.85,
             delay: 0.2,
-            start: 'top 88%',
+            start: SCROLL_REVEAL_START_CENTER,
           })
         }
         return
@@ -209,12 +213,13 @@ export function useSectionMotion(
         'article, .grid > *, ul.grid > li, [data-reveal-item]',
       )
       if (items.length) {
-        reveal(items, {
-          trigger: section,
-          from: { y: 32, opacity: 0 },
-          duration: 0.85,
-          stagger: 0.08,
-          delay: 0.14,
+        items.forEach((item) => {
+          reveal(item, {
+            trigger: item as HTMLElement,
+            start: SCROLL_REVEAL_START,
+            from: { y: 32, opacity: 0 },
+            duration: 0.85,
+          })
         })
       }
     }, section)

@@ -32,28 +32,23 @@ function closeGallery() {
 
 const { run } = useScrollReveal(sectionRef)
 
-run(({ reveal, revealHeader }) => {
+run(({ reveal, revealHeader, revealWhenCentered }) => {
   if (!sectionRef.value) return
 
   revealHeader(headingRef.value, subtitleRef.value, sectionRef.value)
 
   const els = cardRefs.value.filter(Boolean)
   if (els.length) {
-    reveal(els, {
-      trigger: sectionRef.value,
+    revealWhenCentered(els, {
       from: { y: 40, opacity: 0, scale: 0.97 },
       duration: 0.88,
-      stagger: 0.1,
-      delay: 0.14,
     })
   }
 
   if (footerLinkRef.value) {
-    reveal(footerLinkRef.value, {
-      trigger: sectionRef.value,
+    revealWhenCentered(footerLinkRef.value, {
       from: { y: 20, opacity: 0 },
       duration: 0.8,
-      delay: 0.35,
     })
   }
 })

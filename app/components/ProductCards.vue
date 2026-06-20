@@ -38,19 +38,16 @@ function setCardRef(el: unknown, i: number) {
 
 const { run } = useScrollReveal(sectionRef)
 
-run(({ reveal, revealHeader }) => {
+run(({ reveal, revealHeader, revealWhenCentered }) => {
   if (!sectionRef.value) return
 
   revealHeader(headingRef.value, subtitleRef.value, sectionRef.value)
 
   const cards = cardRefs.value.filter(Boolean)
   if (cards.length) {
-    reveal(cards, {
-      trigger: sectionRef.value,
+    revealWhenCentered(cards, {
       from: { y: 48, opacity: 0, scale: 0.96 },
       duration: 0.92,
-      stagger: 0.14,
-      delay: 0.15,
     })
   }
 })

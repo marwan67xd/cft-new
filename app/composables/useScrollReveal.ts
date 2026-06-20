@@ -4,6 +4,13 @@ import type { ScrollTrigger as ScrollTriggerPlugin } from 'gsap/ScrollTrigger'
 
 export const SCROLL_REVEAL_EASE = 'power4.out'
 
+/** When the trigger enters the viewport focal zone — near vertical center, not the bottom edge. */
+export const SCROLL_REVEAL_START = 'top 52%'
+/** Large blocks (CTA panels, footer columns) — center of element crosses viewport center. */
+export const SCROLL_REVEAL_START_CENTER = 'center center'
+/** Compact strips visible early but still above the bottom edge. */
+export const SCROLL_REVEAL_START_COMPACT = 'top 62%'
+
 export type ScrollRevealFrom = {
   y?: number
   x?: number
@@ -39,6 +46,20 @@ function sectionHasScrollTrigger(section: HTMLElement, ScrollTrigger: typeof Scr
   })
 }
 
+export function revealInView(
+  gsap: typeof import('gsap').default,
+  targets: Element | Element[],
+  options: Omit<ScrollRevealOptions, 'trigger'> & { trigger?: HTMLElement },
+) {
+  normalizeTargets(targets).forEach((el) => {
+    revealTargets(gsap, el, {
+      ...options,
+      trigger: (options.trigger ?? el) as HTMLElement,
+      start: options.start ?? SCROLL_REVEAL_START,
+    })
+  })
+}
+
 export function revealTargets(
   gsap: typeof import('gsap').default,
   targets: Element | Element[],
@@ -70,7 +91,7 @@ export function revealTargets(
       force3D: true,
       scrollTrigger: {
         trigger: options.trigger,
-        start: options.start ?? 'top 84%',
+        start: options.start ?? SCROLL_REVEAL_START,
         once: true,
       },
     },
@@ -94,8 +115,8 @@ function animateSectionFallback(
 
   const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: section,
-      start: 'top 86%',
+      trigger: heading,
+      start: SCROLL_REVEAL_START,
       once: true,
     },
   })
@@ -116,19 +137,24 @@ function animateSectionFallback(
   }
 
   if (cards.length) {
-    tl.fromTo(
-      cards,
-      { y: 32, autoAlpha: 0, force3D: true },
-      {
-        y: 0,
-        autoAlpha: 1,
-        duration: 0.85,
-        stagger: 0.08,
-        ease: SCROLL_REVEAL_EASE,
-        force3D: true,
-      },
-      '-=0.55',
-    )
+    cards.forEach((card) => {
+      gsap.fromTo(
+        card,
+        { y: 32, autoAlpha: 0, force3D: true },
+        {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.85,
+          ease: SCROLL_REVEAL_EASE,
+          force3D: true,
+          scrollTrigger: {
+            trigger: card,
+            start: SCROLL_REVEAL_START,
+            once: true,
+          },
+        },
+      )
+    })
   }
 
   markMotionHandled(section)
@@ -215,6 +241,7 @@ export function useScrollReveal(sectionRef: Ref<HTMLElement | null>) {
     gsap: typeof gsap
     ScrollTrigger: typeof ScrollTriggerPlugin
     reveal: (targets: Element | Element[], options: ScrollRevealOptions) => void
+    revealWhenCentered: (targets: Element | Element[], options: Omit<ScrollRevealOptions, 'trigger'> & { trigger?: HTMLElement }) => void
     revealHeader: (heading: Element | null, subtitle: Element | null, trigger: HTMLElement) => void
   }) => void) {
     onMounted(async () => {
@@ -244,6 +271,13 @@ export function useScrollReveal(sectionRef: Ref<HTMLElement | null>) {
         revealTargets(gsap, targets, options)
       }
 
+      const revealWhenCentered = (
+        targets: Element | Element[],
+        options: Omit<ScrollRevealOptions, 'trigger'> & { trigger?: HTMLElement },
+      ) => {
+        revealInView(gsap, targets, options)
+      }
+
       const revealHeader = (
         heading: Element | null,
         subtitle: Element | null,
@@ -251,8 +285,8 @@ export function useScrollReveal(sectionRef: Ref<HTMLElement | null>) {
       ) => {
         if (heading) {
           reveal(heading, {
-            trigger,
-            start: 'top 86%',
+            trigger: heading as HTMLElement,
+            start: SCROLL_REVEAL_START,
             from: { y: 36, opacity: 0 },
             duration: 0.88,
           })
@@ -260,8 +294,8 @@ export function useScrollReveal(sectionRef: Ref<HTMLElement | null>) {
 
         if (subtitle) {
           reveal(subtitle, {
-            trigger,
-            start: 'top 86%',
+            trigger: subtitle as HTMLElement,
+            start: SCROLL_REVEAL_START,
             from: { y: 28, opacity: 0 },
             duration: 0.88,
             delay: heading ? 0.1 : 0,
@@ -270,7 +304,7 @@ export function useScrollReveal(sectionRef: Ref<HTMLElement | null>) {
       }
 
       ctx = gsap.context(() => {
-        setup({ gsap, ScrollTrigger, reveal, revealHeader })
+        setup({ gsap, ScrollTrigger, reveal, revealWhenCentered, revealHeader })
       }, section)
 
       requestAnimationFrame(() => {

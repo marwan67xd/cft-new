@@ -96,7 +96,7 @@ onMounted(() => {
               duration: 0.9,
               ease: SCROLL_REVEAL_EASE,
               force3D: true,
-              scrollTrigger: { trigger: sectionRef.value, start: 'top 86%', once: true },
+              scrollTrigger: { trigger: sectionRef.value, start: SCROLL_REVEAL_START, once: true },
             },
           )
         }
@@ -112,7 +112,7 @@ onMounted(() => {
               delay: 0.1,
               ease: SCROLL_REVEAL_EASE,
               force3D: true,
-              scrollTrigger: { trigger: sectionRef.value, start: 'top 86%', once: true },
+              scrollTrigger: { trigger: sectionRef.value, start: SCROLL_REVEAL_START, once: true },
             },
           )
         }
@@ -128,7 +128,7 @@ onMounted(() => {
               delay: 0.18,
               ease: SCROLL_REVEAL_EASE,
               force3D: true,
-              scrollTrigger: { trigger: sectionRef.value, start: 'top 84%', once: true },
+              scrollTrigger: { trigger: sectionRef.value, start: SCROLL_REVEAL_START, once: true },
             },
           )
         }
@@ -147,7 +147,7 @@ onMounted(() => {
               force3D: true,
               scrollTrigger: {
                 trigger: sectionRef.value,
-                start: 'top 82%',
+                start: SCROLL_REVEAL_START,
                 once: true,
               },
             },

@@ -20,43 +20,35 @@ const highlights = computed(() => [
 
 const { run } = useScrollReveal(sectionRef)
 
-run(({ reveal }) => {
+run(({ revealWhenCentered }) => {
   if (!sectionRef.value) return
 
   if (leftRef.value) {
-    reveal(leftRef.value, {
-      trigger: sectionRef.value,
+    revealWhenCentered(leftRef.value, {
       from: { x: -36, opacity: 0 },
       duration: 1,
     })
   }
 
   if (badgeRef.value) {
-    reveal(badgeRef.value, {
-      trigger: sectionRef.value,
+    revealWhenCentered(badgeRef.value, {
       from: { y: 24, opacity: 0, scale: 0.92 },
       duration: 0.75,
-      delay: 0.2,
     })
   }
 
   if (rightRef.value) {
-    reveal(rightRef.value, {
-      trigger: sectionRef.value,
+    revealWhenCentered(rightRef.value, {
       from: { x: 36, opacity: 0 },
       duration: 1,
-      delay: 0.08,
     })
   }
 
   const highlights = highlightRefs.value.filter(Boolean)
   if (highlights.length) {
-    reveal(highlights, {
-      trigger: sectionRef.value,
+    revealWhenCentered(highlights, {
       from: { y: 28, opacity: 0 },
       duration: 0.8,
-      stagger: 0.12,
-      delay: 0.25,
     })
   }
 })

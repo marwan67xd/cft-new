@@ -7,47 +7,18 @@ const buttonRef = ref<HTMLElement | null>(null)
 
 const { run } = useScrollReveal(sectionRef)
 
-run(({ reveal }) => {
+run(({ revealWhenCentered }) => {
   if (!sectionRef.value) return
 
-  if (panelRef.value) {
-    reveal(panelRef.value, {
-      trigger: sectionRef.value,
-      from: { y: 48, opacity: 0, scale: 0.96 },
-      duration: 1,
-      start: 'top 88%',
-    })
-  }
+  const targets = [panelRef.value, headingRef.value, subtitleRef.value, buttonRef.value].filter(
+    (el): el is HTMLElement => el !== null,
+  )
 
-  if (headingRef.value) {
-    reveal(headingRef.value, {
-      trigger: sectionRef.value,
-      from: { y: 28, opacity: 0 },
-      duration: 0.85,
-      delay: 0.1,
-      start: 'top 88%',
-    })
-  }
-
-  if (subtitleRef.value) {
-    reveal(subtitleRef.value, {
-      trigger: sectionRef.value,
-      from: { y: 22, opacity: 0 },
-      duration: 0.85,
-      delay: 0.2,
-      start: 'top 88%',
-    })
-  }
-
-  if (buttonRef.value) {
-    reveal(buttonRef.value, {
-      trigger: sectionRef.value,
-      from: { y: 18, opacity: 0, scale: 0.95 },
-      duration: 0.8,
-      delay: 0.32,
-      start: 'top 88%',
-    })
-  }
+  revealWhenCentered(targets, {
+    start: SCROLL_REVEAL_START_CENTER,
+    from: { y: 32, opacity: 0, scale: 0.96 },
+    duration: 0.95,
+  })
 })
 </script>
 

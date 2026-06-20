@@ -17,16 +17,13 @@ function setItemRef(el: unknown, i: number) {
 
 const { run } = useScrollReveal(sectionRef)
 
-run(({ reveal }) => {
+run(({ revealWhenCentered }) => {
   const els = itemRefs.value.filter(Boolean)
   if (!sectionRef.value || !els.length) return
 
-  reveal(els, {
-    trigger: sectionRef.value,
-    start: 'top 92%',
+  revealWhenCentered(els, {
     from: { y: 32, opacity: 0, scale: 0.96 },
     duration: 0.85,
-    stagger: 0.1,
   })
 })
 </script>

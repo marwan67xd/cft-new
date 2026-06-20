@@ -39,7 +39,7 @@ const bottomRef = ref<HTMLElement | null>(null)
 
 const { run } = useScrollReveal(sectionRef)
 
-run(({ reveal }) => {
+run(({ revealWhenCentered }) => {
   if (!sectionRef.value) return
 
   const columns = [brandColRef.value, linksColRef.value, productsColRef.value, contactColRef.value].filter(
@@ -47,22 +47,18 @@ run(({ reveal }) => {
   )
 
   if (columns.length) {
-    reveal(columns, {
-      trigger: sectionRef.value,
-      start: 'top 92%',
+    revealWhenCentered(columns, {
+      start: SCROLL_REVEAL_START_COMPACT,
       from: { y: 36, opacity: 0 },
       duration: 0.9,
-      stagger: 0.1,
     })
   }
 
   if (bottomRef.value) {
-    reveal(bottomRef.value, {
-      trigger: sectionRef.value,
-      start: 'top 92%',
+    revealWhenCentered(bottomRef.value, {
+      start: SCROLL_REVEAL_START_COMPACT,
       from: { y: 20, opacity: 0 },
       duration: 0.8,
-      delay: 0.35,
     })
   }
 })

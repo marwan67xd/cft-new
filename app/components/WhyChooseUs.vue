@@ -17,12 +17,11 @@ const imageRef = ref<HTMLElement | null>(null)
 
 const { run } = useScrollReveal(sectionRef)
 
-run(({ reveal }) => {
+run(({ revealWhenCentered }) => {
   if (!sectionRef.value) return
 
   if (headingRef.value) {
-    reveal(headingRef.value, {
-      trigger: sectionRef.value,
+    revealWhenCentered(headingRef.value, {
       from: { y: 32, opacity: 0 },
       duration: 0.88,
     })
@@ -30,21 +29,16 @@ run(({ reveal }) => {
 
   const items = listRef.value?.querySelectorAll('.why-item')
   if (items?.length) {
-    reveal(items, {
-      trigger: sectionRef.value,
+    revealWhenCentered(items, {
       from: { x: -28, opacity: 0 },
       duration: 0.82,
-      stagger: 0.1,
-      delay: 0.12,
     })
   }
 
   if (imageRef.value) {
-    reveal(imageRef.value, {
-      trigger: sectionRef.value,
+    revealWhenCentered(imageRef.value, {
       from: { x: 36, opacity: 0, scale: 0.97 },
       duration: 1,
-      delay: 0.08,
     })
   }
 })

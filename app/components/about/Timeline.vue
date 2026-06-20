@@ -23,7 +23,7 @@ useSectionMotion(sectionRef, {
         ease: SCROLL_REVEAL_EASE,
         transformOrigin: 'left center',
         force3D: true,
-        scrollTrigger: { trigger: sectionRef.value, start: 'top 80%', once: true },
+        scrollTrigger: { trigger: sectionRef.value, start: SCROLL_REVEAL_START, once: true },
       })
     }
     if (itemsRef.value) {
@@ -34,7 +34,7 @@ useSectionMotion(sectionRef, {
         from: { scale: 0, opacity: 0 },
         duration: 0.7,
         stagger: 0.15,
-        start: 'top 78%',
+        start: SCROLL_REVEAL_START,
       })
       reveal(labels, {
         trigger: sectionRef.value!,
@@ -42,7 +42,7 @@ useSectionMotion(sectionRef, {
         duration: 0.75,
         stagger: 0.15,
         delay: 0.2,
-        start: 'top 78%',
+        start: SCROLL_REVEAL_START,
       })
     }
   },

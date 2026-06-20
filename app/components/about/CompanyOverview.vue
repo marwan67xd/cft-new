@@ -64,14 +64,16 @@ useSectionMotion(sectionRef, {
 
     if (leftRef.value) {
       reveal(leftRef.value, {
-        trigger: sectionRef.value!,
+        trigger: leftRef.value,
+        start: SCROLL_REVEAL_START,
         from: { x: -48, opacity: 0 },
         duration: 0.95,
       })
     }
     if (rightRef.value) {
       reveal(rightRef.value, {
-        trigger: sectionRef.value!,
+        trigger: rightRef.value,
+        start: SCROLL_REVEAL_START,
         from: { x: 48, opacity: 0 },
         duration: 0.95,
         delay: 0.08,
@@ -81,7 +83,7 @@ useSectionMotion(sectionRef, {
       const children = statsRowRef.value.querySelectorAll('.stat-card')
       ScrollTrigger.create({
         trigger: sectionRef.value,
-        start: 'top 75%',
+        start: SCROLL_REVEAL_START,
         onEnter: startCounterAnimation,
         once: true,
       })
@@ -90,7 +92,7 @@ useSectionMotion(sectionRef, {
         from: { y: 24, opacity: 0, scale: 0.96 },
         duration: 0.85,
         stagger: 0.12,
-        start: 'top 75%',
+        start: SCROLL_REVEAL_START,
       })
     }
   },
