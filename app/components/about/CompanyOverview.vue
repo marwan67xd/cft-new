@@ -66,7 +66,7 @@ useSectionMotion(sectionRef, {
       reveal(leftRef.value, {
         trigger: leftRef.value,
         start: SCROLL_REVEAL_START,
-        from: { x: -48, opacity: 0 },
+        from: getSplitRevealFrom('left'),
         duration: 0.95,
       })
     }
@@ -74,7 +74,7 @@ useSectionMotion(sectionRef, {
       reveal(rightRef.value, {
         trigger: rightRef.value,
         start: SCROLL_REVEAL_START,
-        from: { x: 48, opacity: 0 },
+        from: getSplitRevealFrom('right'),
         duration: 0.95,
         delay: 0.08,
       })

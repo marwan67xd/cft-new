@@ -9,14 +9,14 @@ useSectionMotion(sectionRef, {
     if (visionRef.value) {
       reveal(visionRef.value, {
         trigger: sectionRef.value!,
-        from: { x: -48, opacity: 0 },
+        from: getSplitRevealFrom('left'),
         duration: 0.95,
       })
     }
     if (missionRef.value) {
       reveal(missionRef.value, {
         trigger: sectionRef.value!,
-        from: { x: 48, opacity: 0 },
+        from: getSplitRevealFrom('right'),
         duration: 0.95,
         delay: 0.1,
       })
@@ -31,7 +31,7 @@ useSectionMotion(sectionRef, {
     class="py-0"
     aria-labelledby="mission-vision-heading"
   >
-    <div class="grid md:grid-cols-2 min-h-[320px] sm:min-h-[360px]">
+    <div class="grid md:grid-cols-2 min-h-0 md:min-h-[320px] lg:min-h-[360px]">
       <!-- Left: Vision (dark blue) -->
       <div
         ref="visionRef"

@@ -9,6 +9,7 @@ import {
   revealTargets,
   type ScrollRevealOptions,
 } from './useScrollReveal'
+import { getRevealY, getSplitRevealFrom } from './useResponsiveMotion'
 
 export type SectionMotionApi = {
   gsap: typeof gsap
@@ -79,7 +80,7 @@ export function useSectionMotion(
         reveal(heading, {
           trigger: heading as HTMLElement,
           start: SCROLL_REVEAL_START,
-          from: { y: 36, opacity: 0 },
+          from: { y: getRevealY(36), opacity: 0 },
           duration: 0.92,
         })
       }
@@ -87,7 +88,7 @@ export function useSectionMotion(
         reveal(subtitle, {
           trigger: subtitle as HTMLElement,
           start: SCROLL_REVEAL_START,
-          from: { y: 28, opacity: 0 },
+          from: { y: getRevealY(28), opacity: 0 },
           duration: 0.88,
           delay: heading ? 0.1 : 0,
         })
@@ -114,7 +115,7 @@ export function useSectionMotion(
           reveal(headingEl, {
             trigger: headingEl as HTMLElement,
             start: SCROLL_REVEAL_START,
-            from: { y: 32, opacity: 0 },
+            from: { y: getRevealY(32), opacity: 0 },
             duration: 0.9,
           })
         }
@@ -122,7 +123,7 @@ export function useSectionMotion(
           reveal(imageEl, {
             trigger: imageEl,
             start: SCROLL_REVEAL_START,
-            from: { x: -48, opacity: 0, scale: 0.97 },
+            from: getSplitRevealFrom('left'),
             duration: 0.95,
           })
         }
@@ -130,7 +131,7 @@ export function useSectionMotion(
           reveal(contentEl, {
             trigger: contentEl,
             start: SCROLL_REVEAL_START,
-            from: { x: 48, opacity: 0 },
+            from: getSplitRevealFrom('right', { scale: 1 }),
             duration: 0.95,
           })
         }
@@ -159,7 +160,7 @@ export function useSectionMotion(
             reveal(card, {
               trigger: card as HTMLElement,
               start: SCROLL_REVEAL_START,
-              from: { y: 40, opacity: 0, scale: 0.96 },
+              from: { y: getRevealY(40), opacity: 0, scale: 0.96 },
               duration: 0.88,
             })
           })
@@ -171,7 +172,7 @@ export function useSectionMotion(
         const panelEl = options.panelRef?.value ?? section
         reveal(panelEl, {
           trigger: section,
-          from: { y: 48, opacity: 0, scale: 0.96 },
+          from: { y: getRevealY(48), opacity: 0, scale: 0.96 },
           duration: 1,
           start: SCROLL_REVEAL_START_CENTER,
         })
@@ -182,7 +183,7 @@ export function useSectionMotion(
         if (headingEl) {
           reveal(headingEl, {
             trigger: section,
-            from: { y: 28, opacity: 0 },
+            from: { y: getRevealY(28), opacity: 0 },
             duration: 0.85,
             delay: 0.1,
             start: SCROLL_REVEAL_START_CENTER,
@@ -191,7 +192,7 @@ export function useSectionMotion(
         if (subtitleEl) {
           reveal(subtitleEl, {
             trigger: section,
-            from: { y: 22, opacity: 0 },
+            from: { y: getRevealY(22), opacity: 0 },
             duration: 0.85,
             delay: 0.2,
             start: SCROLL_REVEAL_START_CENTER,
@@ -217,7 +218,7 @@ export function useSectionMotion(
           reveal(item, {
             trigger: item as HTMLElement,
             start: SCROLL_REVEAL_START,
-            from: { y: 32, opacity: 0 },
+            from: { y: getRevealY(32), opacity: 0 },
             duration: 0.85,
           })
         })

@@ -2,6 +2,8 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
 import heroBg from '~/assets/home/home-hero.jpg'
+import heroBgMobile from '~/assets/home/home-hero-mobile-custom.jpg'
+import { scaleMotion } from '~/composables/useResponsiveMotion'
 
 const localePath = useLocalePath()
 
@@ -13,7 +15,7 @@ const btnsRef = ref<HTMLElement | null>(null)
 const scrollRef = ref<HTMLElement | null>(null)
 
 const heroSlidesDesktop = [heroBg, '/images/cfi-facility.jpg'] as const
-const heroSlidesMobile = [heroBg, '/images/cfi-facility.jpg'] as const
+const heroSlidesMobile = [heroBgMobile, '/images/cfi-facility.jpg'] as const
 const activeSlide = ref(0)
 let slideTimer: number | null = null
 let gsapCtx: gsap.Context | null = null
@@ -45,10 +47,10 @@ function runHeroIntro() {
 
   if (!sectionRef.value || !titleEl || !descEl || !btnsEl || !scrollEl) return
 
-  gsap.set(titleEl, { y: 60, autoAlpha: 0 })
-  gsap.set(descEl, { y: 48, autoAlpha: 0 })
-  gsap.set(btnsEl, { y: 36, autoAlpha: 0 })
-  gsap.set(scrollEl, { y: 20, autoAlpha: 0 })
+  gsap.set(titleEl, { y: scaleMotion(60), autoAlpha: 0 })
+  gsap.set(descEl, { y: scaleMotion(48), autoAlpha: 0 })
+  gsap.set(btnsEl, { y: scaleMotion(36), autoAlpha: 0 })
+  gsap.set(scrollEl, { y: scaleMotion(20), autoAlpha: 0 })
 
   if (bgRef.value) {
     gsap.set(bgRef.value, { scale: 1.08, force3D: true })
@@ -72,24 +74,24 @@ function runHeroIntro() {
 
     tl.fromTo(
       titleEl,
-      { y: 60, autoAlpha: 0, immediateRender: true },
+      { y: scaleMotion(60), autoAlpha: 0, immediateRender: true },
       { y: 0, autoAlpha: 1, ease: HOME_INTRO_EASE, duration: HOME_INTRO_DURATION },
     )
       .fromTo(
         descEl,
-        { y: 48, autoAlpha: 0 },
+        { y: scaleMotion(48), autoAlpha: 0 },
         { y: 0, autoAlpha: 1, ease: HOME_INTRO_EASE, duration: HOME_INTRO_DURATION },
         '<0.1',
       )
       .fromTo(
         btnsEl,
-        { y: 36, autoAlpha: 0 },
+        { y: scaleMotion(36), autoAlpha: 0 },
         { y: 0, autoAlpha: 1, ease: HOME_INTRO_EASE, duration: HOME_INTRO_DURATION },
         '<0.2',
       )
       .fromTo(
         scrollEl,
-        { y: 20, autoAlpha: 0 },
+        { y: scaleMotion(20), autoAlpha: 0 },
         { y: 0, autoAlpha: 1, ease: HOME_INTRO_EASE, duration: HOME_INTRO_DURATION },
         '<0.25',
       )
@@ -127,7 +129,7 @@ onUnmounted(() => {
   <section
     ref="sectionRef"
     data-motion-handled
-    class="relative min-h-[70vh] sm:min-h-[90vh] flex items-center justify-center overflow-hidden"
+    class="relative min-h-[clamp(420px,70vh,900px)] sm:min-h-[90vh] flex items-center justify-center overflow-hidden pt-[env(safe-area-inset-top,0px)]"
     aria-label="Hero"
   >
     <div ref="bgRef" class="absolute inset-0 z-0" aria-hidden="true">
@@ -141,21 +143,17 @@ onUnmounted(() => {
       <div
         v-for="(slide, i) in heroSlidesMobile"
         :key="`mobile-${slide}`"
-        class="hero-slide absolute inset-0 md:hidden"
+        class="hero-slide hero-slide--mobile absolute inset-0 md:hidden bg-center bg-cover"
         :class="{ 'is-active': i === activeSlide }"
-        :style="{
-          backgroundImage: `url('${slide}')`,
-          backgroundSize: 'cover',
-          backgroundPosition: i === 0 ? 'center 30%' : 'center center',
-        }"
+        :style="{ backgroundImage: `url('${slide}')` }"
       />
       <div class="absolute inset-0 bg-gradient-to-b from-black/35 via-black/45 to-black/60" />
       <div class="hero-glow absolute -top-20 -left-20 h-64 w-64 rounded-full bg-aqua-400/20 blur-3xl" />
       <div class="hero-glow hero-glow-delay absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-ocean-300/20 blur-3xl" />
     </div>
 
-    <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 text-center translate-y-6 sm:translate-y-8 md:translate-y-12">
-      <div class="py-4 px-4 sm:py-5 sm:px-6 max-w-4xl mx-auto inline-block">
+    <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 text-center translate-y-4 sm:translate-y-8 md:translate-y-12">
+      <div class="py-4 px-2 sm:px-6 max-w-4xl mx-auto inline-block">
         <h1
           ref="titleRef"
           class="hero-title text-[clamp(1.85rem,8.8vw,4.75rem)] sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white tracking-tight max-w-4xl mx-auto leading-[1.08] drop-shadow-[0_8px_24px_rgba(0,0,0,1)]"

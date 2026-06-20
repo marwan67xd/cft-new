@@ -6,6 +6,7 @@
   html {
     scrollbar-gutter: stable;
     overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
   }
 
   img,
@@ -13,6 +14,14 @@
   svg {
     max-width: 100%;
     height: auto;
+  }
+
+  /* Prevent horizontal overflow from wide content */
+  section,
+  main,
+  footer,
+  header {
+    max-width: 100%;
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -122,11 +131,53 @@
 }
 
 /* On phones, show more of the image (less cropping) */
-@media (max-width: 640px) {
-  .hero-slide {
-    background-size: contain;
-    background-color: #000; /* fills letterbox area nicely under the dark overlay */
-    background-position: center center;
+@media (max-width: 767px) {
+  .hero-slide--mobile {
+    background-size: cover;
+    background-position: center 25%;
+    background-color: #000;
+  }
+}
+
+/* Inner page hero — consistent sizing + safe-area for fixed navbar */
+.page-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: clamp(420px, 65vh, 720px);
+  padding-top: calc(5.5rem + env(safe-area-inset-top, 0px));
+  padding-bottom: clamp(2rem, 5vh, 4rem);
+}
+
+@media (min-width: 640px) {
+  .page-hero {
+    min-height: clamp(480px, 70vh, 760px);
+    padding-top: calc(6rem + env(safe-area-inset-top, 0px));
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-hero {
+    min-height: clamp(520px, 75vh, 800px);
+  }
+}
+
+/* CTA buttons — full width on mobile, auto on larger screens */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 20rem;
+}
+
+@media (min-width: 640px) {
+  .btn-cta {
+    width: auto;
+    min-width: 12.5rem;
+    max-width: none;
   }
 }
 /* About page hero parallax background */

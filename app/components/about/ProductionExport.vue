@@ -23,14 +23,14 @@ useSectionMotion(sectionRef, {
     if (leftRef.value) {
       reveal(leftRef.value, {
         trigger: sectionRef.value!,
-        from: { x: -48, opacity: 0 },
+        from: getSplitRevealFrom('left'),
         duration: 0.95,
       })
     }
     if (rightRef.value) {
       reveal(rightRef.value, {
         trigger: sectionRef.value!,
-        from: { x: 48, opacity: 0 },
+        from: getSplitRevealFrom('right'),
         duration: 0.95,
         delay: 0.08,
       })

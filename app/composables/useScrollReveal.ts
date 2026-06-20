@@ -1,6 +1,7 @@
 import { nextTick, onMounted, onUnmounted, type Ref } from 'vue'
 import type gsap from 'gsap'
 import type { ScrollTrigger as ScrollTriggerPlugin } from 'gsap/ScrollTrigger'
+import { getRevealY } from './useResponsiveMotion'
 
 export const SCROLL_REVEAL_EASE = 'power4.out'
 
@@ -69,7 +70,7 @@ export function revealTargets(
   if (!els.length) return
 
   const from = {
-    y: options.from?.y ?? 40,
+    y: options.from?.y ?? getRevealY(40),
     x: options.from?.x ?? 0,
     opacity: options.from?.opacity ?? 0,
     scale: options.from?.scale ?? 1,
@@ -123,14 +124,14 @@ function animateSectionFallback(
 
   tl.fromTo(
     heading,
-    { y: 40, autoAlpha: 0, force3D: true },
+    { y: getRevealY(40), autoAlpha: 0, force3D: true },
     { y: 0, autoAlpha: 1, duration: 0.92, ease: SCROLL_REVEAL_EASE, force3D: true },
   )
 
   if (subtitle) {
     tl.fromTo(
       subtitle,
-      { y: 28, autoAlpha: 0, force3D: true },
+      { y: getRevealY(28), autoAlpha: 0, force3D: true },
       { y: 0, autoAlpha: 1, duration: 0.88, ease: SCROLL_REVEAL_EASE, force3D: true },
       '-=0.68',
     )
@@ -140,7 +141,7 @@ function animateSectionFallback(
     cards.forEach((card) => {
       gsap.fromTo(
         card,
-        { y: 32, autoAlpha: 0, force3D: true },
+        { y: getRevealY(32), autoAlpha: 0, force3D: true },
         {
           y: 0,
           autoAlpha: 1,

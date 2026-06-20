@@ -29,10 +29,10 @@ useSectionMotion(ctaRef, { preset: 'cta' })
           <p class="text-white/90 max-w-xl mx-auto mb-8">
             {{ $t('companyProfile.cta.subtitle') }}
           </p>
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 w-full max-w-md sm:max-w-none mx-auto">
             <NuxtLink
               :to="localePath('/#contact')"
-              class="inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-white text-ocean-600 font-semibold hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-ocean-500"
+              class="btn-cta px-8 py-3.5 rounded-xl bg-white text-ocean-600 font-semibold hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-ocean-500"
             >
               {{ $t('companyProfile.cta.contactButton') }}
             </NuxtLink>

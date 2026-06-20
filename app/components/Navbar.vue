@@ -57,7 +57,7 @@ onUnmounted(() => {
 <template>
   <header
     ref="headerRef"
-    class="main-header fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow,padding] duration-300"
+    class="main-header fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow,padding] duration-300 pt-[env(safe-area-inset-top,0px)]"
     :class="[
       isScrolled
         ? 'bg-white/95 backdrop-blur-sm shadow-nav py-3'
