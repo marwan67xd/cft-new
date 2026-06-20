@@ -39,7 +39,11 @@ const sectionRef = ref<HTMLElement | null>(null)
 const headingRef = ref<HTMLElement | null>(null)
 const tablesRef = ref<HTMLElement | null>(null)
 
-useSectionMotion(sectionRef, { preset: 'standard' })
+useSectionMotion(sectionRef, {
+  preset: 'tables',
+  headingRef,
+  tablesContainerRef: tablesRef,
+})
 </script>
 
 <template>
@@ -61,7 +65,7 @@ useSectionMotion(sectionRef, { preset: 'standard' })
         <!-- Fish Species Table -->
         <div class="overflow-x-auto">
           <div class="inline-block min-w-full align-middle">
-            <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-card">
+            <div class="spec-table overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-card">
               <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-navy">
                   <tr>
@@ -103,7 +107,7 @@ useSectionMotion(sectionRef, { preset: 'standard' })
         <!-- Packing Specifications Table -->
         <div class="overflow-x-auto">
           <div class="inline-block min-w-full align-middle">
-            <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-card">
+            <div class="spec-table overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-card">
               <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-navy">
                   <tr>
