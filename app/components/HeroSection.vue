@@ -152,7 +152,7 @@ onUnmounted(() => {
       <div class="hero-glow hero-glow-delay absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-ocean-300/20 blur-3xl" />
     </div>
 
-    <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 text-center translate-y-4 sm:translate-y-8 md:translate-y-12">
+    <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 text-center translate-y-8 sm:translate-y-12 md:translate-y-16">
       <div class="py-4 px-2 sm:px-6 max-w-4xl mx-auto inline-block">
         <h1
           ref="titleRef"
