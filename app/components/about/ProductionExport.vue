@@ -18,17 +18,32 @@ const regions = computed(() => [
   t('companyProfile.productionExport.middleEast'),
 ])
 
-onMounted(() => {
-  if (import.meta.client && sectionRef.value) {
-    import('gsap').then(({ default: gsap }) => {
-      import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
-        gsap.registerPlugin(ScrollTrigger)
-        gsap.fromTo(leftRef.value, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.7, scrollTrigger: { trigger: sectionRef.value, start: 'top 82%' } })
-        gsap.fromTo(rightRef.value, { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.7, scrollTrigger: { trigger: sectionRef.value, start: 'top 82%' } })
-        gsap.fromTo(mapRef.value, { opacity: 0, scale: 0.98 }, { opacity: 1, scale: 1, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 80%' } })
+useSectionMotion(sectionRef, {
+  setup({ reveal }) {
+    if (leftRef.value) {
+      reveal(leftRef.value, {
+        trigger: sectionRef.value!,
+        from: { x: -48, opacity: 0 },
+        duration: 0.95,
       })
-    })
-  }
+    }
+    if (rightRef.value) {
+      reveal(rightRef.value, {
+        trigger: sectionRef.value!,
+        from: { x: 48, opacity: 0 },
+        duration: 0.95,
+        delay: 0.08,
+      })
+    }
+    if (mapRef.value) {
+      reveal(mapRef.value, {
+        trigger: sectionRef.value!,
+        from: { scale: 0.96, opacity: 0 },
+        duration: 0.9,
+        delay: 0.14,
+      })
+    }
+  },
 })
 </script>
 

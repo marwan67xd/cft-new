@@ -11,23 +11,41 @@ const milestones = computed(() => [
   { year: '2024', title: t('companyProfile.timeline.development') },
 ])
 
-onMounted(() => {
-  if (import.meta.client && sectionRef.value) {
-    import('gsap').then(({ default: gsap }) => {
-      import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
-        gsap.registerPlugin(ScrollTrigger)
-        if (lineRef.value) {
-          gsap.fromTo(lineRef.value, { scaleX: 0 }, { scaleX: 1, duration: 1, ease: 'power2.out', transformOrigin: 'left center', scrollTrigger: { trigger: sectionRef.value, start: 'top 80%' } })
-        }
-        if (itemsRef.value) {
-          const dots = itemsRef.value.querySelectorAll('.timeline-dot')
-          const labels = itemsRef.value.querySelectorAll('.timeline-label')
-          gsap.fromTo(dots, { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.5, stagger: 0.15, scrollTrigger: { trigger: sectionRef.value, start: 'top 78%' } })
-          gsap.fromTo(labels, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.15, delay: 0.2, scrollTrigger: { trigger: sectionRef.value, start: 'top 78%' } })
-        }
+useSectionMotion(sectionRef, {
+  setup({ reveal, gsap }) {
+    if (lineRef.value) {
+      gsap.fromTo(lineRef.value, {
+        scaleX: 0,
+        force3D: true,
+      }, {
+        scaleX: 1,
+        duration: 1.1,
+        ease: SCROLL_REVEAL_EASE,
+        transformOrigin: 'left center',
+        force3D: true,
+        scrollTrigger: { trigger: sectionRef.value, start: 'top 80%', once: true },
       })
-    })
-  }
+    }
+    if (itemsRef.value) {
+      const dots = itemsRef.value.querySelectorAll('.timeline-dot')
+      const labels = itemsRef.value.querySelectorAll('.timeline-label')
+      reveal(dots, {
+        trigger: sectionRef.value!,
+        from: { scale: 0, opacity: 0 },
+        duration: 0.7,
+        stagger: 0.15,
+        start: 'top 78%',
+      })
+      reveal(labels, {
+        trigger: sectionRef.value!,
+        from: { y: 16, opacity: 0 },
+        duration: 0.75,
+        stagger: 0.15,
+        delay: 0.2,
+        start: 'top 78%',
+      })
+    }
+  },
 })
 </script>
 

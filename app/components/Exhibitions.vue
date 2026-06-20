@@ -1,58 +1,43 @@
 <script setup lang="ts">
-import type { ExhibitionEvent } from "~/composables/useExhibitions";
+import type { ExhibitionEvent } from '~/composables/useExhibitions'
 
-const { t } = useI18n();
-const localePath = useLocalePath();
-const { events } = useExhibitions();
+const { t } = useI18n()
+const localePath = useLocalePath()
+const { events } = useExhibitions()
 
-const sectionRef = ref<HTMLElement | null>(null);
-const headingRef = ref<HTMLElement | null>(null);
-const subtitleRef = ref<HTMLElement | null>(null);
-const footerLinkRef = ref<HTMLElement | null>(null);
-const cardRefs = ref<HTMLElement[]>([]);
+const sectionRef = ref<HTMLElement | null>(null)
+const headingRef = ref<HTMLElement | null>(null)
+const subtitleRef = ref<HTMLElement | null>(null)
+const footerLinkRef = ref<HTMLElement | null>(null)
+const cardRefs = ref<HTMLElement[]>([])
 
 function setCardRef(el: unknown, i: number) {
-  if (el) (cardRefs.value as (HTMLElement | null)[])[i] = el as HTMLElement;
+  if (el) (cardRefs.value as (HTMLElement | null)[])[i] = el as HTMLElement
 }
 
-const isGalleryOpen = ref(false);
-const activeGallery = ref<string[]>([]);
-const activeGalleryTitle = ref("");
-const activeImageIndex = ref(0);
+const isGalleryOpen = ref(false)
+const activeGallery = ref<string[]>([])
+const activeGalleryTitle = ref('')
 
 function openGallery(event: ExhibitionEvent) {
-  if (!event.gallery || !event.gallery.length) return;
-  activeGallery.value = event.gallery;
-  activeGalleryTitle.value = event.name;
-  activeImageIndex.value = 0;
-  isGalleryOpen.value = true;
+  if (!event.gallery?.length) return
+  activeGallery.value = event.gallery
+  activeGalleryTitle.value = event.name
+  isGalleryOpen.value = true
 }
 
 function closeGallery() {
-  isGalleryOpen.value = false;
+  isGalleryOpen.value = false
 }
 
-function showNextImage() {
-  const gallery = activeGallery.value;
-  if (!gallery.length) return;
-  activeImageIndex.value = (activeImageIndex.value + 1) % gallery.length;
-}
-
-function showPrevImage() {
-  const gallery = activeGallery.value;
-  if (!gallery.length) return;
-  activeImageIndex.value =
-    (activeImageIndex.value - 1 + gallery.length) % gallery.length;
-}
-
-const { run } = useScrollReveal(sectionRef);
+const { run } = useScrollReveal(sectionRef)
 
 run(({ reveal, revealHeader }) => {
-  if (!sectionRef.value) return;
+  if (!sectionRef.value) return
 
-  revealHeader(headingRef.value, subtitleRef.value, sectionRef.value);
+  revealHeader(headingRef.value, subtitleRef.value, sectionRef.value)
 
-  const els = cardRefs.value.filter(Boolean);
+  const els = cardRefs.value.filter(Boolean)
   if (els.length) {
     reveal(els, {
       trigger: sectionRef.value,
@@ -60,7 +45,7 @@ run(({ reveal, revealHeader }) => {
       duration: 0.88,
       stagger: 0.1,
       delay: 0.14,
-    });
+    })
   }
 
   if (footerLinkRef.value) {
@@ -69,9 +54,9 @@ run(({ reveal, revealHeader }) => {
       from: { y: 20, opacity: 0 },
       duration: 0.8,
       delay: 0.35,
-    });
+    })
   }
-});
+})
 </script>
 
 <template>
@@ -87,10 +72,10 @@ run(({ reveal, revealHeader }) => {
         ref="headingRef"
         class="text-3xl sm:text-4xl font-bold text-ocean-950 text-center mb-4"
       >
-        {{ $t("home.exhibitions.title") }}
+        {{ $t('home.exhibitions.title') }}
       </h2>
       <p ref="subtitleRef" class="text-gray-600 text-center max-w-2xl mx-auto mb-14">
-        {{ $t("home.exhibitions.subtitle") }}
+        {{ $t('home.exhibitions.subtitle') }}
       </p>
 
       <div class="grid md:grid-cols-3 gap-8 mb-12">
@@ -98,7 +83,7 @@ run(({ reveal, revealHeader }) => {
           v-for="(event, i) in events"
           :key="event.id"
           :ref="(el) => setCardRef(el, i)"
-          class="group rounded-2xl overflow-hidden border border-gray-100 shadow-card hover:shadow-card-hover transition-all duration-300"
+          class="group rounded-2xl overflow-hidden border border-gray-100 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300"
         >
           <div class="aspect-[4/3] overflow-hidden bg-gray-100">
             <template v-if="event.gallery?.length">
@@ -113,7 +98,7 @@ run(({ reveal, revealHeader }) => {
                   :key="idx"
                   :src="img"
                   :alt="`${event.name} photo ${idx + 1}`"
-                  class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   width="300"
                   height="225"
                   loading="lazy"
@@ -124,7 +109,7 @@ run(({ reveal, revealHeader }) => {
               <img
                 :src="event.logo"
                 :alt="event.name"
-                class="w-full h-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+                class="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-105"
                 width="400"
                 height="300"
                 loading="lazy"
@@ -134,7 +119,7 @@ run(({ reveal, revealHeader }) => {
               <img
                 src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80"
                 :alt="event.name"
-                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 width="600"
                 height="450"
                 loading="lazy"
@@ -157,17 +142,18 @@ run(({ reveal, revealHeader }) => {
             </p>
             <div class="mt-4 flex flex-col sm:flex-row gap-3">
               <button
+                v-if="event.gallery?.length"
                 type="button"
-                class="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-ocean-600 text-white text-sm font-medium hover:bg-ocean-700 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2"
+                class="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-ocean-600 text-white text-sm font-medium hover:bg-ocean-700 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2 transition-colors"
                 @click="openGallery(event)"
               >
-                {{ $t("exhibition.events.viewPhotos") }}
+                {{ $t('exhibition.events.viewPhotos') }}
               </button>
               <NuxtLink
                 :to="localePath('/exhibition')"
-                class="inline-flex items-center justify-center px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-800 text-sm font-medium hover:border-gray-300 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2"
+                class="inline-flex items-center justify-center px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-800 text-sm font-medium hover:border-gray-300 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2 transition-colors"
               >
-                {{ $t("home.exhibitions.viewAllEvents") }}
+                {{ $t('home.exhibitions.viewAllEvents') }}
               </NuxtLink>
             </div>
           </div>
@@ -179,88 +165,17 @@ run(({ reveal, revealHeader }) => {
           :to="localePath('/exhibition')"
           class="inline-flex items-center gap-2 text-ocean-600 font-medium hover:text-aqua-600 transition-colors"
         >
-          {{ $t("home.exhibitions.viewAllEvents") }}
-          <span>→</span>
+          {{ $t('home.exhibitions.viewAllEvents') }}
+          <span class="transition-transform group-hover:translate-x-1">→</span>
         </NuxtLink>
       </div>
     </div>
+
+    <ExhibitionGallery
+      :images="activeGallery"
+      :title="activeGalleryTitle"
+      :is-open="isGalleryOpen"
+      @close="closeGallery"
+    />
   </section>
-
-  <Teleport to="body">
-    <div
-      v-if="isGalleryOpen"
-      class="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 px-4 sm:px-6"
-      role="dialog"
-      aria-modal="true"
-    >
-      <div
-        class="relative w-full max-w-4xl bg-gray-900 rounded-2xl overflow-hidden shadow-2xl"
-      >
-        <button
-          type="button"
-          class="absolute top-3 right-3 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full bg-black/60 text-white hover:bg-black"
-          aria-label="Close gallery"
-          @click="closeGallery"
-        >
-          ✕
-        </button>
-
-        <div class="relative bg-black">
-          <div class="aspect-[16/9] w-full">
-            <img
-              v-if="activeGallery.length"
-              :src="activeGallery[activeImageIndex]"
-              :alt="`${activeGalleryTitle} photo ${activeImageIndex + 1}`"
-              class="w-full h-full object-contain bg-black"
-              loading="lazy"
-            />
-
-            <button
-              type="button"
-              class="absolute left-3 top-1/2 -translate-y-1/2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/80 text-gray-900 hover:bg-white"
-              aria-label="Previous image"
-              @click="showPrevImage"
-            >
-              ‹
-            </button>
-            <button
-              type="button"
-              class="absolute right-3 top-1/2 -translate-y-1/2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/80 text-gray-900 hover:bg-white"
-              aria-label="Next image"
-              @click="showNextImage"
-            >
-              ›
-            </button>
-          </div>
-        </div>
-
-        <div class="bg-gray-900 px-4 py-3 border-t border-gray-800">
-          <h3 class="text-white font-semibold text-sm sm:text-base">
-            {{ activeGalleryTitle }}
-          </h3>
-          <div class="mt-3 flex justify-center gap-2">
-            <button
-              v-for="(img, idx) in activeGallery"
-              :key="idx"
-              type="button"
-              class="h-12 w-16 rounded-md overflow-hidden border transition-all"
-              :class="
-                idx === activeImageIndex
-                  ? 'border-aqua-400 ring-2 ring-aqua-400'
-                  : 'border-transparent opacity-70 hover:opacity-100'
-              "
-              @click="activeImageIndex = idx"
-            >
-              <img
-                :src="img"
-                :alt="`${activeGalleryTitle} thumbnail ${idx + 1}`"
-                class="h-full w-full object-cover"
-                loading="lazy"
-              />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </Teleport>
 </template>

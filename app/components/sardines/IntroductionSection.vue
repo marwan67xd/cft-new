@@ -7,28 +7,24 @@ const sectionRef = ref<HTMLElement | null>(null)
 const textRef = ref<HTMLElement | null>(null)
 const imagesRef = ref<HTMLElement | null>(null)
 
-let gsapCtx: { revert: () => void } | null = null
-
-onMounted(() => {
-  if (import.meta.client && sectionRef.value) {
-    import('gsap').then(({ default: gsap }) => {
-      import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
-        gsap.registerPlugin(ScrollTrigger)
-        gsapCtx = gsap.context(() => {
-          if (textRef.value) {
-            gsap.fromTo(textRef.value, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 88%' } })
-          }
-          if (imagesRef.value) {
-            gsap.fromTo(imagesRef.value, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, delay: 0.2, scrollTrigger: { trigger: sectionRef.value, start: 'top 88%' } })
-          }
-        }, sectionRef)
+useSectionMotion(sectionRef, {
+  setup({ reveal }) {
+    if (textRef.value) {
+      reveal(textRef.value, {
+        trigger: sectionRef.value!,
+        from: { y: 32, opacity: 0 },
+        duration: 0.9,
       })
-    })
-  }
-})
-
-onUnmounted(() => {
-  gsapCtx?.revert()
+    }
+    if (imagesRef.value) {
+      reveal(imagesRef.value, {
+        trigger: sectionRef.value!,
+        from: { y: 40, opacity: 0, scale: 0.97 },
+        duration: 0.95,
+        delay: 0.12,
+      })
+    }
+  },
 })
 </script>
 

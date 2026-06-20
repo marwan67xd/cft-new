@@ -61,7 +61,7 @@ run(({ reveal }) => {
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div
         ref="panelRef"
-        class="rounded-3xl overflow-hidden bg-gradient-to-r from-ocean-600 via-ocean-500 to-aqua-600 px-8 py-16 sm:px-12 sm:py-20 text-center shadow-xl"
+        class="rounded-3xl overflow-hidden bg-gradient-to-r from-ocean-600 via-ocean-500 to-aqua-600 px-6 py-12 sm:px-12 sm:py-20 text-center shadow-xl"
       >
         <h2
           id="cta-heading"
@@ -75,8 +75,8 @@ run(({ reveal }) => {
         </p>
         <a
           ref="buttonRef"
-          href="mailto:contact@example.com"
-          class="inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-white text-ocean-600 font-semibold hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-ocean-500"
+          href="mailto:adelbkk@cfi-capitalfood.com"
+          class="inline-flex items-center justify-center px-6 sm:px-8 py-3.5 rounded-xl bg-white text-ocean-600 font-semibold hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-ocean-500 w-full sm:w-auto"
         >
           {{ $t('home.cta.button') }}
         </a>

@@ -28,7 +28,7 @@ function normalizeTargets(targets: Element | Element[] | null | undefined): Elem
   return Array.isArray(targets) ? targets.filter(Boolean) : [targets]
 }
 
-function markMotionHandled(section: HTMLElement) {
+export function markMotionHandled(section: HTMLElement) {
   section.dataset.motionHandled = 'true'
 }
 

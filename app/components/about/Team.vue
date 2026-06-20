@@ -85,34 +85,16 @@ onBeforeUnmount(() => {
   document.body.style.overflow = ''
 })
 
+useSectionMotion(sectionRef, {
+  preset: 'cards',
+  headingRef: headerRef,
+  cardsContainerRef: gridRef,
+  cardsSelector: '.team-card',
+})
+
 onMounted(() => {
-  if (import.meta.client && sectionRef.value) {
-    import('gsap').then(({ default: gsap }) => {
-      import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
-        gsap.registerPlugin(ScrollTrigger)
-
-        gsap.fromTo(
-          headerRef.value,
-          { opacity: 0, y: 14 },
-          { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 85%' } },
-        )
-
-        if (gridRef.value) {
-          const cards = gridRef.value.querySelectorAll('.team-card')
-          gsap.fromTo(
-            cards,
-            { opacity: 0, y: 16 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.55,
-              stagger: 0.1,
-              scrollTrigger: { trigger: sectionRef.value, start: 'top 78%' },
-            },
-          )
-        }
-      })
-    })
+  if (import.meta.client) {
+    window.addEventListener('keydown', onKeydown)
   }
 })
 </script>

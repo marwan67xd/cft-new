@@ -5,6 +5,14 @@
 @layer base {
   html {
     scrollbar-gutter: stable;
+    overflow-x: clip;
+  }
+
+  img,
+  video,
+  svg {
+    max-width: 100%;
+    height: auto;
   }
 
   @media (prefers-reduced-motion: no-preference) {

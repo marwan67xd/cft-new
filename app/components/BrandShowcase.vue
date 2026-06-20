@@ -10,10 +10,11 @@ const subtitleRef = ref<HTMLElement | null>(null)
 const trackRef = ref<HTMLElement | null>(null)
 const marqueeRef = ref<HTMLElement | null>(null)
 
-// Mouse drag state
+// Mouse / touch drag state
 const isDragging = ref(false)
 const dragStartX = ref(0)
 const dragStartScrollX = ref(0)
+const prefersReducedMotion = ref(false)
 
 const brandPaths = [
   'WhatsApp Image 2026-02-28 at 12.04.29 AM.jpeg',
@@ -76,6 +77,9 @@ let gsapLib: { getProperty: (t: Element, p: string) => number; set: (t: Element,
 
 onMounted(() => {
   if (!import.meta.client || !sectionRef.value) return
+
+  prefersReducedMotion.value = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
   import('gsap').then(({ default: gsap }) => {
     gsapLib = gsap
     import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
@@ -150,8 +154,8 @@ onMounted(() => {
           )
         }
 
-        // Horizontal auto-scroll: يمر على 43 صورة ثم يعيد من البداية (حلقة سلسة)
-        if (trackRef.value) {
+        // Horizontal auto-scroll: smooth infinite loop (disabled when reduced motion)
+        if (trackRef.value && !prefersReducedMotion.value) {
           const track = trackRef.value
           const halfWidth = track.scrollWidth / 2
           scrollTween = gsap.to(track, {
@@ -175,10 +179,10 @@ function playScroll() {
   scrollTween?.play()
 }
 
-function onDragStart(e: MouseEvent) {
+function onDragStart(clientX: number) {
   if (!trackRef.value) return
   isDragging.value = true
-  dragStartX.value = e.clientX
+  dragStartX.value = clientX
   if (gsapLib) {
     dragStartScrollX.value = gsapLib.getProperty(trackRef.value, 'x') as number
   } else {
@@ -189,9 +193,9 @@ function onDragStart(e: MouseEvent) {
   pauseScroll()
 }
 
-function onDragMove(e: MouseEvent) {
+function onDragMove(clientX: number) {
   if (!isDragging.value || !trackRef.value || !gsapLib) return
-  const deltaX = e.clientX - dragStartX.value
+  const deltaX = clientX - dragStartX.value
   let newX = dragStartScrollX.value + deltaX
   const halfWidth = trackRef.value.scrollWidth / 2
   if (newX > 0) newX = 0
@@ -199,9 +203,19 @@ function onDragMove(e: MouseEvent) {
   gsapLib.set(trackRef.value, { x: newX })
 }
 
+function onMouseDragMove(e: MouseEvent) {
+  onDragMove(e.clientX)
+}
+
+function onTouchDragMove(e: TouchEvent) {
+  onDragMove(e.touches[0]?.clientX ?? 0)
+}
+
 function onDragEnd() {
   if (!isDragging.value || !trackRef.value || !gsapLib) return
   isDragging.value = false
+  if (prefersReducedMotion.value) return
+
   const currentX = gsapLib.getProperty(trackRef.value, 'x') as number
   const halfWidth = trackRef.value.scrollWidth / 2
   const normalizedX = Math.max(-halfWidth, Math.min(0, ((currentX % halfWidth) + halfWidth) % halfWidth - halfWidth))
@@ -220,15 +234,19 @@ function onDragEnd() {
 
 onMounted(() => {
   if (import.meta.client) {
-    document.addEventListener('mousemove', onDragMove)
+    document.addEventListener('mousemove', onMouseDragMove)
     document.addEventListener('mouseup', onDragEnd)
+    document.addEventListener('touchmove', onTouchDragMove, { passive: true })
+    document.addEventListener('touchend', onDragEnd)
   }
 })
 
 onUnmounted(() => {
   if (import.meta.client) {
-    document.removeEventListener('mousemove', onDragMove)
+    document.removeEventListener('mousemove', onMouseDragMove)
     document.removeEventListener('mouseup', onDragEnd)
+    document.removeEventListener('touchmove', onTouchDragMove)
+    document.removeEventListener('touchend', onDragEnd)
   }
   gsapCtx?.revert()
   scrollTween = null
@@ -264,8 +282,9 @@ onUnmounted(() => {
         class="w-full overflow-hidden select-none"
         :class="isDragging ? 'cursor-grabbing' : 'cursor-grab'"
         @mouseenter="pauseScroll"
-        @mouseleave="() => { if (!isDragging.value) playScroll() }"
-        @mousedown="onDragStart"
+        @mouseleave="() => { if (!isDragging) playScroll() }"
+        @mousedown="onDragStart($event.clientX)"
+        @touchstart.passive="onDragStart($event.touches[0]?.clientX ?? 0)"
       >
         <div
           ref="trackRef"

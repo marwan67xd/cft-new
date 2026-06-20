@@ -66,7 +66,7 @@ run(({ reveal, revealHeader }) => {
         </div>
         <div
           ref="tooltipRef"
-          class="absolute bottom-6 left-1/2 -translate-x-1/2 px-6 py-4 rounded-xl bg-white shadow-card border border-gray-100 text-center"
+          class="absolute bottom-4 sm:bottom-6 left-4 right-4 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 sm:max-w-md px-5 py-4 rounded-xl bg-white shadow-card border border-gray-100 text-center"
         >
           <p class="text-ocean-900 font-medium">{{ $t('home.global.tooltip') }}</p>
         </div>

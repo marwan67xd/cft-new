@@ -60,29 +60,7 @@ const sectionRef = ref<HTMLElement | null>(null)
 const headingRef = ref<HTMLElement | null>(null)
 const tablesRef = ref<HTMLElement | null>(null)
 
-let gsapCtx: { revert: () => void } | null = null
-
-onMounted(() => {
-  if (import.meta.client && sectionRef.value) {
-    import('gsap').then(({ default: gsap }) => {
-      import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
-        gsap.registerPlugin(ScrollTrigger)
-        gsapCtx = gsap.context(() => {
-          if (headingRef.value) {
-            gsap.fromTo(headingRef.value, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 85%' } })
-          }
-          if (tablesRef.value) {
-            gsap.fromTo(tablesRef.value, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.1, scrollTrigger: { trigger: sectionRef.value, start: 'top 80%' } })
-          }
-        }, sectionRef)
-      })
-    })
-  }
-})
-
-onUnmounted(() => {
-  gsapCtx?.revert()
-})
+useSectionMotion(sectionRef, { preset: 'standard' })
 </script>
 
 <template>

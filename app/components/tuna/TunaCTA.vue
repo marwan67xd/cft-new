@@ -3,33 +3,8 @@ const { t } = useI18n()
 const localePath = useLocalePath()
 const ctaRef = ref<HTMLElement | null>(null);
 
-let gsapCtx: { revert: () => void } | null = null;
-
-onMounted(() => {
-  if (import.meta.client && ctaRef.value) {
-    import("gsap").then(({ default: gsap }) => {
-      import("gsap/ScrollTrigger").then(({ default: ScrollTrigger }) => {
-        gsap.registerPlugin(ScrollTrigger);
-        gsapCtx = gsap.context(() => {
-          gsap.fromTo(
-            ctaRef.value,
-            { opacity: 0, y: 24 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              scrollTrigger: { trigger: ctaRef.value, start: "top 90%" },
-            },
-          );
-        }, ctaRef);
-      });
-    });
-  }
-});
-
-onUnmounted(() => {
-  gsapCtx?.revert();
-});
+useSectionMotion(ctaRef, { preset: 'cta' })
+;
 </script>
 
 <template>

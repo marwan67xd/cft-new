@@ -12,7 +12,7 @@ export default defineNuxtPlugin({
       motionTimer = window.setTimeout(() => {
         const main = document.querySelector('main')
         void mountPageMotion(main as HTMLElement | null)
-      }, 220)
+      }, 380)
     }
 
     nuxtApp.hook('page:finish', schedulePageMotion)

@@ -2,24 +2,7 @@
 const { t } = useI18n()
 const ctaRef = ref<HTMLElement | null>(null)
 
-let gsapCtx: { revert: () => void } | null = null
-
-onMounted(() => {
-  if (import.meta.client && ctaRef.value) {
-    import('gsap').then(({ default: gsap }) => {
-      import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
-        gsap.registerPlugin(ScrollTrigger)
-        gsapCtx = gsap.context(() => {
-          gsap.fromTo(ctaRef.value, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: ctaRef.value, start: 'top 90%' } })
-        }, ctaRef)
-      })
-    })
-  }
-})
-
-onUnmounted(() => {
-  gsapCtx?.revert()
-})
+useSectionMotion(ctaRef, { preset: 'cta' })
 </script>
 
 <template>
@@ -30,7 +13,7 @@ onUnmounted(() => {
   >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div
-        class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-ocean-600 via-ocean-500 to-aqua-600 px-8 py-16 sm:px-12 sm:py-20 text-center shadow-xl"
+        class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-ocean-600 via-ocean-500 to-aqua-600 px-6 py-12 sm:px-12 sm:py-20 text-center shadow-xl"
       >
         <div
           class="absolute inset-0 opacity-10"
@@ -46,15 +29,15 @@ onUnmounted(() => {
           </p>
           <div class="mb-8 space-y-2">
             <p class="text-white font-semibold mb-2">{{ $t('contact.cta.haveQuestions') }}</p>
-            <div class="flex flex-wrap justify-center gap-4">
+            <div class="flex flex-wrap justify-center gap-3 sm:gap-4">
               <a href="tel:+66925411454" class="text-white hover:text-gray-100 font-medium">+66 925411454</a>
-              <span class="text-white/60">|</span>
+              <span class="text-white/60 hidden sm:inline">|</span>
               <a href="tel:+66847217966" class="text-white hover:text-gray-100 font-medium">+66 847217966</a>
             </div>
           </div>
           <NuxtLink
             to="#form-heading"
-            class="inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-white text-ocean-600 font-semibold hover:bg-gray-50 hover:shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-ocean-500"
+            class="inline-flex items-center justify-center px-6 sm:px-8 py-3.5 rounded-xl bg-white text-ocean-600 font-semibold hover:bg-gray-50 hover:shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-ocean-500"
           >
             {{ $t('contact.cta.sendInquiry') }}
           </NuxtLink>

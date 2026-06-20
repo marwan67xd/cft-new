@@ -3,29 +3,7 @@ const sectionRef = ref<HTMLElement | null>(null)
 const imageRef = ref<HTMLElement | null>(null)
 const contentRef = ref<HTMLElement | null>(null)
 
-let gsapCtx: { revert: () => void } | null = null
-
-onMounted(() => {
-  if (import.meta.client && sectionRef.value) {
-    import('gsap').then(({ default: gsap }) => {
-      import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
-        gsap.registerPlugin(ScrollTrigger)
-        gsapCtx = gsap.context(() => {
-          if (imageRef.value) {
-            gsap.fromTo(imageRef.value, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.7, scrollTrigger: { trigger: sectionRef.value, start: 'top 82%' } })
-          }
-          if (contentRef.value) {
-            gsap.fromTo(contentRef.value, { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.7, scrollTrigger: { trigger: sectionRef.value, start: 'top 82%' } })
-          }
-        }, sectionRef)
-      })
-    })
-  }
-})
-
-onUnmounted(() => {
-  gsapCtx?.revert()
-})
+useSectionMotion(sectionRef, { preset: 'standard' })
 </script>
 
 <template>
