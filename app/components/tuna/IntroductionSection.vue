@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import tunaImage from '~/assets/tuna/ChatGPT Image Feb 18, 2026, 04_26_05 PM.png'
+import tunaImage from '~/assets/tuna/ChatGPT Image Feb 18, 2026, 04_26_05 PM.jpg'
 const { t } = useI18n()
 
 const sectionRef = ref<HTMLElement | null>(null)

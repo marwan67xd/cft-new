@@ -9,6 +9,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "validate:i18n": "node scripts/validate-i18n.js",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "optimize:images:full": "node scripts/optimize-images.mjs && node scripts/convert-photo-pngs.mjs",
     "prebuild": "npm run validate:i18n"
   },
   "dependencies": {
@@ -21,6 +23,7 @@
     "vue-router": "^4.6.4"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^6.14.0"
+    "@nuxtjs/tailwindcss": "^6.14.0",
+    "sharp": "^0.35.2"
   }
 }

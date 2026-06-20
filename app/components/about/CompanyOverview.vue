@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import profileImage from '~/assets/profile/ChatGPT Image Feb 18, 2026, 03_59_45 PM.png'
+import profileImage from '~/assets/profile/ChatGPT Image Feb 18, 2026, 03_59_45 PM.webp'
 const { t } = useI18n()
 
 const sectionRef = ref<HTMLElement | null>(null)

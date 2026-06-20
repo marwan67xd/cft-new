@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
 import gsap from 'gsap'
-import heroBg from '~/assets/home/home-hero.png'
+import heroBg from '~/assets/home/home-hero.jpg'
 
 const localePath = useLocalePath()
 
@@ -12,8 +12,8 @@ const descRef = ref<HTMLElement | null>(null)
 const btnsRef = ref<HTMLElement | null>(null)
 const scrollRef = ref<HTMLElement | null>(null)
 
-const heroSlidesDesktop = [heroBg, '/images/cfi-facility.png'] as const
-const heroSlidesMobile = [heroBg, '/images/cfi-facility.png'] as const
+const heroSlidesDesktop = [heroBg, '/images/cfi-facility.jpg'] as const
+const heroSlidesMobile = [heroBg, '/images/cfi-facility.jpg'] as const
 const activeSlide = ref(0)
 let slideTimer: number | null = null
 let gsapCtx: gsap.Context | null = null

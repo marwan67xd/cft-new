@@ -61,7 +61,7 @@ onUnmounted(() => {
       aria-hidden="true"
     >
       <img
-        src="~/assets/tuna/ChatGPT Image Feb 22, 2026, 05_37_48 AM.png"
+        src="~/assets/tuna/ChatGPT Image Feb 22, 2026, 05_37_48 AM.jpg"
         alt=""
         class="absolute inset-0 w-full h-full object-cover opacity-50 filter mix-blend-multiply"
         fetchpriority="high"

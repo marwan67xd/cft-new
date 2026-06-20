@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import homeImage from '~/assets/home/ChatGPT Image Feb 18, 2026, 03_51_24 PM.png'
+import homeImage from '~/assets/home/ChatGPT Image Feb 18, 2026, 03_51_24 PM.jpg'
 
 const { t } = useI18n()
 

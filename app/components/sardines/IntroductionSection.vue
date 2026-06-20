@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import image1 from '~/assets/Sardines-Mackerel/70c749a7-9cbc-41f4-8d24-6065601b90a0.png'
-import image2 from '~/assets/Sardines-Mackerel/ChatGPT Image Feb 18, 2026, 05_02_14 PM.png'
+import image1 from '~/assets/Sardines-Mackerel/70c749a7-9cbc-41f4-8d24-6065601b90a0.jpg'
+import image2 from '~/assets/Sardines-Mackerel/ChatGPT Image Feb 18, 2026, 05_02_14 PM.jpg'
 const { t } = useI18n()
 
 const sectionRef = ref<HTMLElement | null>(null)

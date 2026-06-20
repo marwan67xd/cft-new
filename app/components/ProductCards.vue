@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import tunaImage from '~/assets/home/de362f430d18264bb198efbe58f91583_757x757.png'
+import tunaImage from '~/assets/home/de362f430d18264bb198efbe58f91583_757x757.jpg'
 import sardinesImage from '~/assets/home/Sardines-on-toast-6.jpg'
 import mackerelImage from '~/assets/home/fishmonger-near-me-hot-smoked-mackerel-fillets-1.jpg'
 

@@ -52,7 +52,7 @@ onMounted(() => {
         <div ref="rightRef" class="relative">
           <div class="rounded-2xl overflow-hidden bg-ocean-800 aspect-[4/3] shadow-xl">
             <img
-              src="~/assets/tuna/ChatGPT Image Feb 22, 2026, 05_37_48 AM.png"
+              src="~/assets/tuna/ChatGPT Image Feb 22, 2026, 05_37_48 AM.jpg"
               alt="Packaged seafood product"
               class="w-full h-full object-cover"
               loading="lazy"
