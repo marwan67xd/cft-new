@@ -19,6 +19,9 @@ const isHomePage = computed(() => route.path === localePath('/') || route.path =
 
 const isScrolled = ref(false);
 const isMobileMenuOpen = ref(false);
+const headerRef = ref<HTMLElement | null>(null);
+
+defineExpose({ headerRef });
 
 const updateScroll = () => {
   isScrolled.value = window.scrollY > 20;
@@ -35,7 +38,8 @@ onUnmounted(() => {
 
 <template>
   <header
-    class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+    ref="headerRef"
+    class="main-header fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow,padding] duration-300"
     :class="[
       isScrolled
         ? 'bg-white/95 backdrop-blur-sm shadow-nav py-3'

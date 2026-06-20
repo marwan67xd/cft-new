@@ -5,6 +5,8 @@
  */
 
 const sectionRef = ref<HTMLElement | null>(null)
+const headingRef = ref<HTMLElement | null>(null)
+const subtitleRef = ref<HTMLElement | null>(null)
 const trackRef = ref<HTMLElement | null>(null)
 const marqueeRef = ref<HTMLElement | null>(null)
 
@@ -80,22 +82,71 @@ onMounted(() => {
       gsap.registerPlugin(ScrollTrigger)
 
       gsapCtx = gsap.context(() => {
+        if (headingRef.value) {
+          gsap.fromTo(
+            headingRef.value,
+            { y: 32, autoAlpha: 0, force3D: true },
+            {
+              y: 0,
+              autoAlpha: 1,
+              duration: 0.9,
+              ease: SCROLL_REVEAL_EASE,
+              force3D: true,
+              scrollTrigger: { trigger: sectionRef.value, start: 'top 86%', once: true },
+            },
+          )
+        }
+
+        if (subtitleRef.value) {
+          gsap.fromTo(
+            subtitleRef.value,
+            { y: 24, autoAlpha: 0, force3D: true },
+            {
+              y: 0,
+              autoAlpha: 1,
+              duration: 0.9,
+              delay: 0.1,
+              ease: SCROLL_REVEAL_EASE,
+              force3D: true,
+              scrollTrigger: { trigger: sectionRef.value, start: 'top 86%', once: true },
+            },
+          )
+        }
+
+        if (marqueeRef.value) {
+          gsap.fromTo(
+            marqueeRef.value,
+            { y: 28, autoAlpha: 0, force3D: true },
+            {
+              y: 0,
+              autoAlpha: 1,
+              duration: 0.95,
+              delay: 0.18,
+              ease: SCROLL_REVEAL_EASE,
+              force3D: true,
+              scrollTrigger: { trigger: sectionRef.value, start: 'top 84%', once: true },
+            },
+          )
+        }
+
         const cards = sectionRef.value?.querySelectorAll('[data-brand-card]')
         if (cards?.length) {
           gsap.fromTo(
             cards,
-            { opacity: 0, y: 30 },
+            { opacity: 0, y: 32, force3D: true },
             {
               opacity: 1,
               y: 0,
-              duration: 0.6,
-              stagger: 0.08,
-              ease: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              duration: 0.85,
+              stagger: 0.06,
+              ease: SCROLL_REVEAL_EASE,
+              force3D: true,
               scrollTrigger: {
                 trigger: sectionRef.value,
                 start: 'top 82%',
+                once: true,
               },
-            }
+            },
           )
         }
 
@@ -193,11 +244,13 @@ onUnmounted(() => {
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <h2
         id="brands-heading"
+        ref="headingRef"
         class="text-2xl sm:text-3xl lg:text-4xl font-bold text-ocean-950 text-center mb-3 tracking-tight"
       >
         {{ $t('home.brands.title') }}
       </h2>
       <p
+        ref="subtitleRef"
         class="text-center max-w-2xl mx-auto mb-12 lg:mb-14 text-[#222222]"
         style="opacity: 0.7"
       >

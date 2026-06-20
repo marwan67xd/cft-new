@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import homeImage from '~/assets/home/ChatGPT Image Feb 18, 2026, 03_51_24 PM.png'
+
 const { t } = useI18n()
 
 const features = computed(() => [
@@ -10,34 +11,40 @@ const features = computed(() => [
 ])
 
 const sectionRef = ref<HTMLElement | null>(null)
+const headingRef = ref<HTMLElement | null>(null)
 const listRef = ref<HTMLElement | null>(null)
 const imageRef = ref<HTMLElement | null>(null)
 
-onMounted(() => {
-  if (import.meta.client && sectionRef.value) {
-    nextTick(() => {
-      import('gsap').then(({ default: gsap }) => {
-        import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
-          gsap.registerPlugin(ScrollTrigger)
-          const items = listRef.value?.querySelectorAll('.why-item')
-          if (items?.length) {
-            gsap.fromTo(
-              items,
-              { opacity: 0, x: -24 },
-              {
-                opacity: 1,
-                x: 0,
-                duration: 0.5,
-                stagger: 0.12,
-                scrollTrigger: { trigger: sectionRef.value, start: 'top 75%' },
-              }
-            )
-          }
-          if (imageRef.value) {
-            gsap.fromTo(imageRef.value, { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.8, scrollTrigger: { trigger: sectionRef.value, start: 'top 75%' } })
-          }
-        })
-      })
+const { run } = useScrollReveal(sectionRef)
+
+run(({ reveal }) => {
+  if (!sectionRef.value) return
+
+  if (headingRef.value) {
+    reveal(headingRef.value, {
+      trigger: sectionRef.value,
+      from: { y: 32, opacity: 0 },
+      duration: 0.88,
+    })
+  }
+
+  const items = listRef.value?.querySelectorAll('.why-item')
+  if (items?.length) {
+    reveal(items, {
+      trigger: sectionRef.value,
+      from: { x: -28, opacity: 0 },
+      duration: 0.82,
+      stagger: 0.1,
+      delay: 0.12,
+    })
+  }
+
+  if (imageRef.value) {
+    reveal(imageRef.value, {
+      trigger: sectionRef.value,
+      from: { x: 36, opacity: 0, scale: 0.97 },
+      duration: 1,
+      delay: 0.08,
     })
   }
 })
@@ -52,7 +59,11 @@ onMounted(() => {
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div ref="listRef" class="space-y-6">
-          <h2 id="why-heading" class="text-3xl sm:text-4xl font-bold tracking-tight mb-8">
+          <h2
+            id="why-heading"
+            ref="headingRef"
+            class="text-3xl sm:text-4xl font-bold tracking-tight mb-8"
+          >
             {{ $t('home.whyChoose.title') }}
           </h2>
           <ul class="space-y-4">

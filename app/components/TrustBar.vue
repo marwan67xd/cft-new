@@ -15,27 +15,19 @@ function setItemRef(el: unknown, i: number) {
   if (el) (itemRefs.value as (HTMLElement | null)[])[i] = el as HTMLElement
 }
 
-onMounted(() => {
-  if (import.meta.client && sectionRef.value) {
-    nextTick(() => {
-      import('gsap').then(({ default: gsap }) => {
-        import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
-          gsap.registerPlugin(ScrollTrigger)
-          const els = itemRefs.value.filter(Boolean)
-          if (els.length) gsap.fromTo(
-            els,
-          { opacity: 0, y: 24 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            stagger: 0.1,
-            scrollTrigger: { trigger: sectionRef.value, start: 'top 85%' },
-          })
-        })
-      })
-    })
-  }
+const { run } = useScrollReveal(sectionRef)
+
+run(({ reveal }) => {
+  const els = itemRefs.value.filter(Boolean)
+  if (!sectionRef.value || !els.length) return
+
+  reveal(els, {
+    trigger: sectionRef.value,
+    start: 'top 92%',
+    from: { y: 32, opacity: 0, scale: 0.96 },
+    duration: 0.85,
+    stagger: 0.1,
+  })
 })
 </script>
 
@@ -57,7 +49,6 @@ onMounted(() => {
             class="w-14 h-14 rounded-xl bg-ocean-50 flex items-center justify-center text-ocean-600 mb-4 transition-transform duration-200 group-hover:scale-105 group-hover:shadow-card"
             aria-hidden="true"
           >
-            <!-- Icons as inline SVG -->
             <svg
               v-if="item.icon === 'certificate'"
               class="w-7 h-7"

@@ -6,6 +6,9 @@ const localePath = useLocalePath();
 const { events } = useExhibitions();
 
 const sectionRef = ref<HTMLElement | null>(null);
+const headingRef = ref<HTMLElement | null>(null);
+const subtitleRef = ref<HTMLElement | null>(null);
+const footerLinkRef = ref<HTMLElement | null>(null);
 const cardRefs = ref<HTMLElement[]>([]);
 
 function setCardRef(el: unknown, i: number) {
@@ -42,28 +45,30 @@ function showPrevImage() {
     (activeImageIndex.value - 1 + gallery.length) % gallery.length;
 }
 
-onMounted(() => {
-  if (import.meta.client && sectionRef.value) {
-    nextTick(() => {
-      import("gsap").then(({ default: gsap }) => {
-        import("gsap/ScrollTrigger").then(({ default: ScrollTrigger }) => {
-          gsap.registerPlugin(ScrollTrigger);
-          const els = cardRefs.value.filter(Boolean);
-          if (els.length) {
-            gsap.fromTo(
-              els,
-              { opacity: 0, y: 30 },
-              {
-                opacity: 1,
-                y: 0,
-                duration: 0.5,
-                stagger: 0.1,
-                scrollTrigger: { trigger: sectionRef.value, start: "top 82%" },
-              },
-            );
-          }
-        });
-      });
+const { run } = useScrollReveal(sectionRef);
+
+run(({ reveal, revealHeader }) => {
+  if (!sectionRef.value) return;
+
+  revealHeader(headingRef.value, subtitleRef.value, sectionRef.value);
+
+  const els = cardRefs.value.filter(Boolean);
+  if (els.length) {
+    reveal(els, {
+      trigger: sectionRef.value,
+      from: { y: 40, opacity: 0, scale: 0.97 },
+      duration: 0.88,
+      stagger: 0.1,
+      delay: 0.14,
+    });
+  }
+
+  if (footerLinkRef.value) {
+    reveal(footerLinkRef.value, {
+      trigger: sectionRef.value,
+      from: { y: 20, opacity: 0 },
+      duration: 0.8,
+      delay: 0.35,
     });
   }
 });
@@ -79,11 +84,12 @@ onMounted(() => {
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <h2
         id="exhibitions-heading"
+        ref="headingRef"
         class="text-3xl sm:text-4xl font-bold text-ocean-950 text-center mb-4"
       >
         {{ $t("home.exhibitions.title") }}
       </h2>
-      <p class="text-gray-600 text-center max-w-2xl mx-auto mb-14">
+      <p ref="subtitleRef" class="text-gray-600 text-center max-w-2xl mx-auto mb-14">
         {{ $t("home.exhibitions.subtitle") }}
       </p>
 
@@ -168,7 +174,7 @@ onMounted(() => {
         </article>
       </div>
 
-      <div class="text-center">
+      <div ref="footerLinkRef" class="text-center">
         <NuxtLink
           :to="localePath('/exhibition')"
           class="inline-flex items-center gap-2 text-ocean-600 font-medium hover:text-aqua-600 transition-colors"

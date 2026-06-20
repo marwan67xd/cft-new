@@ -4,13 +4,69 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
   }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   body {
     @apply text-gray-700 antialiased;
+    scrollbar-width: thin;
+    scrollbar-color: #1e293b transparent;
   }
+
   [dir='rtl'] body {
     font-family: 'Noto Sans Arabic', system-ui, sans-serif;
+  }
+}
+
+/* Premium global scrollbar — WebKit */
+@supports selector(::-webkit-scrollbar) {
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    transition: background-color 220ms ease, background 220ms ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #475569 0%, #334155 100%);
+    background-clip: padding-box;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+/* GPU-friendly motion targets (home intro + fixed header) */
+@media (prefers-reduced-motion: no-preference) {
+  .main-header,
+  .hero-title,
+  .hero-desc,
+  .hero-btns,
+  .hero-scroll {
+    will-change: transform, opacity;
   }
 }
 
@@ -61,6 +117,14 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .main-header,
+  .hero-title,
+  .hero-desc,
+  .hero-btns,
+  .hero-scroll {
+    will-change: auto;
   }
 }
 

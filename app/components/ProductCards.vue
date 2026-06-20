@@ -2,6 +2,7 @@
 import tunaImage from '~/assets/home/de362f430d18264bb198efbe58f91583_757x757.png'
 import sardinesImage from '~/assets/home/Sardines-on-toast-6.jpg'
 import mackerelImage from '~/assets/home/fishmonger-near-me-hot-smoked-mackerel-fillets-1.jpg'
+
 const { t } = useI18n()
 const localePath = useLocalePath()
 
@@ -27,32 +28,29 @@ const products = computed(() => [
 ])
 
 const sectionRef = ref<HTMLElement | null>(null)
+const headingRef = ref<HTMLElement | null>(null)
+const subtitleRef = ref<HTMLElement | null>(null)
 const cardRefs = ref<HTMLElement[]>([])
 
 function setCardRef(el: unknown, i: number) {
   if (el) (cardRefs.value as (HTMLElement | null)[])[i] = el as HTMLElement
 }
 
-onMounted(() => {
-  if (import.meta.client && sectionRef.value) {
-    nextTick(() => {
-      import('gsap').then(({ default: gsap }) => {
-        import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
-          gsap.registerPlugin(ScrollTrigger)
-          const els = cardRefs.value.filter(Boolean)
-          if (els.length) gsap.fromTo(
-            els,
-            { opacity: 0, y: 40 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              stagger: 0.15,
-              scrollTrigger: { trigger: sectionRef.value, start: 'top 82%' },
-            }
-          )
-        })
-      })
+const { run } = useScrollReveal(sectionRef)
+
+run(({ reveal, revealHeader }) => {
+  if (!sectionRef.value) return
+
+  revealHeader(headingRef.value, subtitleRef.value, sectionRef.value)
+
+  const cards = cardRefs.value.filter(Boolean)
+  if (cards.length) {
+    reveal(cards, {
+      trigger: sectionRef.value,
+      from: { y: 48, opacity: 0, scale: 0.96 },
+      duration: 0.92,
+      stagger: 0.14,
+      delay: 0.15,
     })
   }
 })
@@ -66,10 +64,14 @@ onMounted(() => {
     aria-labelledby="products-heading"
   >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 id="products-heading" class="text-3xl sm:text-4xl font-bold text-ocean-950 text-center mb-4">
+      <h2
+        id="products-heading"
+        ref="headingRef"
+        class="text-3xl sm:text-4xl font-bold text-ocean-950 text-center mb-4"
+      >
         {{ $t('home.products.title') }}
       </h2>
-      <p class="text-gray-600 text-center max-w-2xl mx-auto mb-14">
+      <p ref="subtitleRef" class="text-gray-600 text-center max-w-2xl mx-auto mb-14">
         {{ $t('home.products.subtitle') }}
       </p>
 

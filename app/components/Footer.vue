@@ -29,16 +29,52 @@ const socialLinks = [
     icon: "facebook",
   },
 ];
+
+const sectionRef = ref<HTMLElement | null>(null)
+const brandColRef = ref<HTMLElement | null>(null)
+const linksColRef = ref<HTMLElement | null>(null)
+const productsColRef = ref<HTMLElement | null>(null)
+const contactColRef = ref<HTMLElement | null>(null)
+const bottomRef = ref<HTMLElement | null>(null)
+
+const { run } = useScrollReveal(sectionRef)
+
+run(({ reveal }) => {
+  if (!sectionRef.value) return
+
+  const columns = [brandColRef.value, linksColRef.value, productsColRef.value, contactColRef.value].filter(
+    (col): col is HTMLElement => col !== null,
+  )
+
+  if (columns.length) {
+    reveal(columns, {
+      trigger: sectionRef.value,
+      start: 'top 92%',
+      from: { y: 36, opacity: 0 },
+      duration: 0.9,
+      stagger: 0.1,
+    })
+  }
+
+  if (bottomRef.value) {
+    reveal(bottomRef.value, {
+      trigger: sectionRef.value,
+      start: 'top 92%',
+      from: { y: 20, opacity: 0 },
+      duration: 0.8,
+      delay: 0.35,
+    })
+  }
+})
 </script>
 
 <template>
-  <footer class="bg-ocean-950 text-gray-300 pt-16 pb-8">
+  <footer ref="sectionRef" class="bg-ocean-950 text-gray-300 pt-16 pb-8">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-12"
       >
-        <!-- Logo & description -->
-        <div class="lg:col-span-1">
+        <div ref="brandColRef" class="lg:col-span-1">
           <NuxtLink to="/" class="inline-block mb-4">
             <img
               :src="logoImage"
@@ -51,8 +87,7 @@ const socialLinks = [
           </p>
         </div>
 
-        <!-- Quick links -->
-        <div>
+        <div ref="linksColRef">
           <h3 class="text-white font-semibold mb-4">Quick Links</h3>
           <ul class="space-y-3">
             <li v-for="link in quickLinks" :key="link.href">
@@ -74,8 +109,7 @@ const socialLinks = [
           </ul>
         </div>
 
-        <!-- Product categories -->
-        <div>
+        <div ref="productsColRef">
           <h3 class="text-white font-semibold mb-4">Products</h3>
           <ul class="space-y-3">
             <li v-for="cat in productCategories" :key="cat.href">
@@ -97,8 +131,7 @@ const socialLinks = [
           </ul>
         </div>
 
-        <!-- Contact: Head office & Office -->
-        <div class="space-y-8">
+        <div ref="contactColRef" class="space-y-8">
           <div>
             <h3 class="text-white font-semibold mb-3">Head office</h3>
             <p class="text-white/90 font-medium text-sm mb-2">Call us now!</p>
@@ -183,6 +216,7 @@ const socialLinks = [
       </div>
 
       <div
+        ref="bottomRef"
         class="pt-8 border-t border-ocean-800 text-center text-sm text-gray-500"
       >
         <p>
