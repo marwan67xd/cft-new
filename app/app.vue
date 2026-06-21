@@ -28,6 +28,11 @@ useHead(() => ({
 <template>
   <div :dir="currentLocale?.dir || 'ltr'">
     <NuxtRouteAnnouncer />
-    <NuxtPage />
+    <NuxtPage
+      :transition="{
+        name: 'page',
+        mode: 'out-in',
+      }"
+    />
   </div>
 </template>

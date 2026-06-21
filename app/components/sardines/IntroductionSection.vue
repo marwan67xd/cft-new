@@ -1,30 +1,34 @@
 <script setup lang="ts">
-import image1 from '~/assets/Sardines-Mackerel/70c749a7-9cbc-41f4-8d24-6065601b90a0.jpg'
-import image2 from '~/assets/Sardines-Mackerel/ChatGPT Image Feb 18, 2026, 05_02_14 PM.jpg'
+import image1 from '~/assets/Sardines-Mackerel/70c749a7-9cbc-41f4-8d24-6065601b90a0.png'
+import image2 from '~/assets/Sardines-Mackerel/ChatGPT Image Feb 18, 2026, 05_02_14 PM.png'
 const { t } = useI18n()
 
 const sectionRef = ref<HTMLElement | null>(null)
 const textRef = ref<HTMLElement | null>(null)
 const imagesRef = ref<HTMLElement | null>(null)
 
-useSectionMotion(sectionRef, {
-  setup({ reveal }) {
-    if (textRef.value) {
-      reveal(textRef.value, {
-        trigger: sectionRef.value!,
-        from: { y: 32, opacity: 0 },
-        duration: 0.9,
+let gsapCtx: { revert: () => void } | null = null
+
+onMounted(() => {
+  if (import.meta.client && sectionRef.value) {
+    import('gsap').then(({ default: gsap }) => {
+      import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
+        gsap.registerPlugin(ScrollTrigger)
+        gsapCtx = gsap.context(() => {
+          if (textRef.value) {
+            gsap.fromTo(textRef.value, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 88%' } })
+          }
+          if (imagesRef.value) {
+            gsap.fromTo(imagesRef.value, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, delay: 0.2, scrollTrigger: { trigger: sectionRef.value, start: 'top 88%' } })
+          }
+        }, sectionRef)
       })
-    }
-    if (imagesRef.value) {
-      reveal(imagesRef.value, {
-        trigger: sectionRef.value!,
-        from: { y: 40, opacity: 0, scale: 0.97 },
-        duration: 0.95,
-        delay: 0.12,
-      })
-    }
-  },
+    })
+  }
+})
+
+onUnmounted(() => {
+  gsapCtx?.revert()
 })
 </script>
 

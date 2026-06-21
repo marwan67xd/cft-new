@@ -74,7 +74,30 @@ const products = [...sardinesOptions, ...mackerelOptions]
 const sectionRef = ref<HTMLElement | null>(null)
 const headingRef = ref<HTMLElement | null>(null)
 
-useSectionMotion(sectionRef, { preset: 'standard' })
+let gsapCtx: { revert: () => void } | null = null
+
+onMounted(() => {
+  if (import.meta.client && sectionRef.value) {
+    import('gsap').then(({ default: gsap }) => {
+      import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
+        gsap.registerPlugin(ScrollTrigger)
+        gsapCtx = gsap.context(() => {
+          if (headingRef.value) {
+            gsap.fromTo(headingRef.value, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 85%' } })
+          }
+          const cards = sectionRef.value?.querySelectorAll('[data-product-card]')
+          if (cards?.length) {
+            gsap.fromTo(cards, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.06, scrollTrigger: { trigger: sectionRef.value, start: 'top 78%' } })
+          }
+        }, sectionRef)
+      })
+    })
+  }
+})
+
+onUnmounted(() => {
+  gsapCtx?.revert()
+})
 </script>
 
 <template>

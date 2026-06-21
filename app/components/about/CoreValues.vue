@@ -32,11 +32,19 @@ const values = computed(() => [
   },
 ])
 
-useSectionMotion(sectionRef, {
-  preset: 'cards',
-  headingRef: titleRef,
-  cardsContainerRef: cardsRef,
-  cardsSelector: '.value-card',
+onMounted(() => {
+  if (import.meta.client && sectionRef.value) {
+    import('gsap').then(({ default: gsap }) => {
+      import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
+        gsap.registerPlugin(ScrollTrigger)
+        gsap.fromTo(titleRef.value, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 85%' } })
+        if (cardsRef.value) {
+          const cards = cardsRef.value.querySelectorAll('.value-card')
+          gsap.fromTo(cards, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, scrollTrigger: { trigger: sectionRef.value, start: 'top 80%' } })
+        }
+      })
+    })
+  }
 })
 </script>
 

@@ -13,7 +13,26 @@ const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(CONTACT_MAP.e
 const sectionRef = ref<HTMLElement | null>(null)
 const mapRef = ref<HTMLElement | null>(null)
 
-useSectionMotion(sectionRef, { preset: 'standard' })
+let gsapCtx: { revert: () => void } | null = null
+
+onMounted(() => {
+  if (import.meta.client && sectionRef.value) {
+    import('gsap').then(({ default: gsap }) => {
+      import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
+        gsap.registerPlugin(ScrollTrigger)
+        gsapCtx = gsap.context(() => {
+          if (mapRef.value) {
+            gsap.fromTo(mapRef.value, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 88%' } })
+          }
+        }, sectionRef)
+      })
+    })
+  }
+})
+
+onUnmounted(() => {
+  gsapCtx?.revert()
+})
 </script>
 
 <template>

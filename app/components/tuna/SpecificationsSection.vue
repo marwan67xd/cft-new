@@ -60,10 +60,28 @@ const sectionRef = ref<HTMLElement | null>(null)
 const headingRef = ref<HTMLElement | null>(null)
 const tablesRef = ref<HTMLElement | null>(null)
 
-useSectionMotion(sectionRef, {
-  preset: 'tables',
-  headingRef,
-  tablesContainerRef: tablesRef,
+let gsapCtx: { revert: () => void } | null = null
+
+onMounted(() => {
+  if (import.meta.client && sectionRef.value) {
+    import('gsap').then(({ default: gsap }) => {
+      import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
+        gsap.registerPlugin(ScrollTrigger)
+        gsapCtx = gsap.context(() => {
+          if (headingRef.value) {
+            gsap.fromTo(headingRef.value, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 85%' } })
+          }
+          if (tablesRef.value) {
+            gsap.fromTo(tablesRef.value, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.1, scrollTrigger: { trigger: sectionRef.value, start: 'top 80%' } })
+          }
+        }, sectionRef)
+      })
+    })
+  }
+})
+
+onUnmounted(() => {
+  gsapCtx?.revert()
 })
 </script>
 
@@ -86,7 +104,7 @@ useSectionMotion(sectionRef, {
         <!-- Tuna Species Table -->
         <div class="overflow-x-auto">
           <div class="inline-block min-w-full align-middle">
-            <div class="spec-table overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-card">
+            <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-card">
               <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-navy">
                   <tr>
@@ -140,7 +158,7 @@ useSectionMotion(sectionRef, {
         <!-- Packing Sizes Table -->
         <div class="overflow-x-auto">
           <div class="inline-block min-w-full align-middle">
-            <div class="spec-table overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-card">
+            <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-card">
               <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-navy">
                   <tr>

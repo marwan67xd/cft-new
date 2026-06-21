@@ -7,34 +7,20 @@ const badgesRef = ref<HTMLElement | null>(null)
 
 const certs = ['ISO 22000', 'HACCP', 'GMP', 'FDA']
 
-useSectionMotion(sectionRef, {
-  setup({ reveal }) {
-    if (leftRef.value) {
-      reveal(leftRef.value, {
-        trigger: sectionRef.value!,
-        from: getSplitRevealFrom('left'),
-        duration: 0.95,
+onMounted(() => {
+  if (import.meta.client && sectionRef.value) {
+    import('gsap').then(({ default: gsap }) => {
+      import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
+        gsap.registerPlugin(ScrollTrigger)
+        gsap.fromTo(leftRef.value, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.7, scrollTrigger: { trigger: sectionRef.value, start: 'top 82%' } })
+        gsap.fromTo(rightRef.value, { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.7, scrollTrigger: { trigger: sectionRef.value, start: 'top 82%' } })
+        if (badgesRef.value) {
+          const badges = badgesRef.value.querySelectorAll('.cert-badge')
+          gsap.fromTo(badges, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.5, stagger: 0.08, scrollTrigger: { trigger: sectionRef.value, start: 'top 78%' } })
+        }
       })
-    }
-    if (rightRef.value) {
-      reveal(rightRef.value, {
-        trigger: sectionRef.value!,
-        from: getSplitRevealFrom('right'),
-        duration: 0.95,
-        delay: 0.08,
-      })
-    }
-    if (badgesRef.value) {
-      const badges = badgesRef.value.querySelectorAll('.cert-badge')
-      reveal(badges, {
-        trigger: sectionRef.value!,
-        from: { scale: 0.9, opacity: 0 },
-        duration: 0.8,
-        stagger: 0.1,
-        delay: 0.16,
-      })
-    }
-  },
+    })
+  }
 })
 </script>
 
@@ -66,7 +52,7 @@ useSectionMotion(sectionRef, {
         <div ref="rightRef" class="relative">
           <div class="rounded-2xl overflow-hidden bg-ocean-800 aspect-[4/3] shadow-xl">
             <img
-              src="~/assets/tuna/ChatGPT Image Feb 22, 2026, 05_37_48 AM.jpg"
+              src="~/assets/tuna/ChatGPT Image Feb 22, 2026, 05_37_48 AM.png"
               alt="Packaged seafood product"
               class="w-full h-full object-cover"
               loading="lazy"

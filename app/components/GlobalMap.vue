@@ -1,32 +1,18 @@
 <script setup lang="ts">
 const { t } = useI18n()
-
 const sectionRef = ref<HTMLElement | null>(null)
-const headingRef = ref<HTMLElement | null>(null)
-const subtitleRef = ref<HTMLElement | null>(null)
 const cardRef = ref<HTMLElement | null>(null)
 const tooltipRef = ref<HTMLElement | null>(null)
+const headingRef = ref<HTMLElement | null>(null)
+const { reveal } = useScrollReveal()
 
-const { run } = useScrollReveal(sectionRef)
-
-run(({ revealHeader, revealWhenCentered }) => {
-  if (!sectionRef.value) return
-
-  revealHeader(headingRef.value, subtitleRef.value, sectionRef.value)
-
-  if (cardRef.value) {
-    revealWhenCentered(cardRef.value, {
-      from: { y: 40, opacity: 0, scale: 0.97 },
-      duration: 1,
-    })
-  }
-
-  if (tooltipRef.value) {
-    revealWhenCentered(tooltipRef.value, {
-      from: { y: 20, opacity: 0, scale: 0.94 },
-      duration: 0.8,
-    })
-  }
+onMounted(() => {
+  if (!import.meta.client || !sectionRef.value) return
+  nextTick(() => {
+    reveal(headingRef.value, { trigger: sectionRef.value, y: 20 })
+    reveal(cardRef.value, { trigger: sectionRef.value, y: 30, duration: 0.7 })
+    reveal(tooltipRef.value, { trigger: sectionRef.value, scale: 0.95, delay: 0.15, duration: 0.5 })
+  })
 })
 </script>
 
@@ -38,14 +24,10 @@ run(({ revealHeader, revealWhenCentered }) => {
     aria-labelledby="global-heading"
   >
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <h2
-        id="global-heading"
-        ref="headingRef"
-        class="text-3xl sm:text-4xl font-bold text-ocean-950 text-center mb-4"
-      >
+      <h2 id="global-heading" ref="headingRef" class="text-3xl sm:text-4xl font-bold text-ocean-950 text-center mb-4">
         {{ $t('home.global.title') }}
       </h2>
-      <p ref="subtitleRef" class="text-gray-600 text-center max-w-2xl mx-auto mb-14">
+      <p class="text-gray-600 text-center max-w-2xl mx-auto mb-14">
         {{ $t('home.global.subtitle') }}
       </p>
 
@@ -54,7 +36,7 @@ run(({ revealHeader, revealWhenCentered }) => {
           <img
             src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&q=80"
             alt="World map - global presence"
-            class="w-full h-full object-cover opacity-90"
+            class="ken-burns w-full h-full object-cover opacity-90"
             width="1200"
             height="600"
             loading="lazy"
@@ -62,7 +44,7 @@ run(({ revealHeader, revealWhenCentered }) => {
         </div>
         <div
           ref="tooltipRef"
-          class="absolute bottom-4 sm:bottom-6 left-4 right-4 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 sm:max-w-md px-5 py-4 rounded-xl bg-white shadow-card border border-gray-100 text-center"
+          class="absolute bottom-6 left-1/2 -translate-x-1/2 px-6 py-4 rounded-xl bg-white shadow-card border border-gray-100 text-center"
         >
           <p class="text-ocean-900 font-medium">{{ $t('home.global.tooltip') }}</p>
         </div>

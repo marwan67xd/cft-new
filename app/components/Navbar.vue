@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import logoImage from "~/assets/logo/logo-2-10-10-63.png";
-import gsap from 'gsap'
 const { t } = useI18n();
 const localePath = useLocalePath();
 
@@ -18,35 +17,17 @@ const route = useRoute();
 const isTunaPage = computed(() => route.path === localePath('/tuna') || route.path.endsWith('/tuna'));
 const isHomePage = computed(() => route.path === localePath('/') || route.path === '/');
 
+const isActiveLink = (href: string) => route.path === href;
+
 const isScrolled = ref(false);
 const isMobileMenuOpen = ref(false);
-const headerRef = ref<HTMLElement | null>(null);
-
-defineExpose({ headerRef });
 
 const updateScroll = () => {
   isScrolled.value = window.scrollY > 20;
 };
 
-onMounted(async () => {
+onMounted(() => {
   window.addEventListener("scroll", updateScroll, { passive: true });
-
-  if (!import.meta.client || !headerRef.value) return
-
-  await nextTick()
-
-  if (isHomePage.value && shouldPlayHomeIntro()) return
-
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
-  const header = headerRef.value
-  const startY = -header.offsetHeight
-
-  gsap.fromTo(
-    header,
-    { y: startY, autoAlpha: 0, immediateRender: true },
-    { y: 0, autoAlpha: 1, duration: 1.1, ease: 'expo.out', force3D: true },
-  )
 });
 
 onUnmounted(() => {
@@ -56,8 +37,7 @@ onUnmounted(() => {
 
 <template>
   <header
-    ref="headerRef"
-    class="main-header fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow,padding] duration-300 pt-[env(safe-area-inset-top,0px)]"
+    class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
     :class="[
       isScrolled
         ? 'bg-white/95 backdrop-blur-sm shadow-nav py-3'
@@ -85,13 +65,16 @@ onUnmounted(() => {
         />
       </NuxtLink>
 
-      <!-- Desktop nav (Centered) — hidden below lg to avoid overlap on tablets -->
-      <ul class="hidden lg:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
+      <!-- Desktop nav (Centered) -->
+      <ul class="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
         <li v-for="link in navLinks" :key="link.href">
           <NuxtLink
             :to="link.href"
-            class="font-medium transition-colors"
-            :class="isScrolled ? 'text-gray-700 hover:text-sky-500' : isTunaPage ? 'text-white hover:text-sky-400' : 'text-white hover:text-sky-400'"
+            class="nav-link font-medium transition-colors"
+            :class="[
+              isScrolled ? 'text-gray-700 hover:text-sky-500' : isTunaPage ? 'text-white hover:text-sky-400' : 'text-white hover:text-sky-400',
+              isActiveLink(link.href) ? 'nav-link--active' : '',
+            ]"
           >
             {{ link.label }}
           </NuxtLink>
@@ -99,10 +82,10 @@ onUnmounted(() => {
       </ul>
 
       <!-- Desktop Right Side (Contact + Language) -->
-      <div class="hidden lg:flex items-center gap-6">
+      <div class="hidden md:flex items-center gap-6">
         <NuxtLink
           :to="contactLink.href"
-          class="font-medium transition-colors inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-ocean-600 text-white hover:bg-ocean-700 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2"
+          class="btn-dynamic font-medium transition-colors inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-ocean-600 text-white hover:bg-ocean-700 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2"
         >
           {{ contactLink.label }}
         </NuxtLink>
@@ -112,7 +95,7 @@ onUnmounted(() => {
       <!-- Mobile menu button -->
       <button
         type="button"
-        class="lg:hidden p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-ocean-500 transition-colors"
+        class="md:hidden p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-ocean-500 transition-colors"
         :class="isScrolled ? 'text-gray-600 hover:bg-gray-100' : 'text-white hover:bg-white/10'"
         :aria-expanded="isMobileMenuOpen"
         aria-label="Toggle menu"
@@ -153,7 +136,7 @@ onUnmounted(() => {
     >
       <div
         v-show="isMobileMenuOpen"
-        class="lg:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-lg"
+        class="md:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-lg"
       >
         <ul class="container mx-auto px-4 py-4 flex flex-col gap-2">
           <li v-for="link in navLinks" :key="link.href">

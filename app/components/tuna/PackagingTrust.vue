@@ -15,12 +15,40 @@ const trustItems = computed(() => [
   { label: t('tuna.packaging.fdaRegistered'), icon: "fda" },
 ]);
 
-const sectionRef = ref<HTMLElement | null>(null)
+const sectionRef = ref<HTMLElement | null>(null);
+const cardsRef = ref<HTMLElement | null>(null);
 
-useSectionMotion(sectionRef, {
-  preset: 'cards',
-  cardsSelector: '[data-pack-card]',
-})
+let gsapCtx: { revert: () => void } | null = null;
+
+onMounted(() => {
+  if (import.meta.client && sectionRef.value) {
+    import("gsap").then(({ default: gsap }) => {
+      import("gsap/ScrollTrigger").then(({ default: ScrollTrigger }) => {
+        gsap.registerPlugin(ScrollTrigger);
+        gsapCtx = gsap.context(() => {
+          if (cardsRef.value) {
+            const cards = cardsRef.value.querySelectorAll("[data-pack-card]");
+            gsap.fromTo(
+              cards,
+              { opacity: 0, y: 20 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                stagger: 0.06,
+                scrollTrigger: { trigger: sectionRef.value, start: "top 82%" },
+              },
+            );
+          }
+        }, sectionRef);
+      });
+    });
+  }
+});
+
+onUnmounted(() => {
+  gsapCtx?.revert();
+});
 </script>
 
 <template>
@@ -39,7 +67,7 @@ useSectionMotion(sectionRef, {
           >
             {{ $t('tuna.packaging.packagingTitle') }}
           </h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div ref="cardsRef" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div
               v-for="item in packagingItems"
               :key="item.label"

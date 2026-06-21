@@ -4,24 +4,16 @@ const sectionRef = ref<HTMLElement | null>(null)
 const visionRef = ref<HTMLElement | null>(null)
 const missionRef = ref<HTMLElement | null>(null)
 
-useSectionMotion(sectionRef, {
-  setup({ reveal }) {
-    if (visionRef.value) {
-      reveal(visionRef.value, {
-        trigger: sectionRef.value!,
-        from: getSplitRevealFrom('left'),
-        duration: 0.95,
+onMounted(() => {
+  if (import.meta.client && sectionRef.value) {
+    import('gsap').then(({ default: gsap }) => {
+      import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
+        gsap.registerPlugin(ScrollTrigger)
+        gsap.fromTo(visionRef.value, { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.7, scrollTrigger: { trigger: sectionRef.value, start: 'top 85%' } })
+        gsap.fromTo(missionRef.value, { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.7, scrollTrigger: { trigger: sectionRef.value, start: 'top 85%' } })
       })
-    }
-    if (missionRef.value) {
-      reveal(missionRef.value, {
-        trigger: sectionRef.value!,
-        from: getSplitRevealFrom('right'),
-        duration: 0.95,
-        delay: 0.1,
-      })
-    }
-  },
+    })
+  }
 })
 </script>
 
@@ -31,7 +23,7 @@ useSectionMotion(sectionRef, {
     class="py-0"
     aria-labelledby="mission-vision-heading"
   >
-    <div class="grid md:grid-cols-2 min-h-0 md:min-h-[320px] lg:min-h-[360px]">
+    <div class="grid md:grid-cols-2 min-h-[320px] sm:min-h-[360px]">
       <!-- Left: Vision (dark blue) -->
       <div
         ref="visionRef"

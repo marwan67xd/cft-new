@@ -112,7 +112,29 @@ const sectionRef = ref<HTMLElement | null>(null)
 const formRef = ref<HTMLElement | null>(null)
 const detailsRef = ref<HTMLElement | null>(null)
 
-useSectionMotion(sectionRef, { preset: 'standard' })
+let gsapCtx: { revert: () => void } | null = null
+
+onMounted(() => {
+  if (import.meta.client && sectionRef.value) {
+    import('gsap').then(({ default: gsap }) => {
+      import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
+        gsap.registerPlugin(ScrollTrigger)
+        gsapCtx = gsap.context(() => {
+          if (formRef.value) {
+            gsap.fromTo(formRef.value, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.7, scrollTrigger: { trigger: sectionRef.value, start: 'top 82%' } })
+          }
+          if (detailsRef.value) {
+            gsap.fromTo(detailsRef.value, { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.7, scrollTrigger: { trigger: sectionRef.value, start: 'top 82%' } })
+          }
+        }, sectionRef)
+      })
+    })
+  }
+})
+
+onUnmounted(() => {
+  gsapCtx?.revert()
+})
 </script>
 
 <template>

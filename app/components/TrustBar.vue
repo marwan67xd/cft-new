@@ -9,21 +9,12 @@ const items = computed(() => [
 ])
 
 const sectionRef = ref<HTMLElement | null>(null)
-const itemRefs = ref<HTMLElement[]>([])
+const { revealChildren } = useScrollReveal()
 
-function setItemRef(el: unknown, i: number) {
-  if (el) (itemRefs.value as (HTMLElement | null)[])[i] = el as HTMLElement
-}
-
-const { run } = useScrollReveal(sectionRef)
-
-run(({ revealWhenCentered }) => {
-  const els = itemRefs.value.filter(Boolean)
-  if (!sectionRef.value || !els.length) return
-
-  revealWhenCentered(els, {
-    from: { y: 32, opacity: 0, scale: 0.96 },
-    duration: 0.85,
+onMounted(() => {
+  if (!import.meta.client || !sectionRef.value) return
+  nextTick(() => {
+    revealChildren(sectionRef.value, '.trust-item', { stagger: 0.08, y: 20, start: 'top 88%' })
   })
 })
 </script>
@@ -37,15 +28,15 @@ run(({ revealWhenCentered }) => {
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
         <li
-          v-for="(item, i) in items"
+          v-for="item in items"
           :key="item.label"
-          :ref="(el) => setItemRef(el, i)"
-          class="flex flex-col items-center text-center group"
+          class="trust-item flex flex-col items-center text-center group"
         >
           <div
-            class="w-14 h-14 rounded-xl bg-ocean-50 flex items-center justify-center text-ocean-600 mb-4 transition-transform duration-200 group-hover:scale-105 group-hover:shadow-card"
+            class="trust-icon-pop w-14 h-14 rounded-xl bg-ocean-50 flex items-center justify-center text-ocean-600 mb-4 group-hover:shadow-card"
             aria-hidden="true"
           >
+            <!-- Icons as inline SVG -->
             <svg
               v-if="item.icon === 'certificate'"
               class="w-7 h-7"

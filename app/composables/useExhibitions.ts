@@ -46,17 +46,17 @@ const thaifex2025Gallery: string[] = [
 ]
 
 const thaifex2026Gallery: string[] = [
-  '/images/thaifex/thaifex-1.jpg',
-  '/images/thaifex/thaifex-2.jpg',
-  '/images/thaifex/thaifex-3.jpg',
-  '/images/thaifex/thaifex-4.jpg',
+  '/images/thaifex/thaifex-1.png',
+  '/images/thaifex/thaifex-2.png',
+  '/images/thaifex/thaifex-3.png',
+  '/images/thaifex/thaifex-4.png',
 ]
 
 const foodexJapan2026Gallery: string[] = [
-  '/images/foodex-japan/foodex-japan-1.jpg',
-  '/images/foodex-japan/foodex-japan-2.jpg',
-  '/images/foodex-japan/foodex-japan-3.jpg',
-  '/images/foodex-japan/foodex-japan-4.jpg',
+  '/images/foodex-japan/foodex-japan-1.png',
+  '/images/foodex-japan/foodex-japan-2.png',
+  '/images/foodex-japan/foodex-japan-3.png',
+  '/images/foodex-japan/foodex-japan-4.png',
 ]
 
 const exhibitionsData: ExhibitionEvent[] = [
