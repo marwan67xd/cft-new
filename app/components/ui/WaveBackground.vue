@@ -7,11 +7,14 @@ withDefaults(
     position?: 'bottom' | 'top' | 'full'
     /** Tailwind height class for the wave container */
     heightClass?: string
+    /** Faster wave motion */
+    fast?: boolean
   }>(),
   {
     variant: 'hero',
     position: 'bottom',
     heightClass: 'h-28 sm:h-36 lg:h-44',
+    fast: false,
   },
 )
 
@@ -47,7 +50,7 @@ const wavePathC =
 <template>
   <div
     class="wave-bg pointer-events-none select-none"
-    :class="[variantClasses[variant], positionClasses[position], heightClass]"
+    :class="[variantClasses[variant], positionClasses[position], heightClass, { 'wave-bg--fast': fast }]"
     aria-hidden="true"
   >
     <div class="wave-bg__layer wave-bg__layer--1">

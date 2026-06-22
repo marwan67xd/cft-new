@@ -9,13 +9,18 @@ useSectionMotion(ctaRef, { preset: 'standard' })
 <template>
   <section
     ref="ctaRef"
-    class="py-16 sm:py-20 lg:py-24 relative overflow-hidden"
+    class="py-16 sm:py-20 lg:py-24 relative overflow-hidden text-white"
     aria-labelledby="cta-heading"
   >
     <div
       class="absolute inset-0 bg-gradient-to-r from-ocean-700 via-ocean-600 to-ocean-800"
       aria-hidden="true"
     />
+
+    <UiWaveBackground variant="ocean" position="full" height-class="h-full" fast />
+    <UiWaveBackground variant="ocean" position="top" height-class="h-14 sm:h-20" fast />
+    <UiWaveBackground variant="ocean" position="bottom" height-class="h-14 sm:h-20" fast />
+
     <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2
         id="cta-heading"

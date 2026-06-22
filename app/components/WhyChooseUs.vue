@@ -115,9 +115,9 @@ onUnmounted(() => {
   >
     <div class="ocean-section-bg absolute inset-0" aria-hidden="true" />
 
-    <UiWaveBackground variant="dark" position="full" height-class="h-full" />
-    <UiWaveBackground variant="dark-top" position="top" height-class="h-16 sm:h-24 lg:h-28" />
-    <UiWaveBackground variant="dark-bottom" position="bottom" height-class="h-16 sm:h-24 lg:h-28" />
+    <UiWaveBackground variant="dark" position="full" height-class="h-full" fast />
+    <UiWaveBackground variant="dark-top" position="top" height-class="h-16 sm:h-24 lg:h-28" fast />
+    <UiWaveBackground variant="dark-bottom" position="bottom" height-class="h-16 sm:h-24 lg:h-28" fast />
 
     <div class="float-orb float-orb--1" aria-hidden="true" />
     <div class="float-orb float-orb--2" aria-hidden="true" />

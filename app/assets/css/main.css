@@ -285,7 +285,61 @@
 }
 
 .wave-bg--ocean {
-  color: rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.wave-bg--ocean .wave-bg__layer--1 {
+  opacity: 0.32;
+  animation: waveSwell 5s ease-in-out infinite;
+}
+
+.wave-bg--ocean .wave-bg__layer--2 {
+  opacity: 0.24;
+  animation: waveSwell 4s ease-in-out -1.5s infinite;
+}
+
+.wave-bg--ocean .wave-bg__layer--3 {
+  opacity: 0.18;
+  animation: waveSwell 3s ease-in-out -0.8s infinite;
+}
+
+.wave-bg--ocean.wave-bg--full .wave-bg__layer {
+  bottom: auto;
+  transform: none;
+}
+
+.wave-bg--ocean.wave-bg--full .wave-bg__layer--1 {
+  top: 10%;
+  height: 50%;
+  opacity: 0.3;
+  filter: blur(0.5px);
+  animation: waveSwell 4.5s ease-in-out infinite;
+}
+
+.wave-bg--ocean.wave-bg--full .wave-bg__layer--2 {
+  top: 34%;
+  height: 56%;
+  opacity: 0.26;
+  animation: waveSwell 3.5s ease-in-out -1.5s infinite;
+}
+
+.wave-bg--ocean.wave-bg--full .wave-bg__layer--3 {
+  top: 56%;
+  height: 48%;
+  opacity: 0.22;
+  animation: waveSwell 2.5s ease-in-out -0.8s infinite;
+}
+
+.wave-bg--ocean.wave-bg--full .wave-bg__track--1 {
+  animation: waveDrift 14s linear infinite;
+}
+
+.wave-bg--ocean.wave-bg--full .wave-bg__track--2 {
+  animation: waveDrift 10s linear infinite reverse;
+}
+
+.wave-bg--ocean.wave-bg--full .wave-bg__track--3 {
+  animation: waveDrift 7s linear infinite;
 }
 
 .wave-bg--light {
@@ -412,6 +466,115 @@
   }
 }
 
+/* Faster wave motion — ~2× speed */
+.wave-bg--fast .wave-bg__track--1 {
+  animation: waveDrift 8s linear infinite;
+}
+
+.wave-bg--fast .wave-bg__track--2 {
+  animation: waveDrift 6s linear infinite reverse;
+}
+
+.wave-bg--fast .wave-bg__track--3 {
+  animation: waveDrift 4.5s linear infinite;
+}
+
+.wave-bg--fast.wave-bg--dark .wave-bg__layer--1 {
+  animation: waveSwell 2.5s ease-in-out infinite;
+}
+
+.wave-bg--fast.wave-bg--dark .wave-bg__layer--2 {
+  animation: waveSwell 2s ease-in-out -1.5s infinite;
+}
+
+.wave-bg--fast.wave-bg--dark .wave-bg__layer--3 {
+  animation: waveSwell 1.5s ease-in-out -0.8s infinite;
+}
+
+.wave-bg--fast.wave-bg--dark.wave-bg--full .wave-bg__layer--1 {
+  animation: waveSwell 2.75s ease-in-out infinite;
+}
+
+.wave-bg--fast.wave-bg--dark.wave-bg--full .wave-bg__layer--2 {
+  animation: waveSwell 2s ease-in-out -2s infinite;
+}
+
+.wave-bg--fast.wave-bg--dark.wave-bg--full .wave-bg__layer--3 {
+  animation: waveSwell 1.5s ease-in-out -1s infinite;
+}
+
+.wave-bg--fast.wave-bg--dark.wave-bg--full .wave-bg__track--1 {
+  animation: waveDrift 10s linear infinite;
+}
+
+.wave-bg--fast.wave-bg--dark.wave-bg--full .wave-bg__track--2 {
+  animation: waveDrift 7s linear infinite reverse;
+}
+
+.wave-bg--fast.wave-bg--dark.wave-bg--full .wave-bg__track--3 {
+  animation: waveDrift 5s linear infinite;
+}
+
+.wave-bg--fast.wave-bg--ocean .wave-bg__layer--1 {
+  animation: waveSwell 2.5s ease-in-out infinite;
+}
+
+.wave-bg--fast.wave-bg--ocean .wave-bg__layer--2 {
+  animation: waveSwell 2s ease-in-out -1.5s infinite;
+}
+
+.wave-bg--fast.wave-bg--ocean .wave-bg__layer--3 {
+  animation: waveSwell 1.5s ease-in-out -0.8s infinite;
+}
+
+.wave-bg--fast.wave-bg--ocean.wave-bg--full .wave-bg__layer--1 {
+  animation: waveSwell 2.25s ease-in-out infinite;
+}
+
+.wave-bg--fast.wave-bg--ocean.wave-bg--full .wave-bg__layer--2 {
+  animation: waveSwell 1.75s ease-in-out -1.5s infinite;
+}
+
+.wave-bg--fast.wave-bg--ocean.wave-bg--full .wave-bg__layer--3 {
+  animation: waveSwell 1.25s ease-in-out -0.8s infinite;
+}
+
+.wave-bg--fast.wave-bg--ocean.wave-bg--full .wave-bg__track--1 {
+  animation: waveDrift 7s linear infinite;
+}
+
+.wave-bg--fast.wave-bg--ocean.wave-bg--full .wave-bg__track--2 {
+  animation: waveDrift 5s linear infinite reverse;
+}
+
+.wave-bg--fast.wave-bg--ocean.wave-bg--full .wave-bg__track--3 {
+  animation: waveDrift 3.5s linear infinite;
+}
+
+.wave-bg--fast.wave-bg--full .wave-bg__layer--1 {
+  animation: waveSwell 2.5s ease-in-out infinite;
+}
+
+.wave-bg--fast.wave-bg--full .wave-bg__layer--2 {
+  animation: waveSwell 2s ease-in-out -1.2s infinite;
+}
+
+.wave-bg--fast.wave-bg--full .wave-bg__layer--3 {
+  animation: waveSwell 1.5s ease-in-out -0.6s infinite;
+}
+
+.wave-bg--fast.wave-bg--full .wave-bg__track--1 {
+  animation: waveDrift 8s linear infinite;
+}
+
+.wave-bg--fast.wave-bg--full .wave-bg__track--2 {
+  animation: waveDrift 6s linear infinite reverse;
+}
+
+.wave-bg--fast.wave-bg--full .wave-bg__track--3 {
+  animation: waveDrift 4s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .wave-bg__track--1,
   .wave-bg__track--2,
@@ -424,7 +587,10 @@
   .wave-bg--full .wave-bg__layer--3,
   .wave-bg--dark .wave-bg__layer--1,
   .wave-bg--dark .wave-bg__layer--2,
-  .wave-bg--dark .wave-bg__layer--3 {
+  .wave-bg--dark .wave-bg__layer--3,
+  .wave-bg--ocean .wave-bg__layer--1,
+  .wave-bg--ocean .wave-bg__layer--2,
+  .wave-bg--ocean .wave-bg__layer--3 {
     animation: none !important;
   }
 

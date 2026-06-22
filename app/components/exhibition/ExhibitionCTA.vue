@@ -14,9 +14,9 @@ useSectionMotion(ctaRef, { preset: 'standard' })
   >
     <div class="ocean-section-bg" aria-hidden="true" />
 
-    <UiWaveBackground variant="dark" position="full" height-class="h-full" />
-    <UiWaveBackground variant="dark-top" position="top" height-class="h-16 sm:h-24 lg:h-28" />
-    <UiWaveBackground variant="dark-bottom" position="bottom" height-class="h-16 sm:h-24 lg:h-28" />
+    <UiWaveBackground variant="dark" position="full" height-class="h-full" fast />
+    <UiWaveBackground variant="dark-top" position="top" height-class="h-16 sm:h-24 lg:h-28" fast />
+    <UiWaveBackground variant="dark-bottom" position="bottom" height-class="h-16 sm:h-24 lg:h-28" fast />
 
     <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 id="cta-heading" class="text-3xl sm:text-4xl font-bold text-white tracking-tight">
