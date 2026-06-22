@@ -3,6 +3,7 @@
  * Brand Logo Showcase — horizontal auto-scroll, GSAP scroll-in.
  * Logos shown in original colors, no box/border. Pause on hover. Drag with mouse.
  */
+import { scaleMotion } from '~/composables/useResponsiveMotion'
 
 const sectionRef = ref<HTMLElement | null>(null)
 const trackRef = ref<HTMLElement | null>(null)
@@ -84,7 +85,7 @@ onMounted(() => {
         if (cards?.length) {
           gsap.fromTo(
             cards,
-            { opacity: 0, y: 30 },
+            { opacity: 0, y: scaleMotion(30) },
             {
               opacity: 1,
               y: 0,
@@ -93,7 +94,7 @@ onMounted(() => {
               ease: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
               scrollTrigger: {
                 trigger: sectionRef.value,
-                start: 'top 82%',
+                start: 'top 55%',
               },
             }
           )
@@ -103,9 +104,10 @@ onMounted(() => {
         if (trackRef.value) {
           const track = trackRef.value
           const halfWidth = track.scrollWidth / 2
+          const speed = window.innerWidth < 768 ? 35 : 50
           scrollTween = gsap.to(track, {
             x: -halfWidth,
-            duration: halfWidth / 50,
+            duration: halfWidth / speed,
             ease: 'none',
             repeat: -1,
             onRepeat: () => gsap.set(track, { x: 0 }),
@@ -159,7 +161,7 @@ function onDragEnd() {
     gsapLib?.set(trackRef.value!, { x: normalizedX })
     scrollTween = gsap.to(trackRef.value, {
       x: -halfWidth,
-      duration: (halfWidth + normalizedX) / 30,
+      duration: (halfWidth + normalizedX) / (window.innerWidth < 768 ? 25 : 30),
       ease: 'none',
       repeat: -1,
       onRepeat: () => gsap.set(trackRef.value, { x: 0 }),
@@ -227,7 +229,7 @@ onUnmounted(() => {
             <img
               :src="logo"
               :alt="`Brand ${(i % brandLogos.length) + 1}`"
-              class="brand-strip-img h-20 sm:h-24 lg:h-28 w-auto object-contain rounded-xl"
+              class="brand-strip-img h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain rounded-xl"
               loading="lazy"
               draggable="false"
               @dragstart.prevent

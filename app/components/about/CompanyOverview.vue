@@ -48,55 +48,54 @@ watch(() => stats.value, (newStats) => {
   })
 }, { immediate: true })
 
-onMounted(() => {
-  if (import.meta.client && sectionRef.value) {
-    import('gsap').then(({ default: gsap }) => {
-      import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
-        gsap.registerPlugin(ScrollTrigger)
-        
-        let hasAnimated = false
-        
-        const startCounterAnimation = () => {
-          if (!hasAnimated) {
-            hasAnimated = true
-            stats.value.forEach((stat, index) => {
-              setTimeout(() => {
-                animateCounter(stat.label, stat.number, 1.5)
-              }, index * 150)
-            })
-          }
-        }
-        
-        gsap.fromTo(leftRef.value, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.7, scrollTrigger: { trigger: sectionRef.value, start: 'top 82%' } })
-        gsap.fromTo(rightRef.value, { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.8, scrollTrigger: { trigger: sectionRef.value, start: 'top 82%' } })
-        
-        if (statsRowRef.value) {
-          const children = statsRowRef.value.querySelectorAll('.stat-card')
-          
-          ScrollTrigger.create({
-            trigger: sectionRef.value,
-            start: 'top 75%',
-            onEnter: startCounterAnimation,
-            once: true
-          })
-          
-          gsap.fromTo(children, { 
-            opacity: 0, 
-            y: 16 
-          }, { 
-            opacity: 1, 
-            y: 0, 
-            duration: 0.5, 
-            stagger: 0.12, 
-            scrollTrigger: { 
-              trigger: sectionRef.value, 
-              start: 'top 75%'
-            } 
-          })
-        }
+useSectionMotion(sectionRef, {
+  setup({ reveal, ScrollTrigger }) {
+    let hasAnimated = false
+
+    const startCounterAnimation = () => {
+      if (hasAnimated) return
+      hasAnimated = true
+      stats.value.forEach((stat, index) => {
+        setTimeout(() => {
+          animateCounter(stat.label, stat.number, 1.5)
+        }, index * 150)
       })
-    })
-  }
+    }
+
+    if (leftRef.value) {
+      reveal(leftRef.value, {
+        trigger: leftRef.value,
+        start: SCROLL_REVEAL_START,
+        from: getSplitRevealFrom('left'),
+        duration: 0.95,
+      })
+    }
+    if (rightRef.value) {
+      reveal(rightRef.value, {
+        trigger: rightRef.value,
+        start: SCROLL_REVEAL_START,
+        from: getSplitRevealFrom('right'),
+        duration: 0.95,
+        delay: 0.08,
+      })
+    }
+    if (statsRowRef.value) {
+      const children = statsRowRef.value.querySelectorAll('.stat-card')
+      ScrollTrigger.create({
+        trigger: sectionRef.value,
+        start: SCROLL_REVEAL_START,
+        onEnter: startCounterAnimation,
+        once: true,
+      })
+      reveal(children, {
+        trigger: sectionRef.value!,
+        start: SCROLL_REVEAL_START,
+        from: { y: getRevealY(16), opacity: 0 },
+        duration: 0.5,
+        stagger: 0.12,
+      })
+    }
+  },
 })
 </script>
 

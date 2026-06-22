@@ -21,7 +21,7 @@ onMounted(() => {
         gsapCtx = gsap.context(() => {
           if (cardsRef.value) {
             const cards = cardsRef.value.querySelectorAll('[data-pack-card]')
-            gsap.fromTo(cards, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, scrollTrigger: { trigger: sectionRef.value, start: 'top 82%' } })
+            gsap.fromTo(cards, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, scrollTrigger: { trigger: sectionRef.value, start: 'top 55%' } })
           }
         }, sectionRef)
       })

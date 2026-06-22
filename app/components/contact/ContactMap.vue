@@ -22,7 +22,7 @@ onMounted(() => {
         gsap.registerPlugin(ScrollTrigger)
         gsapCtx = gsap.context(() => {
           if (mapRef.value) {
-            gsap.fromTo(mapRef.value, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 88%' } })
+            gsap.fromTo(mapRef.value, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 55%' } })
           }
         }, sectionRef)
       })

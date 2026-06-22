@@ -4,13 +4,88 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
   }
+
+  img,
+  video,
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  section,
+  main,
+  footer,
+  header {
+    max-width: 100%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   body {
     @apply text-gray-700 antialiased;
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
   }
+
+  html.is-scrolling body {
+    scrollbar-width: thin;
+    scrollbar-color: #1e293b transparent;
+  }
+
   [dir='rtl'] body {
     font-family: 'Noto Sans Arabic', system-ui, sans-serif;
+  }
+}
+
+@supports selector(::-webkit-scrollbar) {
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  html.is-scrolling ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    transition: background 280ms ease, opacity 280ms ease;
+  }
+
+  html.is-scrolling ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
+    background-clip: padding-box;
+  }
+
+  html.is-scrolling ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #475569 0%, #334155 100%);
+    background-clip: padding-box;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: transparent;
   }
 }
 
@@ -42,14 +117,54 @@
   animation: heroScrollDot 1.4s ease-in-out infinite;
 }
 
-/* On phones, show more of the image (less cropping) */
-@media (max-width: 640px) {
-  .hero-slide {
-    background-size: contain;
-    background-color: #000; /* fills letterbox area nicely under the dark overlay */
-    background-position: center center;
+@media (max-width: 767px) {
+  .hero-slide--mobile {
+    background-size: cover;
+    background-position: center 25%;
+    background-color: #000;
   }
 }
+
+.page-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: clamp(420px, 65vh, 720px);
+  padding-top: calc(5.5rem + env(safe-area-inset-top, 0px));
+  padding-bottom: clamp(2rem, 5vh, 4rem);
+}
+
+@media (min-width: 640px) {
+  .page-hero {
+    min-height: clamp(480px, 70vh, 760px);
+    padding-top: calc(6rem + env(safe-area-inset-top, 0px));
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-hero {
+    min-height: clamp(520px, 75vh, 800px);
+  }
+}
+
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 20rem;
+}
+
+@media (min-width: 640px) {
+  .btn-cta {
+    width: auto;
+    min-width: 12.5rem;
+    max-width: none;
+  }
+}
+
 /* About page hero parallax background */
 .about-hero-bg {
   background: linear-gradient(135deg, #0a1c2e 0%, #0f2744 30%, #152d47 60%, #0f2a39 100%);

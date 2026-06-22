@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import heroBg from '~/assets/home/home-hero.png'
+import heroBg from '~/assets/home/home-hero.jpg'
+import heroBgMobile from '~/assets/home/home-hero-mobile-custom.jpg'
+import { scaleMotion } from '~/composables/useResponsiveMotion'
 
 const heroRef = ref<HTMLElement | null>(null)
 const bgRef = ref<HTMLElement | null>(null)
@@ -9,8 +11,8 @@ const subtitleRef = ref<HTMLElement | null>(null)
 const ctaRef = ref<HTMLElement | null>(null)
 const localePath = useLocalePath()
 
-const heroSlidesDesktop = [heroBg, '/images/cfi-facility.png'] as const
-const heroSlidesMobile = [heroBg, '/images/cfi-facility.png'] as const
+const heroSlidesDesktop = [heroBg, '/images/cfi-facility.jpg'] as const
+const heroSlidesMobile = [heroBgMobile, '/images/cfi-facility.jpg'] as const
 const activeSlide = ref(0)
 let slideTimer: number | null = null
 
@@ -23,10 +25,10 @@ onMounted(() => {
       import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
         gsap.registerPlugin(ScrollTrigger)
         gsapCtx = gsap.context(() => {
-          if (badgeRef.value) gsap.fromTo(badgeRef.value, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.2 })
-          if (headlineRef.value) gsap.fromTo(headlineRef.value, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, delay: 0.4 })
-          if (subtitleRef.value) gsap.fromTo(subtitleRef.value, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.8, delay: 0.55 })
-          if (ctaRef.value) gsap.fromTo(ctaRef.value, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, delay: 0.7 })
+          if (badgeRef.value) gsap.fromTo(badgeRef.value, { opacity: 0, y: scaleMotion(16) }, { opacity: 1, y: 0, duration: 0.6, delay: 0.2 })
+          if (headlineRef.value) gsap.fromTo(headlineRef.value, { opacity: 0, y: scaleMotion(30) }, { opacity: 1, y: 0, duration: 0.8, delay: 0.4 })
+          if (subtitleRef.value) gsap.fromTo(subtitleRef.value, { opacity: 0, y: scaleMotion(24) }, { opacity: 1, y: 0, duration: 0.8, delay: 0.55 })
+          if (ctaRef.value) gsap.fromTo(ctaRef.value, { opacity: 0, y: scaleMotion(18) }, { opacity: 1, y: 0, duration: 0.7, delay: 0.7 })
         }, heroRef)
       })
     })
@@ -50,7 +52,7 @@ onUnmounted(() => {
 <template>
   <section
     ref="heroRef"
-    class="relative min-h-[70vh] sm:min-h-[90vh] flex items-center justify-center overflow-hidden"
+    class="relative min-h-[clamp(420px,70vh,900px)] sm:min-h-[90vh] flex items-end justify-center overflow-hidden pt-[env(safe-area-inset-top,0px)] pb-14 sm:pb-20 md:pb-24 lg:pb-28"
     aria-label="Hero"
   >
     <div ref="bgRef" class="absolute inset-0 z-0 will-change-transform" aria-hidden="true">
@@ -64,21 +66,17 @@ onUnmounted(() => {
       <div
         v-for="(slide, i) in heroSlidesMobile"
         :key="`mobile-${slide}`"
-        class="hero-slide absolute inset-0 md:hidden"
+        class="hero-slide hero-slide--mobile absolute inset-0 md:hidden bg-center bg-cover"
         :class="{ 'is-active': i === activeSlide }"
-        :style="{
-          backgroundImage: `url('${slide}')`,
-          backgroundSize: 'cover',
-          backgroundPosition: i === 0 ? 'center 30%' : 'center center',
-        }"
+        :style="{ backgroundImage: `url('${slide}')` }"
       />
       <div class="absolute inset-0 bg-gradient-to-b from-black/35 via-black/45 to-black/60" />
       <div class="hero-glow absolute -top-20 -left-20 h-64 w-64 rounded-full bg-aqua-400/20 blur-3xl" />
       <div class="hero-glow hero-glow-delay absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-ocean-300/20 blur-3xl" />
     </div>
 
-    <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 text-center mt-12 sm:mt-6 md:-mt-44 lg:-mt-52">
-      <div class="py-4 px-4 sm:py-5 sm:px-6 max-w-4xl mx-auto inline-block">
+    <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 text-center w-full">
+      <div class="py-2 px-2 sm:px-6 max-w-4xl mx-auto inline-block">
         <p ref="badgeRef" class="mb-4 text-aqua-200 font-semibold tracking-[0.14em] uppercase text-xs sm:text-sm">
           {{ $t('home.hero.badge') }}
         </p>

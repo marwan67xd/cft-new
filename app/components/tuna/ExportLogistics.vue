@@ -28,7 +28,7 @@ onMounted(() => {
                 opacity: 1,
                 x: 0,
                 duration: 0.7,
-                scrollTrigger: { trigger: sectionRef.value, start: "top 82%" },
+                scrollTrigger: { trigger: sectionRef.value, start: "top 55%" },
               },
             );
           }
@@ -40,7 +40,7 @@ onMounted(() => {
                 opacity: 1,
                 x: 0,
                 duration: 0.7,
-                scrollTrigger: { trigger: sectionRef.value, start: "top 82%" },
+                scrollTrigger: { trigger: sectionRef.value, start: "top 55%" },
               },
             );
           }

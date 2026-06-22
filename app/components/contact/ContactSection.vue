@@ -121,10 +121,10 @@ onMounted(() => {
         gsap.registerPlugin(ScrollTrigger)
         gsapCtx = gsap.context(() => {
           if (formRef.value) {
-            gsap.fromTo(formRef.value, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.7, scrollTrigger: { trigger: sectionRef.value, start: 'top 82%' } })
+            gsap.fromTo(formRef.value, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.7, scrollTrigger: { trigger: sectionRef.value, start: 'top 55%' } })
           }
           if (detailsRef.value) {
-            gsap.fromTo(detailsRef.value, { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.7, scrollTrigger: { trigger: sectionRef.value, start: 'top 82%' } })
+            gsap.fromTo(detailsRef.value, { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.7, scrollTrigger: { trigger: sectionRef.value, start: 'top 55%' } })
           }
         }, sectionRef)
       })

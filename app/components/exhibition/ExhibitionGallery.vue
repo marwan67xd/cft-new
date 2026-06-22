@@ -219,14 +219,14 @@ onUnmounted(() => {
         </svg>
       </button>
 
-      <div ref="contentRef" class="relative w-full h-full flex flex-col items-center justify-center px-4 py-20">
+      <div ref="contentRef" class="relative w-full h-full flex flex-col items-center justify-center px-4 py-16 sm:py-20">
         <h2 class="text-xl sm:text-2xl font-semibold text-white mb-8 text-center">
           {{ title }}
         </h2>
 
         <div
           ref="viewportRef"
-          class="relative w-full max-w-5xl h-[50vh] min-h-[280px] max-h-[480px] flex items-center justify-center overflow-hidden touch-none"
+          class="relative w-full max-w-5xl h-[clamp(240px,45vh,480px)] sm:h-[50vh] flex items-center justify-center overflow-hidden touch-pan-y"
           @pointerdown="onPointerDown"
           @pointermove="onPointerMove"
           @pointerup="onPointerUp"

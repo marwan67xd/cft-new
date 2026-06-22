@@ -14,7 +14,7 @@ const { revealChildren } = useScrollReveal()
 onMounted(() => {
   if (!import.meta.client || !sectionRef.value) return
   nextTick(() => {
-    revealChildren(sectionRef.value, '.trust-item', { stagger: 0.08, y: 20, start: 'top 88%' })
+    revealChildren(sectionRef.value, '.trust-item', { stagger: 0.08, y: 20, start: SCROLL_REVEAL_START_COMPACT })
   })
 })
 </script>

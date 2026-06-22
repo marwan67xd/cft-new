@@ -17,13 +17,13 @@ onMounted(() => {
       import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
         gsap.registerPlugin(ScrollTrigger)
         if (lineRef.value) {
-          gsap.fromTo(lineRef.value, { scaleX: 0 }, { scaleX: 1, duration: 1, ease: 'power2.out', transformOrigin: 'left center', scrollTrigger: { trigger: sectionRef.value, start: 'top 80%' } })
+          gsap.fromTo(lineRef.value, { scaleX: 0 }, { scaleX: 1, duration: 1, ease: 'power2.out', transformOrigin: 'left center', scrollTrigger: { trigger: sectionRef.value, start: 'top 58%' } })
         }
         if (itemsRef.value) {
           const dots = itemsRef.value.querySelectorAll('.timeline-dot')
           const labels = itemsRef.value.querySelectorAll('.timeline-label')
-          gsap.fromTo(dots, { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.5, stagger: 0.15, scrollTrigger: { trigger: sectionRef.value, start: 'top 78%' } })
-          gsap.fromTo(labels, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.15, delay: 0.2, scrollTrigger: { trigger: sectionRef.value, start: 'top 78%' } })
+          gsap.fromTo(dots, { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.5, stagger: 0.15, scrollTrigger: { trigger: sectionRef.value, start: 'top 58%' } })
+          gsap.fromTo(labels, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.15, delay: 0.2, scrollTrigger: { trigger: sectionRef.value, start: 'top 58%' } })
         }
       })
     })

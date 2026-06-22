@@ -16,10 +16,10 @@ onMounted(() => {
         gsap.registerPlugin(ScrollTrigger)
         gsapCtx = gsap.context(() => {
           if (textRef.value) {
-            gsap.fromTo(textRef.value, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 88%' } })
+            gsap.fromTo(textRef.value, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 55%' } })
           }
           if (imagesRef.value) {
-            gsap.fromTo(imagesRef.value, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, delay: 0.2, scrollTrigger: { trigger: sectionRef.value, start: 'top 88%' } })
+            gsap.fromTo(imagesRef.value, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, delay: 0.2, scrollTrigger: { trigger: sectionRef.value, start: 'top 55%' } })
           }
         }, sectionRef)
       })

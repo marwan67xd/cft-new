@@ -36,7 +36,7 @@ onMounted(() => {
                 y: 0,
                 duration: 0.5,
                 stagger: 0.06,
-                scrollTrigger: { trigger: sectionRef.value, start: "top 82%" },
+                scrollTrigger: { trigger: sectionRef.value, start: "top 55%" },
               },
             );
           }

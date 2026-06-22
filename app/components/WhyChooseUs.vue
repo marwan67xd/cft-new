@@ -26,7 +26,7 @@ onMounted(() => {
 
       gsapCtx = gsap.context(() => {
         const trigger = sectionRef.value!
-        const start = 'top 72%'
+        const start = SCROLL_REVEAL_START
 
         if (headingRef.value) {
           gsap.fromTo(

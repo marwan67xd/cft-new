@@ -37,7 +37,7 @@ onUnmounted(() => {
 
 <template>
   <header
-    class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+    class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 pt-[env(safe-area-inset-top,0px)]"
     :class="[
       isScrolled
         ? 'bg-white/95 backdrop-blur-sm shadow-nav py-3'
@@ -66,7 +66,7 @@ onUnmounted(() => {
       </NuxtLink>
 
       <!-- Desktop nav (Centered) -->
-      <ul class="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
+      <ul class="hidden lg:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
         <li v-for="link in navLinks" :key="link.href">
           <NuxtLink
             :to="link.href"
@@ -82,7 +82,7 @@ onUnmounted(() => {
       </ul>
 
       <!-- Desktop Right Side (Contact + Language) -->
-      <div class="hidden md:flex items-center gap-6">
+      <div class="hidden lg:flex items-center gap-6">
         <NuxtLink
           :to="contactLink.href"
           class="btn-dynamic font-medium transition-colors inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-ocean-600 text-white hover:bg-ocean-700 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:ring-offset-2"
@@ -95,7 +95,7 @@ onUnmounted(() => {
       <!-- Mobile menu button -->
       <button
         type="button"
-        class="md:hidden p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-ocean-500 transition-colors"
+        class="lg:hidden p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-ocean-500 transition-colors"
         :class="isScrolled ? 'text-gray-600 hover:bg-gray-100' : 'text-white hover:bg-white/10'"
         :aria-expanded="isMobileMenuOpen"
         aria-label="Toggle menu"
@@ -136,7 +136,7 @@ onUnmounted(() => {
     >
       <div
         v-show="isMobileMenuOpen"
-        class="md:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-lg"
+        class="lg:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-lg"
       >
         <ul class="container mx-auto px-4 py-4 flex flex-col gap-2">
           <li v-for="link in navLinks" :key="link.href">

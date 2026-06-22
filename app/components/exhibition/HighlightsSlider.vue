@@ -39,7 +39,7 @@ onMounted(() => {
       import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
         gsap.registerPlugin(ScrollTrigger)
         gsapCtx = gsap.context(() => {
-          gsap.fromTo(sectionRef.value, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, scrollTrigger: { trigger: sectionRef.value, start: 'top 88%' } })
+          gsap.fromTo(sectionRef.value, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, scrollTrigger: { trigger: sectionRef.value, start: 'top 55%' } })
         }, sectionRef)
       })
     })

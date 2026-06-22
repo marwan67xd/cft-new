@@ -76,7 +76,7 @@ onMounted(() => {
                 opacity: 1,
                 y: 0,
                 duration: 0.6,
-                scrollTrigger: { trigger: sectionRef.value, start: "top 85%" },
+                scrollTrigger: { trigger: sectionRef.value, start: "top 55%" },
               },
             );
           }
@@ -89,7 +89,7 @@ onMounted(() => {
                 y: 0,
                 duration: 0.5,
                 delay: 0.1,
-                scrollTrigger: { trigger: sectionRef.value, start: "top 85%" },
+                scrollTrigger: { trigger: sectionRef.value, start: "top 55%" },
               },
             );
           }
@@ -103,7 +103,7 @@ onMounted(() => {
                 y: 0,
                 duration: 0.5,
                 stagger: 0.08,
-                scrollTrigger: { trigger: sectionRef.value, start: "top 78%" },
+                scrollTrigger: { trigger: sectionRef.value, start: "top 58%" },
               },
             );
           }

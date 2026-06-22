@@ -21,11 +21,11 @@ onMounted(() => {
         gsap.registerPlugin(ScrollTrigger)
         gsapCtx = gsap.context(() => {
           if (headingRef.value) {
-            gsap.fromTo(headingRef.value, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 85%' } })
+            gsap.fromTo(headingRef.value, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 55%' } })
           }
           if (iconsRef.value) {
             const icons = iconsRef.value.querySelectorAll('[data-nutrition-item]')
-            gsap.fromTo(icons, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, scrollTrigger: { trigger: sectionRef.value, start: 'top 80%' } })
+            gsap.fromTo(icons, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, scrollTrigger: { trigger: sectionRef.value, start: 'top 58%' } })
           }
         }, sectionRef)
       })

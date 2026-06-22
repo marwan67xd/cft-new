@@ -30,14 +30,14 @@ onMounted(() => {
         gsap.registerPlugin(ScrollTrigger)
         gsapCtx = gsap.context(() => {
           if (headingRef.value) {
-            gsap.fromTo(headingRef.value, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 85%' } })
+            gsap.fromTo(headingRef.value, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 55%' } })
           }
           if (mapRef.value) {
-            gsap.fromTo(mapRef.value, { opacity: 0, scale: 0.98 }, { opacity: 1, scale: 1, duration: 0.7, scrollTrigger: { trigger: sectionRef.value, start: 'top 82%' } })
+            gsap.fromTo(mapRef.value, { opacity: 0, scale: 0.98 }, { opacity: 1, scale: 1, duration: 0.7, scrollTrigger: { trigger: sectionRef.value, start: 'top 55%' } })
           }
           if (listRef.value) {
             const items = listRef.value.querySelectorAll('[data-region]')
-            gsap.fromTo(items, { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.5, stagger: 0.1, scrollTrigger: { trigger: sectionRef.value, start: 'top 78%' } })
+            gsap.fromTo(items, { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.5, stagger: 0.1, scrollTrigger: { trigger: sectionRef.value, start: 'top 58%' } })
           }
         }, sectionRef)
       })

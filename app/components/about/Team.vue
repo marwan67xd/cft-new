@@ -94,7 +94,7 @@ onMounted(() => {
         gsap.fromTo(
           headerRef.value,
           { opacity: 0, y: 14 },
-          { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 85%' } },
+          { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.value, start: 'top 55%' } },
         )
 
         if (gridRef.value) {
@@ -107,7 +107,7 @@ onMounted(() => {
               y: 0,
               duration: 0.55,
               stagger: 0.1,
-              scrollTrigger: { trigger: sectionRef.value, start: 'top 78%' },
+              scrollTrigger: { trigger: sectionRef.value, start: 'top 58%' },
             },
           )
         }

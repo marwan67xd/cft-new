@@ -8,7 +8,7 @@ onMounted(() => {
       import('gsap').then(({ default: gsap }) => {
         import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
           gsap.registerPlugin(ScrollTrigger)
-          gsap.fromTo(ctaRef.value, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: ctaRef.value, start: 'top 90%' } })
+          gsap.fromTo(ctaRef.value, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: ctaRef.value, start: 'top 55%' } })
         })
       })
     })
