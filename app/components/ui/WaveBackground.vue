@@ -31,12 +31,17 @@ const positionClasses: Record<string, string> = {
   full: 'wave-bg--full',
 }
 
+/** Deep slow swell — long ocean rhythm */
 const wavePathA =
-  'M0,64 C360,20 720,108 1080,64 C1260,42 1380,52 1440,64 L1440,120 L0,120 Z'
+  'M0,92 C240,52 480,132 720,92 C960,52 1200,132 1440,92 L1440,160 L0,160 Z'
+
+/** Mid-depth layer — offset phase for parallax depth */
 const wavePathB =
-  'M0,48 C320,96 640,16 960,48 C1120,64 1280,56 1440,48 L1440,120 L0,120 Z'
+  'M0,76 C200,116 400,56 600,76 C800,96 1000,56 1200,76 C1320,86 1440,76 1440,76 L1440,160 L0,160 Z'
+
+/** Surface ripples — shorter wavelength, gentle crests */
 const wavePathC =
-  'M0,72 C240,32 480,88 720,72 C960,56 1200,32 1440,72 L1440,120 L0,120 Z'
+  'M0,108 C150,88 300,128 450,108 C600,88 750,128 900,108 C1050,98 1200,118 1350,108 C1400,103 1440,108 1440,108 L1440,160 L0,160 Z'
 </script>
 
 <template>
@@ -47,10 +52,10 @@ const wavePathC =
   >
     <div class="wave-bg__layer wave-bg__layer--1">
       <div class="wave-bg__track wave-bg__track--1">
-        <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <svg viewBox="0 0 1440 160" preserveAspectRatio="none">
           <path :d="wavePathA" fill="currentColor" />
         </svg>
-        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+        <svg viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
           <path :d="wavePathA" fill="currentColor" />
         </svg>
       </div>
@@ -58,10 +63,10 @@ const wavePathC =
 
     <div class="wave-bg__layer wave-bg__layer--2">
       <div class="wave-bg__track wave-bg__track--2">
-        <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <svg viewBox="0 0 1440 160" preserveAspectRatio="none">
           <path :d="wavePathB" fill="currentColor" />
         </svg>
-        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+        <svg viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
           <path :d="wavePathB" fill="currentColor" />
         </svg>
       </div>
@@ -69,10 +74,10 @@ const wavePathC =
 
     <div class="wave-bg__layer wave-bg__layer--3">
       <div class="wave-bg__track wave-bg__track--3">
-        <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <svg viewBox="0 0 1440 160" preserveAspectRatio="none">
           <path :d="wavePathC" fill="currentColor" />
         </svg>
-        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+        <svg viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
           <path :d="wavePathC" fill="currentColor" />
         </svg>
       </div>

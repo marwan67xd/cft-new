@@ -113,7 +113,7 @@ onUnmounted(() => {
     class="why-section relative py-24 sm:py-32 text-white overflow-hidden"
     aria-labelledby="why-heading"
   >
-    <div class="why-section-bg absolute inset-0" aria-hidden="true" />
+    <div class="ocean-section-bg absolute inset-0" aria-hidden="true" />
 
     <UiWaveBackground variant="dark" position="full" height-class="h-full" />
     <UiWaveBackground variant="dark-top" position="top" height-class="h-16 sm:h-24 lg:h-28" />
@@ -182,13 +182,6 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-.why-section-bg {
-  background:
-    radial-gradient(ellipse 70% 55% at 15% 45%, rgba(34, 148, 184, 0.28) 0%, transparent 58%),
-    radial-gradient(ellipse 55% 45% at 85% 75%, rgba(45, 212, 191, 0.18) 0%, transparent 52%),
-    linear-gradient(165deg, #0a1c2e 0%, #0f2a39 45%, #0f2744 100%);
-}
-
 .why-animate {
   opacity: 0;
 }

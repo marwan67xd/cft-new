@@ -232,8 +232,8 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
   overflow: hidden;
+  will-change: transform;
 }
 
 .wave-bg__track {
@@ -251,30 +251,33 @@
 }
 
 .wave-bg__layer--1 {
-  height: 55%;
+  bottom: 0;
+  height: 58%;
   opacity: 0.35;
 }
 
 .wave-bg__layer--2 {
-  height: 75%;
+  bottom: 0;
+  height: 78%;
   opacity: 0.25;
 }
 
 .wave-bg__layer--3 {
+  bottom: 0;
   height: 100%;
   opacity: 0.18;
 }
 
 .wave-bg__track--1 {
-  animation: waveDrift 22s linear infinite;
+  animation: waveDrift 16s linear infinite;
 }
 
 .wave-bg__track--2 {
-  animation: waveDrift 16s linear infinite reverse;
+  animation: waveDrift 12s linear infinite reverse;
 }
 
 .wave-bg__track--3 {
-  animation: waveDrift 28s linear infinite;
+  animation: waveDrift 9s linear infinite;
 }
 
 .wave-bg--hero {
@@ -294,39 +297,70 @@
 }
 
 .wave-bg--dark {
-  color: rgba(45, 212, 191, 0.18);
+  color: rgba(45, 212, 191, 0.22);
 }
 
 .wave-bg--dark-top {
-  color: rgba(255, 255, 255, 0.14);
+  color: rgba(125, 211, 252, 0.16);
 }
 
 .wave-bg--dark-bottom {
-  color: rgba(243, 244, 246, 0.16);
+  color: rgba(186, 230, 253, 0.14);
 }
 
 .wave-bg--dark .wave-bg__layer--1 {
-  opacity: 0.5;
+  opacity: 0.38;
+  animation: waveSwell 5s ease-in-out infinite;
 }
 
 .wave-bg--dark .wave-bg__layer--2 {
-  opacity: 0.35;
+  opacity: 0.28;
+  animation: waveSwell 4s ease-in-out -1.5s infinite;
 }
 
 .wave-bg--dark .wave-bg__layer--3 {
-  opacity: 0.25;
+  opacity: 0.2;
+  animation: waveSwell 3s ease-in-out -0.8s infinite;
+}
+
+/* Full-section ocean — layers spread vertically for depth */
+.wave-bg--dark.wave-bg--full .wave-bg__layer {
+  bottom: auto;
+  transform: none;
+}
+
+.wave-bg--dark.wave-bg--full .wave-bg__layer--1 {
+  top: 8%;
+  height: 52%;
+  opacity: 0.22;
+  filter: blur(1px);
+  animation: waveSwell 5.5s ease-in-out infinite;
+}
+
+.wave-bg--dark.wave-bg--full .wave-bg__layer--2 {
+  top: 32%;
+  height: 58%;
+  opacity: 0.3;
+  animation: waveSwell 4s ease-in-out -2s infinite;
+}
+
+.wave-bg--dark.wave-bg--full .wave-bg__layer--3 {
+  top: 54%;
+  height: 50%;
+  opacity: 0.24;
+  animation: waveSwell 3s ease-in-out -1s infinite;
 }
 
 .wave-bg--dark.wave-bg--full .wave-bg__track--1 {
-  animation: waveDrift 18s linear infinite, waveBob 8s ease-in-out infinite;
+  animation: waveDrift 19s linear infinite;
 }
 
 .wave-bg--dark.wave-bg--full .wave-bg__track--2 {
-  animation: waveDrift 13s linear infinite reverse, waveBob 10s ease-in-out infinite;
+  animation: waveDrift 13s linear infinite reverse;
 }
 
 .wave-bg--dark.wave-bg--full .wave-bg__track--3 {
-  animation: waveDrift 24s linear infinite, waveBob 12s ease-in-out infinite;
+  animation: waveDrift 10s linear infinite;
 }
 
 .wave-bg--full .wave-bg__layer {
@@ -335,34 +369,112 @@
   transform: translateY(-50%);
 }
 
+.wave-bg--full .wave-bg__layer--1 {
+  animation: waveSwell 5s ease-in-out infinite;
+}
+
+.wave-bg--full .wave-bg__layer--2 {
+  animation: waveSwell 4s ease-in-out -1.2s infinite;
+}
+
+.wave-bg--full .wave-bg__layer--3 {
+  animation: waveSwell 3s ease-in-out -0.6s infinite;
+}
+
 .wave-bg--full .wave-bg__track--1 {
-  animation: waveDrift 20s linear infinite, waveBob 9s ease-in-out infinite;
+  animation: waveDrift 15s linear infinite;
 }
 
 .wave-bg--full .wave-bg__track--2 {
-  animation: waveDrift 14s linear infinite reverse, waveBob 11s ease-in-out infinite;
+  animation: waveDrift 11s linear infinite reverse;
 }
 
 .wave-bg--full .wave-bg__track--3 {
-  animation: waveDrift 26s linear infinite, waveBob 13s ease-in-out infinite;
+  animation: waveDrift 8s linear infinite;
 }
 
 @keyframes waveDrift {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
-@keyframes waveBob {
+@keyframes waveSwell {
   0%,
   100% {
-    margin-top: 0;
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    margin-top: -6px;
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wave-bg__track--1,
+  .wave-bg__track--2,
+  .wave-bg__track--3,
+  .wave-bg__layer--1,
+  .wave-bg__layer--2,
+  .wave-bg__layer--3,
+  .wave-bg--full .wave-bg__layer--1,
+  .wave-bg--full .wave-bg__layer--2,
+  .wave-bg--full .wave-bg__layer--3,
+  .wave-bg--dark .wave-bg__layer--1,
+  .wave-bg--dark .wave-bg__layer--2,
+  .wave-bg--dark .wave-bg__layer--3 {
+    animation: none !important;
+  }
+
+  .ocean-section-bg::before {
+    animation: none !important;
+  }
+}
+
+/* Shared ocean section background — used with UiWaveBackground dark layers */
+.ocean-section-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 15% 45%, rgba(34, 148, 184, 0.28) 0%, transparent 58%),
+    radial-gradient(ellipse 55% 45% at 85% 75%, rgba(45, 212, 191, 0.18) 0%, transparent 52%),
+    linear-gradient(165deg, #0a1c2e 0%, #0f2a39 45%, #0f2744 100%);
+}
+
+.ocean-section-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 40% at 20% 60%, rgba(45, 212, 191, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 35% at 75% 35%, rgba(34, 148, 184, 0.12) 0%, transparent 50%);
+  animation: oceanLight 7s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.ocean-section-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(15, 42, 57, 0.15) 40%,
+    rgba(10, 28, 46, 0.35) 100%
+  );
+  pointer-events: none;
+}
+
+@keyframes oceanLight {
+  0% {
+    opacity: 0.55;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(2%, -1.5%, 0) scale(1.04);
   }
 }
 

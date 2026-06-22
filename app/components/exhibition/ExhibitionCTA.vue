@@ -9,13 +9,15 @@ useSectionMotion(ctaRef, { preset: 'standard' })
 <template>
   <section
     ref="ctaRef"
-    class="py-16 sm:py-20 lg:py-24 relative overflow-hidden"
+    class="relative py-16 sm:py-20 lg:py-24 text-white overflow-hidden"
     aria-labelledby="cta-heading"
   >
-    <div
-      class="absolute inset-0 bg-gradient-to-r from-ocean-700 via-ocean-600 to-ocean-800"
-      aria-hidden="true"
-    />
+    <div class="ocean-section-bg" aria-hidden="true" />
+
+    <UiWaveBackground variant="dark" position="full" height-class="h-full" />
+    <UiWaveBackground variant="dark-top" position="top" height-class="h-16 sm:h-24 lg:h-28" />
+    <UiWaveBackground variant="dark-bottom" position="bottom" height-class="h-16 sm:h-24 lg:h-28" />
+
     <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 id="cta-heading" class="text-3xl sm:text-4xl font-bold text-white tracking-tight">
         {{ $t('exhibition.cta.title') }}
